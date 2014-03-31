@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CFD9C3F918E9DC9000AE9196 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3F818E9DC9000AE9196 /* Foundation.framework */; };
+		CFD9C3FB18E9DC9000AE9196 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FA18E9DC9000AE9196 /* CoreGraphics.framework */; };
+		CFD9C3FD18E9DC9000AE9196 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FC18E9DC9000AE9196 /* UIKit.framework */; };
+		CFD9C3FF18E9DC9000AE9196 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FE18E9DC9000AE9196 /* CoreData.framework */; };
+		CFD9C40518E9DC9000AE9196 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFD9C40318E9DC9000AE9196 /* InfoPlist.strings */; };
+		CFD9C40718E9DC9000AE9196 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD9C40618E9DC9000AE9196 /* main.m */; };
+		CFD9C40B18E9DC9000AE9196 /* TEDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD9C40A18E9DC9000AE9196 /* TEDAppDelegate.m */; };
+		CFD9C40E18E9DC9000AE9196 /* TEDxCT.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFD9C40C18E9DC9000AE9196 /* TEDxCT.xcdatamodeld */; };
+		CFD9C41018E9DC9000AE9196 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD9C40F18E9DC9000AE9196 /* Images.xcassets */; };
+		CFD9C41718E9DC9000AE9196 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C41618E9DC9000AE9196 /* XCTest.framework */; };
+		CFD9C41818E9DC9000AE9196 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3F818E9DC9000AE9196 /* Foundation.framework */; };
+		CFD9C41918E9DC9000AE9196 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FC18E9DC9000AE9196 /* UIKit.framework */; };
+		CFD9C41A18E9DC9000AE9196 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FE18E9DC9000AE9196 /* CoreData.framework */; };
+		CFD9C42218E9DC9000AE9196 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFD9C42018E9DC9000AE9196 /* InfoPlist.strings */; };
+		CFD9C42418E9DC9000AE9196 /* TEDxCTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD9C42318E9DC9000AE9196 /* TEDxCTTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFD9C41B18E9DC9000AE9196 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFD9C3ED18E9DC9000AE9196 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFD9C3F418E9DC9000AE9196;
+			remoteInfo = TEDxCT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CFD9C3F518E9DC9000AE9196 /* TEDxCT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEDxCT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFD9C3F818E9DC9000AE9196 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CFD9C3FA18E9DC9000AE9196 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CFD9C3FC18E9DC9000AE9196 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CFD9C3FE18E9DC9000AE9196 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CFD9C40218E9DC9000AE9196 /* TEDxCT-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TEDxCT-Info.plist"; sourceTree = "<group>"; };
+		CFD9C40418E9DC9000AE9196 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFD9C40618E9DC9000AE9196 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFD9C40818E9DC9000AE9196 /* TEDxCT-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TEDxCT-Prefix.pch"; sourceTree = "<group>"; };
+		CFD9C40918E9DC9000AE9196 /* TEDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TEDAppDelegate.h; sourceTree = "<group>"; };
+		CFD9C40A18E9DC9000AE9196 /* TEDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TEDAppDelegate.m; sourceTree = "<group>"; };
+		CFD9C40D18E9DC9000AE9196 /* TEDxCT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TEDxCT.xcdatamodel; sourceTree = "<group>"; };
+		CFD9C40F18E9DC9000AE9196 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CFD9C41518E9DC9000AE9196 /* TEDxCTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TEDxCTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFD9C41618E9DC9000AE9196 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CFD9C41F18E9DC9000AE9196 /* TEDxCTTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TEDxCTTests-Info.plist"; sourceTree = "<group>"; };
+		CFD9C42118E9DC9000AE9196 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CFD9C42318E9DC9000AE9196 /* TEDxCTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TEDxCTTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFD9C3F218E9DC9000AE9196 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFD9C3FB18E9DC9000AE9196 /* CoreGraphics.framework in Frameworks */,
+				CFD9C3FF18E9DC9000AE9196 /* CoreData.framework in Frameworks */,
+				CFD9C3FD18E9DC9000AE9196 /* UIKit.framework in Frameworks */,
+				CFD9C3F918E9DC9000AE9196 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFD9C41218E9DC9000AE9196 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFD9C41718E9DC9000AE9196 /* XCTest.framework in Frameworks */,
+				CFD9C41A18E9DC9000AE9196 /* CoreData.framework in Frameworks */,
+				CFD9C41918E9DC9000AE9196 /* UIKit.framework in Frameworks */,
+				CFD9C41818E9DC9000AE9196 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFD9C3EC18E9DC9000AE9196 = {
+			isa = PBXGroup;
+			children = (
+				CFD9C40018E9DC9000AE9196 /* TEDxCT */,
+				CFD9C41D18E9DC9000AE9196 /* TEDxCTTests */,
+				CFD9C3F718E9DC9000AE9196 /* Frameworks */,
+				CFD9C3F618E9DC9000AE9196 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFD9C3F618E9DC9000AE9196 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFD9C3F518E9DC9000AE9196 /* TEDxCT.app */,
+				CFD9C41518E9DC9000AE9196 /* TEDxCTTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFD9C3F718E9DC9000AE9196 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFD9C3F818E9DC9000AE9196 /* Foundation.framework */,
+				CFD9C3FA18E9DC9000AE9196 /* CoreGraphics.framework */,
+				CFD9C3FC18E9DC9000AE9196 /* UIKit.framework */,
+				CFD9C3FE18E9DC9000AE9196 /* CoreData.framework */,
+				CFD9C41618E9DC9000AE9196 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFD9C40018E9DC9000AE9196 /* TEDxCT */ = {
+			isa = PBXGroup;
+			children = (
+				CFD9C40918E9DC9000AE9196 /* TEDAppDelegate.h */,
+				CFD9C40A18E9DC9000AE9196 /* TEDAppDelegate.m */,
+				CFD9C40F18E9DC9000AE9196 /* Images.xcassets */,
+				CFD9C40C18E9DC9000AE9196 /* TEDxCT.xcdatamodeld */,
+				CFD9C40118E9DC9000AE9196 /* Supporting Files */,
+			);
+			path = TEDxCT;
+			sourceTree = "<group>";
+		};
+		CFD9C40118E9DC9000AE9196 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFD9C40218E9DC9000AE9196 /* TEDxCT-Info.plist */,
+				CFD9C40318E9DC9000AE9196 /* InfoPlist.strings */,
+				CFD9C40618E9DC9000AE9196 /* main.m */,
+				CFD9C40818E9DC9000AE9196 /* TEDxCT-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFD9C41D18E9DC9000AE9196 /* TEDxCTTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFD9C42318E9DC9000AE9196 /* TEDxCTTests.m */,
+				CFD9C41E18E9DC9000AE9196 /* Supporting Files */,
+			);
+			path = TEDxCTTests;
+			sourceTree = "<group>";
+		};
+		CFD9C41E18E9DC9000AE9196 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFD9C41F18E9DC9000AE9196 /* TEDxCTTests-Info.plist */,
+				CFD9C42018E9DC9000AE9196 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFD9C3F418E9DC9000AE9196 /* TEDxCT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFD9C42718E9DC9000AE9196 /* Build configuration list for PBXNativeTarget "TEDxCT" */;
+			buildPhases = (
+				CFD9C3F118E9DC9000AE9196 /* Sources */,
+				CFD9C3F218E9DC9000AE9196 /* Frameworks */,
+				CFD9C3F318E9DC9000AE9196 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TEDxCT;
+			productName = TEDxCT;
+			productReference = CFD9C3F518E9DC9000AE9196 /* TEDxCT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFD9C41418E9DC9000AE9196 /* TEDxCTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFD9C42A18E9DC9000AE9196 /* Build configuration list for PBXNativeTarget "TEDxCTTests" */;
+			buildPhases = (
+				CFD9C41118E9DC9000AE9196 /* Sources */,
+				CFD9C41218E9DC9000AE9196 /* Frameworks */,
+				CFD9C41318E9DC9000AE9196 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFD9C41C18E9DC9000AE9196 /* PBXTargetDependency */,
+			);
+			name = TEDxCTTests;
+			productName = TEDxCTTests;
+			productReference = CFD9C41518E9DC9000AE9196 /* TEDxCTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFD9C3ED18E9DC9000AE9196 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TED;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = TEDxCapeTown;
+				TargetAttributes = {
+					CFD9C41418E9DC9000AE9196 = {
+						TestTargetID = CFD9C3F418E9DC9000AE9196;
+					};
+				};
+			};
+			buildConfigurationList = CFD9C3F018E9DC9000AE9196 /* Build configuration list for PBXProject "TEDxCT" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CFD9C3EC18E9DC9000AE9196;
+			productRefGroup = CFD9C3F618E9DC9000AE9196 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFD9C3F418E9DC9000AE9196 /* TEDxCT */,
+				CFD9C41418E9DC9000AE9196 /* TEDxCTTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFD9C3F318E9DC9000AE9196 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFD9C40518E9DC9000AE9196 /* InfoPlist.strings in Resources */,
+				CFD9C41018E9DC9000AE9196 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFD9C41318E9DC9000AE9196 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFD9C42218E9DC9000AE9196 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFD9C3F118E9DC9000AE9196 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFD9C40E18E9DC9000AE9196 /* TEDxCT.xcdatamodeld in Sources */,
+				CFD9C40B18E9DC9000AE9196 /* TEDAppDelegate.m in Sources */,
+				CFD9C40718E9DC9000AE9196 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFD9C41118E9DC9000AE9196 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFD9C42418E9DC9000AE9196 /* TEDxCTTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFD9C41C18E9DC9000AE9196 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFD9C3F418E9DC9000AE9196 /* TEDxCT */;
+			targetProxy = CFD9C41B18E9DC9000AE9196 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFD9C40318E9DC9000AE9196 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFD9C40418E9DC9000AE9196 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CFD9C42018E9DC9000AE9196 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFD9C42118E9DC9000AE9196 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFD9C42518E9DC9000AE9196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CFD9C42618E9DC9000AE9196 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFD9C42818E9DC9000AE9196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TEDxCT/TEDxCT-Prefix.pch";
+				INFOPLIST_FILE = "TEDxCT/TEDxCT-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CFD9C42918E9DC9000AE9196 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TEDxCT/TEDxCT-Prefix.pch";
+				INFOPLIST_FILE = "TEDxCT/TEDxCT-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CFD9C42B18E9DC9000AE9196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TEDxCT.app/TEDxCT";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TEDxCT/TEDxCT-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TEDxCTTests/TEDxCTTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CFD9C42C18E9DC9000AE9196 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TEDxCT.app/TEDxCT";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TEDxCT/TEDxCT-Prefix.pch";
+				INFOPLIST_FILE = "TEDxCTTests/TEDxCTTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFD9C3F018E9DC9000AE9196 /* Build configuration list for PBXProject "TEDxCT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFD9C42518E9DC9000AE9196 /* Debug */,
+				CFD9C42618E9DC9000AE9196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFD9C42718E9DC9000AE9196 /* Build configuration list for PBXNativeTarget "TEDxCT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFD9C42818E9DC9000AE9196 /* Debug */,
+				CFD9C42918E9DC9000AE9196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CFD9C42A18E9DC9000AE9196 /* Build configuration list for PBXNativeTarget "TEDxCTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFD9C42B18E9DC9000AE9196 /* Debug */,
+				CFD9C42C18E9DC9000AE9196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CFD9C40C18E9DC9000AE9196 /* TEDxCT.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CFD9C40D18E9DC9000AE9196 /* TEDxCT.xcdatamodel */,
+			);
+			currentVersion = CFD9C40D18E9DC9000AE9196 /* TEDxCT.xcdatamodel */;
+			path = TEDxCT.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CFD9C3ED18E9DC9000AE9196 /* Project object */;
+}
