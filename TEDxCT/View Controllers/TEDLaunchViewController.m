@@ -7,6 +7,7 @@
 //
 
 #import "TEDLaunchViewController.h"
+#import "TEDCoreDataManager.h"
 #import "TEDTabBarController.h"
 
 @interface TEDLaunchViewController ()
