@@ -14,6 +14,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     TEDLaunchViewController *tlc = [[TEDLaunchViewController alloc] init];
+    
+    
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:tlc];
     // Override point for customization after application launch.
     [self.window setRootViewController:self.navigationController];

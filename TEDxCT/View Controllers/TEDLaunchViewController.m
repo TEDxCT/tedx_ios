@@ -7,6 +7,7 @@
 //
 
 #import "TEDLaunchViewController.h"
+#import "TEDTabBarController.h"
 
 @interface TEDLaunchViewController ()
 
@@ -27,6 +28,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self presentFirstViewController];
+
+}
+
+- (void)presentFirstViewController {
+    TEDTabBarController *tabBarController = [[TEDTabBarController alloc]init];
+    [self.navigationController pushViewController:tabBarController animated:NO];
+    
 }
 
 - (void)didReceiveMemoryWarning
