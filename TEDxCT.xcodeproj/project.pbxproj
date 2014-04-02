@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42C3FB9318E9F04900CF6042 /* TEDManagedObjectContextService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FB9218E9F04900CF6042 /* TEDManagedObjectContextService.m */; };
+		42C3FB9A18E9F32D00CF6042 /* TEDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FB9818E9F32D00CF6042 /* TEDLaunchViewController.m */; };
+		42C3FB9B18E9F32D00CF6042 /* TEDLaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C3FB9918E9F32D00CF6042 /* TEDLaunchViewController.xib */; };
 		CFD9C3F918E9DC9000AE9196 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3F818E9DC9000AE9196 /* Foundation.framework */; };
 		CFD9C3FB18E9DC9000AE9196 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FA18E9DC9000AE9196 /* CoreGraphics.framework */; };
 		CFD9C3FD18E9DC9000AE9196 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD9C3FC18E9DC9000AE9196 /* UIKit.framework */; };
@@ -35,6 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42C3FB9118E9F04900CF6042 /* TEDManagedObjectContextService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDManagedObjectContextService.h; sourceTree = "<group>"; };
+		42C3FB9218E9F04900CF6042 /* TEDManagedObjectContextService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDManagedObjectContextService.m; sourceTree = "<group>"; };
+		42C3FB9718E9F32D00CF6042 /* TEDLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDLaunchViewController.h; sourceTree = "<group>"; };
+		42C3FB9818E9F32D00CF6042 /* TEDLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDLaunchViewController.m; sourceTree = "<group>"; };
+		42C3FB9918E9F32D00CF6042 /* TEDLaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TEDLaunchViewController.xib; sourceTree = "<group>"; };
 		CFD9C3F518E9DC9000AE9196 /* TEDxCT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEDxCT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD9C3F818E9DC9000AE9196 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFD9C3FA18E9DC9000AE9196 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,6 +89,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42C3FB9018E9EBB700CF6042 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				42C3FB9118E9F04900CF6042 /* TEDManagedObjectContextService.h */,
+				42C3FB9218E9F04900CF6042 /* TEDManagedObjectContextService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		42C3FB9418E9F2BD00CF6042 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				42C3FB9718E9F32D00CF6042 /* TEDLaunchViewController.h */,
+				42C3FB9818E9F32D00CF6042 /* TEDLaunchViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		42C3FB9518E9F2BD00CF6042 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42C3FB9918E9F32D00CF6042 /* TEDLaunchViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		42C3FB9618E9F2E200CF6042 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			path = TEDxCT/Models;
+			sourceTree = SOURCE_ROOT;
+		};
 		CFD9C3EC18E9DC9000AE9196 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +157,10 @@
 		CFD9C40018E9DC9000AE9196 /* TEDxCT */ = {
 			isa = PBXGroup;
 			children = (
+				42C3FB9618E9F2E200CF6042 /* Models */,
+				42C3FB9418E9F2BD00CF6042 /* View Controllers */,
+				42C3FB9518E9F2BD00CF6042 /* Views */,
+				42C3FB9018E9EBB700CF6042 /* Services */,
 				CFD9C40918E9DC9000AE9196 /* TEDAppDelegate.h */,
 				CFD9C40A18E9DC9000AE9196 /* TEDAppDelegate.m */,
 				CFD9C40F18E9DC9000AE9196 /* Images.xcassets */,
@@ -198,7 +244,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TED;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = TEDxCapeTown;
 				TargetAttributes = {
 					CFD9C41418E9DC9000AE9196 = {
@@ -229,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C3FB9B18E9F32D00CF6042 /* TEDLaunchViewController.xib in Resources */,
 				CFD9C40518E9DC9000AE9196 /* InfoPlist.strings in Resources */,
 				CFD9C41018E9DC9000AE9196 /* Images.xcassets in Resources */,
 			);
@@ -249,7 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C3FB9318E9F04900CF6042 /* TEDManagedObjectContextService.m in Sources */,
 				CFD9C40E18E9DC9000AE9196 /* TEDxCT.xcdatamodeld in Sources */,
+				42C3FB9A18E9F32D00CF6042 /* TEDLaunchViewController.m in Sources */,
 				CFD9C40B18E9DC9000AE9196 /* TEDAppDelegate.m in Sources */,
 				CFD9C40718E9DC9000AE9196 /* main.m in Sources */,
 			);
@@ -297,7 +346,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -310,6 +358,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -336,7 +385,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -349,6 +397,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -370,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEDxCT/TEDxCT-Prefix.pch";
 				INFOPLIST_FILE = "TEDxCT/TEDxCT-Info.plist";
@@ -383,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEDxCT/TEDxCT-Prefix.pch";
 				INFOPLIST_FILE = "TEDxCT/TEDxCT-Info.plist";
@@ -394,7 +445,6 @@
 		CFD9C42B18E9DC9000AE9196 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TEDxCT.app/TEDxCT";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -417,7 +467,6 @@
 		CFD9C42C18E9DC9000AE9196 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TEDxCT.app/TEDxCT";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -452,6 +501,7 @@
 				CFD9C42918E9DC9000AE9196 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CFD9C42A18E9DC9000AE9196 /* Build configuration list for PBXNativeTarget "TEDxCTTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +510,7 @@
 				CFD9C42C18E9DC9000AE9196 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
