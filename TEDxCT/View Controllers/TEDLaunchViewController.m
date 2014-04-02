@@ -7,6 +7,7 @@
 //
 
 #import "TEDLaunchViewController.h"
+#import "TEDCoreDataManager.h"
 
 @interface TEDLaunchViewController ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [TEDCoreDataManager initialiseSharedManager];
 }
 
 - (void)didReceiveMemoryWarning

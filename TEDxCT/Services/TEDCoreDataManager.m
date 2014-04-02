@@ -1,31 +1,42 @@
 //
-//  TEDManagedObjectContextService.m
+//  TEDCoreDataManager.m
 //  TEDxCT
 //
-//  Created by Daniel Galasko on 3/31/14.
+//  Created by Daniel Galasko on 4/2/14.
 //  Copyright (c) 2014 TEDxCapeTown. All rights reserved.
 //
 
-#import "TEDManagedObjectContextService.h"
+#import "TEDCoreDataManager.h"
 
-@interface TEDManagedObjectContextService()
+static TEDCoreDataManager *sharedManager = nil;
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@interface TEDCoreDataManager()
+@property (strong, nonatomic) NSManagedObjectContext *uiContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
 @end
 
-@implementation TEDManagedObjectContextService
+@implementation TEDCoreDataManager
 
-@synthesize managedObjectContext = _managedObjectContext;
+@synthesize uiContext = _uiContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
++ (TEDCoreDataManager *)sharedManager {
+    return sharedManager;
+}
+
++ (void)initialiseSharedManager {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[TEDCoreDataManager alloc] init];
+    });
+}
 
 - (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *managedObjectContext = self.uiContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
@@ -40,18 +51,18 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
+- (NSManagedObjectContext *)uiContext
 {
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+    if (_uiContext != nil) {
+        return _uiContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _uiContext = [[NSManagedObjectContext alloc] init];
+        [_uiContext setPersistentStoreCoordinator:coordinator];
     }
-    return _managedObjectContext;
+    return _uiContext;
 }
 
 // Returns the managed object model for the application.
@@ -116,6 +127,5 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
 
 @end
