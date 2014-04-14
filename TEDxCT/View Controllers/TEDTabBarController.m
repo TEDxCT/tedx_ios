@@ -8,6 +8,9 @@
 
 #import "TEDTabBarController.h"
 #import "TEDAgendaTableViewController.h"
+#import "TEDEventInfoViewController.h"
+#import "TEDMoreInfoViewController.h"
+#import "TEDSpeakersViewController.h"
 
 @interface TEDTabBarController ()
 @property (strong, nonatomic) IBOutlet UITabBarItem *agendaItem;
@@ -22,7 +25,18 @@
     if (self) {
         TEDAgendaTableViewController *agendaViewController = [[TEDAgendaTableViewController alloc]init];
         agendaViewController.title = @"Agenda";
-        self.viewControllers = @[agendaViewController];
+        
+        TEDSpeakersViewController *speakersViewController = [[TEDSpeakersViewController alloc]init];
+        speakersViewController.title = @"Speakers";
+        
+        TEDEventInfoViewController *eventViewController = [[TEDEventInfoViewController alloc] init];
+        eventViewController.title = @"Info";
+        
+        TEDMoreInfoViewController *moreInfoController = [[TEDMoreInfoViewController alloc]init];
+        moreInfoController.title = @"More";
+        
+        self.viewControllers = @[agendaViewController, speakersViewController, eventViewController, moreInfoController];
+        
     }
     return self;
 }
