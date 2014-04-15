@@ -7,6 +7,7 @@
 //
 
 #import "TEDTalkViewController.h"
+#import "TEDSpeakerProfileViewController.h"
 
 @interface TEDTalkViewController ()
 
@@ -33,6 +34,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)speakerNamePressed{
+    TEDSpeakerProfileViewController *newVC = [[TEDSpeakerProfileViewController alloc] init];
+    [self.navigationController pushViewController:newVC animated:YES];
 }
 
 @end
