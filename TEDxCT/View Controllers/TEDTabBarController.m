@@ -29,12 +29,17 @@
         
         TEDSpeakersViewController *speakersViewController = [[TEDSpeakersViewController alloc]init];
         speakersViewController.title = @"Speakers";
+        speakersViewController.tabBarItem.image = [UIImage imageNamed:@"speakers.png"];
+
         
         TEDEventInfoViewController *eventViewController = [[TEDEventInfoViewController alloc] init];
         eventViewController.title = @"Info";
+        eventViewController.tabBarItem.image = [UIImage imageNamed:@"information.png"];
         
         TEDMoreInfoViewController *moreInfoController = [[TEDMoreInfoViewController alloc]init];
         moreInfoController.title = @"More";
+        moreInfoController.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
+
         
         self.viewControllers = @[agendaViewController, speakersViewController, eventViewController, moreInfoController];
         
