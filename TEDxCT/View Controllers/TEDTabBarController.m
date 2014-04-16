@@ -25,6 +25,7 @@
     if (self) {
         TEDAgendaTableViewController *agendaViewController = [[TEDAgendaTableViewController alloc]init];
         agendaViewController.title = @"Agenda";
+        agendaViewController.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
         
         TEDSpeakersViewController *speakersViewController = [[TEDSpeakersViewController alloc]init];
         speakersViewController.title = @"Speakers";
