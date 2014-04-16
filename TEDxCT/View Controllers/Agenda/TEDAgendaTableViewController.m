@@ -10,6 +10,7 @@
 
 #import "TEDAgendaDataSource.h"
 #import "TEDTalkViewController.h"
+#import "TEDTalkTableViewCell.h"
 
 @interface TEDAgendaTableViewController ()
 @property (nonatomic,strong) TEDAgendaDataSource *agendaDataSource;
@@ -31,6 +32,7 @@
     [self.tableView setDataSource:_agendaDataSource];
     [self.tableView setDelegate:self];
     [self.tableView reloadData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,9 +46,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UITableViewDelegate -
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TEDTalkViewController *newVC = [[TEDTalkViewController alloc] init];
     [self.tabBarController.navigationController pushViewController:newVC animated:YES];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
 }
 
 @end
