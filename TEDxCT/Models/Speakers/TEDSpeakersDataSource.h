@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface TEDSpeakersDataSource : NSObject<UITableViewDataSource>
-
+- (void)registerCellsForTableView:(UITableView *)tableView;
 @end

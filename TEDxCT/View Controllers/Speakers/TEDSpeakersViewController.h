@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TEDSpeakersViewController : UIViewController
+@interface TEDSpeakersViewController : UIViewController<UITableViewDelegate>
 
 @end
