@@ -22,7 +22,7 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    return nil;
 }
 
 @end
