@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class TEDSession, TEDSpeaker;
 
 @interface TEDTalk : NSManagedObject
 
@@ -17,7 +18,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * orderInSession;
 @property (nonatomic, retain) NSString * videoURL;
-@property (nonatomic, retain) NSManagedObject *session;
-@property (nonatomic, retain) NSManagedObject *speaker;
+@property (nonatomic, retain) TEDSession *session;
+@property (nonatomic, retain) TEDSpeaker *speaker;
 
 @end

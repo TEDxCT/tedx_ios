@@ -12,9 +12,10 @@
 
 @interface TEDSpeaker : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * isActive;
-@property (nonatomic, retain) NSString * fullName;
 @property (nonatomic, retain) NSString * descriptionHTML;
+@property (nonatomic, retain) NSString * fullName;
 @property (nonatomic, retain) NSString * imageURL;
+@property (nonatomic, retain) NSNumber * isActive;
+@property (nonatomic, retain) NSString * funkyTitle;
 
 @end

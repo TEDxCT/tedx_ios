@@ -11,9 +11,10 @@
 
 @implementation TEDSpeaker
 
-@dynamic isActive;
-@dynamic fullName;
 @dynamic descriptionHTML;
+@dynamic fullName;
 @dynamic imageURL;
+@dynamic isActive;
+@dynamic funkyTitle;
 
 @end

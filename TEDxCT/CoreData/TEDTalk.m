@@ -7,6 +7,8 @@
 //
 
 #import "TEDTalk.h"
+#import "TEDSession.h"
+#import "TEDSpeaker.h"
 
 
 @implementation TEDTalk

@@ -18,6 +18,7 @@
     <entity name="TEDSpeaker" representedClassName="TEDSpeaker" syncable="YES">
         <attribute name="descriptionHTML" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="funkyTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
@@ -33,7 +34,7 @@
     <elements>
         <element name="TEDEvent" positionX="-36" positionY="18" width="128" height="150"/>
         <element name="TEDSession" positionX="-18" positionY="27" width="128" height="105"/>
-        <element name="TEDSpeaker" positionX="-54" positionY="9" width="128" height="105"/>
+        <element name="TEDSpeaker" positionX="-54" positionY="9" width="128" height="118"/>
         <element name="TEDTalk" positionX="0" positionY="90" width="128" height="148"/>
     </elements>
 </model>
