@@ -9,22 +9,17 @@
 #import "TEDAgendaDataSource.h"
 #import "TEDTalkTableViewCell.h"
 
-@implementation TEDAgendaDataSource
-#pragma mark - Table view data source
+NSString *const kTalkCellReuseIdentifier = @"talkCell";
 
+@implementation TEDAgendaDataSource
+
+- (void)registerCellsForTableView:(UITableView *)tableView {
+    [tableView registerNib:[UINib nibWithNibName:@"TEDTalkTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kTalkCellReuseIdentifier];
+}
 
 #pragma mark - UITableViewDataSource -
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"talkCell";
-    
-    TEDTalkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TEDTalkTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    
+    TEDTalkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTalkCellReuseIdentifier];
     return cell;
 }
 

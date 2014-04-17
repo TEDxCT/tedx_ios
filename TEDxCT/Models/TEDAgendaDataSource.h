@@ -10,4 +10,6 @@
 
 @interface TEDAgendaDataSource : NSObject<UITableViewDataSource>
 
+- (void)registerCellsForTableView:(UITableView *)tableView;
+
 @end

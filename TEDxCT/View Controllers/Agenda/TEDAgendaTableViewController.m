@@ -25,11 +25,11 @@
     [self.view addSubview:self.tableView];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.agendaDataSource = [[TEDAgendaDataSource alloc] init];
-    [self.tableView setDataSource:_agendaDataSource];
+    [self.agendaDataSource registerCellsForTableView:self.tableView];
+    [self.tableView setDataSource:self.agendaDataSource];
     [self.tableView setDelegate:self];
     [self.tableView reloadData];
     
