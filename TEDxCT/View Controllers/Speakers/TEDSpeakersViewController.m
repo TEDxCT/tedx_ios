@@ -9,6 +9,7 @@
 #import "TEDSpeakersViewController.h"
 
 @interface TEDSpeakersViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *speakersTableView;
 
 @end
 
