@@ -7,6 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TEDCoreDataMocker.h"
+#import "TEDSpeaker.h"
+#import "TEDCoreDataManager.h"
+#import <CoreData/CoreData.h>
 
 @interface TEDxCTTests : XCTestCase
 
@@ -26,9 +30,22 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testCreateFakeSpeakers
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    TEDCoreDataMocker *mocker = [[TEDCoreDataMocker alloc]init];
+    [mocker create2Speakers];
+    
+    NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSpeaker class])];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    
+    XCTAssertNil(error, @"Failed while retrieving speakers");
+    
+    XCTAssertEqual([results count], 2, @"Did not return correct number of speakers");
 }
 
 @end
