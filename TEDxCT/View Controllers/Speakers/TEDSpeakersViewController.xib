@@ -15,13 +15,21 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="um1-94-ANc">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="um1-94-ANc">
                     <rect key="frame" x="0.0" y="20" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="um1-94-ANc" secondAttribute="trailing" id="R1W-Xn-UNA"/>
+                <constraint firstItem="um1-94-ANc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="WNP-Kn-5Hh"/>
+                <constraint firstAttribute="centerY" secondItem="um1-94-ANc" secondAttribute="centerY" constant="-20" id="iJg-tF-cnl"/>
+                <constraint firstAttribute="centerX" secondItem="um1-94-ANc" secondAttribute="centerX" id="jYR-jN-kQR"/>
+                <constraint firstItem="um1-94-ANc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="nl9-cS-yTU"/>
+                <constraint firstItem="um1-94-ANc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="y9k-Lq-NDN"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
     </objects>

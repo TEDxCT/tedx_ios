@@ -12,6 +12,8 @@
 		4212D410190038BF007FC522 /* TEDCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212D40F190038BF007FC522 /* TEDCoreDataManager.m */; };
 		4212D41619003FFC007FC522 /* TEDTalkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212D41419003FFC007FC522 /* TEDTalkTableViewCell.m */; };
 		4212D41719003FFC007FC522 /* TEDTalkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4212D41519003FFC007FC522 /* TEDTalkTableViewCell.xib */; };
+		4212D41B1900403F007FC522 /* TEDSpeakersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212D4191900403F007FC522 /* TEDSpeakersTableViewCell.m */; };
+		4212D41C1900403F007FC522 /* TEDSpeakersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4212D41A1900403F007FC522 /* TEDSpeakersTableViewCell.xib */; };
 		42B7511018EC99B90058CB90 /* TEDAgendaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7510B18EC99B90058CB90 /* TEDAgendaTableViewController.m */; };
 		42B7511118EC99B90058CB90 /* TEDTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7510E18EC99B90058CB90 /* TEDTalkViewController.m */; };
 		42C3FB9A18E9F32D00CF6042 /* TEDLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FB9818E9F32D00CF6042 /* TEDLaunchViewController.m */; };
@@ -66,6 +68,9 @@
 		4212D41319003FFC007FC522 /* TEDTalkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDTalkTableViewCell.h; sourceTree = "<group>"; };
 		4212D41419003FFC007FC522 /* TEDTalkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDTalkTableViewCell.m; sourceTree = "<group>"; };
 		4212D41519003FFC007FC522 /* TEDTalkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TEDTalkTableViewCell.xib; sourceTree = "<group>"; };
+		4212D4181900403F007FC522 /* TEDSpeakersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDSpeakersTableViewCell.h; sourceTree = "<group>"; };
+		4212D4191900403F007FC522 /* TEDSpeakersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDSpeakersTableViewCell.m; sourceTree = "<group>"; };
+		4212D41A1900403F007FC522 /* TEDSpeakersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TEDSpeakersTableViewCell.xib; sourceTree = "<group>"; };
 		42B7510A18EC99B90058CB90 /* TEDAgendaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDAgendaTableViewController.h; sourceTree = "<group>"; };
 		42B7510B18EC99B90058CB90 /* TEDAgendaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDAgendaTableViewController.m; sourceTree = "<group>"; };
 		42B7510D18EC99B90058CB90 /* TEDTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDTalkViewController.h; sourceTree = "<group>"; };
@@ -176,6 +181,9 @@
 		4212D41119003FFC007FC522 /* Speakers */ = {
 			isa = PBXGroup;
 			children = (
+				4212D4181900403F007FC522 /* TEDSpeakersTableViewCell.h */,
+				4212D4191900403F007FC522 /* TEDSpeakersTableViewCell.m */,
+				4212D41A1900403F007FC522 /* TEDSpeakersTableViewCell.xib */,
 			);
 			path = Speakers;
 			sourceTree = "<group>";
@@ -457,6 +465,7 @@
 				CFD11D1B18FBC9C100CF016F /* TEDAgendaTableViewController.xib in Resources */,
 				4212D41719003FFC007FC522 /* TEDTalkTableViewCell.xib in Resources */,
 				CFD11D3818FBCA4A00CF016F /* TEDSpeakersViewController.xib in Resources */,
+				4212D41C1900403F007FC522 /* TEDSpeakersTableViewCell.xib in Resources */,
 				CFD11D3318FBCA3800CF016F /* TEDSpeakerProfileViewController.xib in Resources */,
 				CFD11D2E18FBCA2900CF016F /* TEDMoreInfoViewController.xib in Resources */,
 				CFD11D2418FBC9DC00CF016F /* TEDLaunchViewController.xib in Resources */,
@@ -486,6 +495,7 @@
 				42C3FB9A18E9F32D00CF6042 /* TEDLaunchViewController.m in Sources */,
 				CFE84D6018EC854000FA9B38 /* TEDTabBarController.m in Sources */,
 				CFD9C40B18E9DC9000AE9196 /* TEDAppDelegate.m in Sources */,
+				4212D41B1900403F007FC522 /* TEDSpeakersTableViewCell.m in Sources */,
 				4212D40B1900374A007FC522 /* TEDSpeakersDataSource.m in Sources */,
 				42B7511018EC99B90058CB90 /* TEDAgendaTableViewController.m in Sources */,
 				4212D410190038BF007FC522 /* TEDCoreDataManager.m in Sources */,

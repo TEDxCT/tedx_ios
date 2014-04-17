@@ -7,13 +7,14 @@
 //
 
 #import "TEDSpeakersDataSource.h"
+#import "TEDSpeakersTableViewCell.h"
 
 NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 
 @implementation TEDSpeakersDataSource
 
 - (void)registerCellsForTableView:(UITableView *)tableView {
-
+    [tableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
 }
 
 #pragma mark - UITableViewDataSource -
@@ -22,7 +23,9 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    TEDSpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSpeakersCellReuseIdentifier];
+    [cell.speakerNameLabel setText:@"Bruce Willis"];
+    return cell;
 }
 
 @end
