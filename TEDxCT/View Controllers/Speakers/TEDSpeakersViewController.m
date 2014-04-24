@@ -30,6 +30,8 @@
     [self.speakersDataSource reloadData];
     self.speakersTableView.dataSource = self.speakersDataSource;
     self.speakersTableView.delegate = self;
+    
+    self.tabBarController.title = @"All Speakers";
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
