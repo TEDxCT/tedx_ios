@@ -30,6 +30,8 @@
     [self.speakersDataSource reloadData];
     self.speakersTableView.dataSource = self.speakersDataSource;
     self.speakersTableView.delegate = self;
+    
+    [self.speakersTableView reloadData];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
