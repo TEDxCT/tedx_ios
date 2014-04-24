@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString * fullName;
 @property (nonatomic, retain) NSString * funkyTitle;
 @property (nonatomic, retain) NSString * imageURL;
-@property (nonatomic, retain) NSNumber * isActive;
+@property (nonatomic) BOOL isActive;
 @property (nonatomic, retain) TEDTalk *talk;
 
 @end

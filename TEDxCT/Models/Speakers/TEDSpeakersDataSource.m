@@ -60,12 +60,8 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     // Perform the asynchronous task on the background thread-
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        // Perform the asynchronous task in this block like loading data from server
-        
         NSString *ImageURL = speaker.imageURL;
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]];
-        
         
         // Perform the task on the main thread using the main queue-
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -88,7 +84,7 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDSpeaker class]) inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    [fetchRequest setPredicate:nil];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isActive = YES"]];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fullName"
                                                                    ascending:YES];
     
