@@ -2,19 +2,21 @@
 //  TEDSpeaker.m
 //  TEDxCT
 //
-//  Created by Carla G on 2014/04/17.
+//  Created by Daniel Galasko on 4/24/14.
 //  Copyright (c) 2014 TEDxCapeTown. All rights reserved.
 //
 
 #import "TEDSpeaker.h"
+#import "TEDTalk.h"
 
 
 @implementation TEDSpeaker
 
 @dynamic descriptionHTML;
 @dynamic fullName;
+@dynamic funkyTitle;
 @dynamic imageURL;
 @dynamic isActive;
-@dynamic funkyTitle;
+@dynamic talk;
 
 @end
