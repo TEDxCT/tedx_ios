@@ -45,7 +45,7 @@
     
     XCTAssertNil(error, @"Failed while retrieving speakers");
     
-    XCTAssertEqual([results count], 2, @"Did not return correct number of speakers");
+    XCTAssertEqual([results count], 5, @"Did not return correct number of speakers");
 }
 
 @end
