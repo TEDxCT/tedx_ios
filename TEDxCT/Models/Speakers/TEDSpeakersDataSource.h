@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class TEDSpeaker;
+
 @interface TEDSpeakersDataSource : NSObject<UITableViewDataSource>
 - (void)registerCellsForTableView:(UITableView *)tableView;
+- (void)reloadData;
+
+- (TEDSpeaker *)speakerForItemAtIndexPath:(NSIndexPath *)indexPath;
 @end

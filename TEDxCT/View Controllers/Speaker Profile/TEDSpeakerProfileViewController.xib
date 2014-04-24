@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TEDSpeakerProfileViewController">
             <connections>
+                <outlet property="speakerImageView" destination="TNh-6K-lO8" id="NBm-RS-3Pz"/>
+                <outlet property="speakerNameLabel" destination="ENL-hu-FYt" id="dlw-f6-sd3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,31 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNh-6K-lO8">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="320"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="1" green="0.15979651080000001" blue="0.067851906480000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="1" green="0.15979651080000001" blue="0.067851906480000002" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-hu-FYt">
+                    <rect key="frame" x="20" y="350" width="728" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ENL-hu-FYt" secondAttribute="trailing" constant="20" symbolic="YES" id="1Ky-Ha-l8x"/>
+                <constraint firstItem="ENL-hu-FYt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="Dtp-gQ-L9e"/>
+                <constraint firstItem="ENL-hu-FYt" firstAttribute="centerX" secondItem="TNh-6K-lO8" secondAttribute="centerX" id="PbR-00-w1T"/>
+                <constraint firstItem="ENL-hu-FYt" firstAttribute="top" secondItem="TNh-6K-lO8" secondAttribute="bottom" constant="30" id="T5W-bz-zbT"/>
+                <constraint firstItem="TNh-6K-lO8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y5O-4G-Lyl"/>
+                <constraint firstItem="TNh-6K-lO8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tDM-lg-aaz"/>
+                <constraint firstItem="ENL-hu-FYt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="350" id="xEa-cd-a2m"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
     </objects>

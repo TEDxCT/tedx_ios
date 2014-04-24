@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TEDSpeakerProfileViewController : UIViewController
+@class TEDSpeaker;
 
+@interface TEDSpeakerProfileViewController : UIViewController
+- (instancetype)initWithSpeaker:(TEDSpeaker *)speaker;
 @end

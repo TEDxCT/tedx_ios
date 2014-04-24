@@ -25,25 +25,29 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     self = [super init];
     if (self) {
         _speakersFetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:[self createSpeakersFetchRequest]
-                                                                               managedObjectContext:[[TEDCoreDataManager sharedManager] uiContext]
+                                                                               managedObjectContext:[self uiContext]
                                                                                  sectionNameKeyPath:nil
                                                                                           cacheName:nil];
-        
-        [_speakersFetchedResultsController performFetch:nil];
-        
     }
     
     return self;
 }
 
+- (void)reloadData {
+    [self.speakersFetchedResultsController performFetch:nil];
+}
+
 - (void)registerCellsForTableView:(UITableView *)tableView {
     [tableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
-    
+}
+
+- (TEDSpeaker *)speakerForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.speakersFetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDataSource -
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[_speakersFetchedResultsController fetchedObjects] count];
+    return [[self.speakersFetchedResultsController fetchedObjects] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -62,7 +66,7 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
         
         
         // Perform the task on the main thread using the main queue-
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             
             // Perform the UI update in this block, like showing image.
             
@@ -75,6 +79,7 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     return cell;
 }
 
+#pragma mark - Core Data -
 - (NSFetchRequest *)createSpeakersFetchRequest {
     NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
 
@@ -84,9 +89,20 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     [fetchRequest setPredicate:nil];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fullName"
                                                                    ascending:YES];
+    
+    NSExpressionDescription* objectIdDesc = [[NSExpressionDescription alloc] init];
+    objectIdDesc.name = @"objectID";
+    objectIdDesc.expression = [NSExpression expressionForEvaluatedObject];
+    objectIdDesc.expressionResultType = NSObjectIDAttributeType;
+    
     [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
     
     return fetchRequest;
+}
+
+#pragma mark - Convenience -
+- (NSManagedObjectContext *)uiContext {
+    return [[TEDCoreDataManager sharedManager] uiContext];
 }
 
 @end
