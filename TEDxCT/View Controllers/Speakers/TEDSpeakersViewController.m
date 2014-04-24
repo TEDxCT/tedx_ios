@@ -21,9 +21,13 @@
     [super viewDidLoad];
     self.dataSource = [[TEDSpeakersDataSource alloc] init];
     [self.dataSource registerCellsForTableView:self.speakersTableView];
-    self.speakersTableView.contentOffset = CGPointMake(0, CGRectGetHeight(self.tabBarController.tabBar.frame));
+
+    [self.speakersTableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth ];
+
     self.speakersTableView.dataSource = self.dataSource;
     self.speakersTableView.delegate = self;
+    
+    [self.speakersTableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate -
