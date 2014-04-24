@@ -33,6 +33,10 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imageView" destination="WHG-EO-QUM" id="Rqj-5R-Vqu"/>
+                <outlet property="talkImageView" destination="WHG-EO-QUM" id="E7q-w0-wYT"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

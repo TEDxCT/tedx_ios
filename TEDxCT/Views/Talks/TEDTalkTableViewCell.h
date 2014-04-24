@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TEDTalkTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 
 
 @end
