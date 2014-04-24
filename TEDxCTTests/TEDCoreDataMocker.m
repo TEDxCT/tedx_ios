@@ -17,6 +17,35 @@
     NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
     [self cleanSpeakersTableInContext:context];
     
+
+    
+    TEDSpeaker *speaker3 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
+                                                                       inManagedObjectContext:context];
+    
+    speaker3.fullName = @"Rapelang Rabana";
+    speaker3.funkyTitle = @"Technology Entrepeneur";
+    speaker3.imageURL = @"http://www.tedxcapetown.org/sites/default/files/imagecache/200x200/speakers/R%20Rabana%20Small.jpg";
+    speaker3.isActive = [NSNumber numberWithBool:YES];
+    speaker3.descriptionHTML = @"Rapelang believes in using mobile technology to re-imagine learning by creating interactive, personalized and adaptive learning platforms that produce data and transparently show levels of knowledge retention.";
+    
+    TEDSpeaker *speaker4 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
+                                                                       inManagedObjectContext:context];
+    
+    speaker4.fullName = @"Angel Campey";
+    speaker4.funkyTitle = @"Comedian";
+    speaker4.imageURL = @"http://www.tedxcapetown.org/sites/default/files/imagecache/200x200/speakers/IMG_0814.jpg";
+    speaker4.isActive = [NSNumber numberWithBool:YES];
+    speaker4.descriptionHTML = @"Angel feels at home on stage with her discuss-it-for-what-it-is comedy approach and shares fresh perspectives on topics we should be talking about.";
+    
+    TEDSpeaker *speaker5 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
+                                                                       inManagedObjectContext:context];
+    
+    speaker5.fullName = @"Adrian Saville";
+    speaker5.funkyTitle = @"Economist";
+    speaker5.imageURL = @"http://www.tedxcapetown.org/sites/default/files/imagecache/200x200/speakers/IMG_0829.jpg";
+    speaker5.isActive = [NSNumber numberWithBool:YES];
+    speaker5.descriptionHTML = @"Adrian demonstrates how mobility on all levels can create win-win outcomes that produce economic inclusion and social upliftment.";
+    
     TEDSpeaker *speaker1 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
                                                                        inManagedObjectContext:context];
     
@@ -29,7 +58,7 @@
     TEDSpeaker *speaker2 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
                                                                        inManagedObjectContext:context];
     
-    speaker2.fullName = @"Lady Gag";
+    speaker2.fullName = @"Lady Gaga";
     speaker2.funkyTitle = @"I dress super weird";
     speaker2.imageURL = @"http://timenewsfeed.files.wordpress.com/2010/06/lady-gaga-kermit-suit4.jpg?w=480&h=320&crop=1";
     speaker2.isActive = [NSNumber numberWithBool:YES];
