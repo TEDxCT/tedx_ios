@@ -60,6 +60,8 @@ static TEDCoreDataManager *sharedManager = nil;
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
         _uiContext = [[NSManagedObjectContext alloc] init];
+        _uiContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
+        _uiContext.undoManager = nil;
         [_uiContext setPersistentStoreCoordinator:coordinator];
     }
     return _uiContext;
