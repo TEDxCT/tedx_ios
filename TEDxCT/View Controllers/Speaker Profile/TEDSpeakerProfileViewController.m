@@ -8,17 +8,19 @@
 
 #import "TEDSpeakerProfileViewController.h"
 
-@interface TEDSpeakerProfileViewController ()
+#import "TEDSpeaker.h"
 
+@interface TEDSpeakerProfileViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *speakerImageView;
+@property (weak, nonatomic) IBOutlet UILabel *speakerNameLabel;
+@property (strong,nonatomic,readonly) TEDSpeaker *speaker;
 @end
 
 @implementation TEDSpeakerProfileViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (instancetype)initWithSpeaker:(TEDSpeaker *)speaker {
+    if (self = [super init]) {
+        _speaker = speaker;
     }
     return self;
 }
@@ -26,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.speakerNameLabel.text = self.speaker.fullName;
     // Do any additional setup after loading the view from its nib.
 }
 
