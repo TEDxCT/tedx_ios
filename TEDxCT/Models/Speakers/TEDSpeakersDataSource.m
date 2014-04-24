@@ -55,6 +55,8 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     
     TEDSpeaker *speaker = [_speakersFetchedResultsController objectAtIndexPath:indexPath];
     [cell.speakerNameLabel setText:speaker.fullName];
+    [cell.funkyTitle setText:speaker.funkyTitle];
+    
     // Perform the asynchronous task on the background thread-
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
