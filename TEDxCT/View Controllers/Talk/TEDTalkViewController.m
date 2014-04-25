@@ -10,16 +10,18 @@
 #import "TEDSpeakerProfileViewController.h"
 
 @interface TEDTalkViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *talkName;
+@property (weak, nonatomic) IBOutlet UILabel *genre;
+@property (weak, nonatomic) IBOutlet UIImageView *talkImage;
+@property (weak, nonatomic) IBOutlet UITextView *talkDescription;
+@property (weak, nonatomic) IBOutlet UIButton *speakerName;
 @end
 
 @implementation TEDTalkViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (instancetype)initWithTalk:(TEDTalk *)talk {
+    if (self = [super init]) {
+        
     }
     return self;
 }
@@ -36,8 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)speakerNamePressed{
-    TEDSpeakerProfileViewController *newVC = [[TEDSpeakerProfileViewController alloc] init];
+-(IBAction)speakerNamePressed:(UIButton *)speakerNameButton {
+    //TODO: Fetch the speaker from the button
+    TEDSpeakerProfileViewController *newVC = [[TEDSpeakerProfileViewController alloc] initWithSpeaker:nil];
     [self.navigationController pushViewController:newVC animated:YES];
 }
 

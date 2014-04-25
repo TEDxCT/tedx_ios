@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TEDSpeakerProfileViewController">
             <connections>
+                <outlet property="fullDescriptionTextView" destination="mad-dq-Bpg" id="09v-ef-9p4"/>
                 <outlet property="speakerImageView" destination="TNh-6K-lO8" id="NBm-RS-3Pz"/>
                 <outlet property="speakerNameLabel" destination="ENL-hu-FYt" id="dlw-f6-sd3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,22 +23,34 @@
                     <color key="backgroundColor" red="1" green="0.15979651080000001" blue="0.067851906480000002" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="1" green="0.15979651080000001" blue="0.067851906480000002" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-hu-FYt">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-hu-FYt">
                     <rect key="frame" x="20" y="206" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mad-dq-Bpg">
+                    <rect key="frame" x="40" y="235" width="240" height="313"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ENL-hu-FYt" secondAttribute="trailing" constant="20" symbolic="YES" id="1Ky-Ha-l8x"/>
+                <constraint firstItem="mad-dq-Bpg" firstAttribute="centerX" secondItem="ENL-hu-FYt" secondAttribute="centerX" id="D1H-On-z5C"/>
                 <constraint firstItem="ENL-hu-FYt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="Dtp-gQ-L9e"/>
+                <constraint firstItem="mad-dq-Bpg" firstAttribute="top" secondItem="ENL-hu-FYt" secondAttribute="top" constant="29" id="L6V-wV-eWo"/>
                 <constraint firstItem="ENL-hu-FYt" firstAttribute="centerX" secondItem="TNh-6K-lO8" secondAttribute="centerX" id="PbR-00-w1T"/>
                 <constraint firstItem="ENL-hu-FYt" firstAttribute="top" secondItem="TNh-6K-lO8" secondAttribute="bottom" constant="8" id="T5W-bz-zbT"/>
                 <constraint firstItem="TNh-6K-lO8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y5O-4G-Lyl"/>
+                <constraint firstItem="mad-dq-Bpg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="qqW-N3-kpN"/>
                 <constraint firstItem="TNh-6K-lO8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tDM-lg-aaz"/>
+                <constraint firstAttribute="bottom" secondItem="mad-dq-Bpg" secondAttribute="bottom" constant="20" symbolic="YES" id="wjn-dU-ndP"/>
                 <constraint firstItem="ENL-hu-FYt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="xEa-cd-a2m"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

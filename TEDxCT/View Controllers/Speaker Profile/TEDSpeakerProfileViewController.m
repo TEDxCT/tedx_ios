@@ -13,6 +13,7 @@
 @interface TEDSpeakerProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *speakerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *speakerNameLabel;
+@property (weak, nonatomic) IBOutlet UITextView *fullDescriptionTextView;
 @property (strong,nonatomic,readonly) TEDSpeaker *speaker;
 @end
 
@@ -29,6 +30,7 @@
 {
     [super viewDidLoad];
     self.speakerNameLabel.text = self.speaker.fullName;
+    [self.fullDescriptionTextView setText:self.speaker.descriptionHTML];
     // Do any additional setup after loading the view from its nib.
 }
 
