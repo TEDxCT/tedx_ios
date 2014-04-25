@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    self.talkImageView.layer.cornerRadius = CGRectGetWidth(self.talkImageView.frame)/2;
+    self.talkImageView.layer.masksToBounds = YES;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -23,14 +25,8 @@
 }
 
 -(void)layoutSubviews {
-    
-//    CGRect newCellSubViewsFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-//    CGRect newCellViewFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-//    
-//    self.contentView.frame = self.contentView.bounds = self.backgroundView.frame = self.accessoryView.frame = newCellSubViewsFrame;
-//    self.frame = newCellViewFrame;
-//    
 //    [super layoutSubviews];
+    
 }
 
 @end
