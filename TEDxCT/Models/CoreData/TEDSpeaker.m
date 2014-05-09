@@ -2,7 +2,7 @@
 //  TEDSpeaker.m
 //  TEDxCT
 //
-//  Created by Daniel Galasko on 4/24/14.
+//  Created by Daniel Galasko on 5/8/14.
 //  Copyright (c) 2014 TEDxCapeTown. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic funkyTitle;
 @dynamic imageURL;
 @dynamic isActive;
+@dynamic identifier;
 @dynamic talk;
 
 @end

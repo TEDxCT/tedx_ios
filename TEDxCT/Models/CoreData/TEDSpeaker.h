@@ -2,7 +2,7 @@
 //  TEDSpeaker.h
 //  TEDxCT
 //
-//  Created by Daniel Galasko on 4/24/14.
+//  Created by Daniel Galasko on 5/8/14.
 //  Copyright (c) 2014 TEDxCapeTown. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * funkyTitle;
 @property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic) BOOL isActive;
+@property (nonatomic) int32_t identifier;
 @property (nonatomic, retain) TEDTalk *talk;
 
 @end
