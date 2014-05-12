@@ -8,6 +8,7 @@
 
 #import "TEDLaunchViewController.h"
 #import "TEDCoreDataManager.h"
+#import "TEDContentImporter.h"
 #import "TEDTabBarController.h"
 
 @interface TEDLaunchViewController ()
@@ -29,6 +30,9 @@
 {
     [super viewDidLoad];
     [TEDCoreDataManager initialiseSharedManager];
+    [TEDContentImporter initialiseSharedImporter];
+    [[TEDContentImporter sharedImporter] requestContentImportForAllContent];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

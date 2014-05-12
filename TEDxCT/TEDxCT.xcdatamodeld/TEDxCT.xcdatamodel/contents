@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="TEDEvent" representedClassName="TEDEvent" syncable="YES">
         <attribute name="descriptionHTML" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -21,6 +21,7 @@
         <attribute name="descriptionHTML" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="funkyTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <relationship name="talk" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TEDTalk" inverseName="speaker" inverseEntity="TEDTalk" syncable="YES"/>
@@ -37,7 +38,7 @@
     <elements>
         <element name="TEDEvent" positionX="-1152" positionY="-567" width="128" height="163"/>
         <element name="TEDSession" positionX="-927" positionY="-387" width="128" height="118"/>
-        <element name="TEDSpeaker" positionX="-450" positionY="-180" width="128" height="133"/>
+        <element name="TEDSpeaker" positionX="-450" positionY="-180" width="128" height="150"/>
         <element name="TEDTalk" positionX="-668" positionY="-292" width="128" height="148"/>
     </elements>
 </model>
