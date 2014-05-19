@@ -10,6 +10,8 @@
 
 @interface TEDTalkTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
+@property (weak, nonatomic) IBOutlet UILabel *talkNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *talkSpeakerName;
 
 
 @end
