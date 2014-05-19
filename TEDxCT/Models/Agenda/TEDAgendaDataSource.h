@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class TEDSession;
+
 @interface TEDAgendaDataSource : NSObject<UITableViewDataSource>
-
 - (void)registerCellsForTableView:(UITableView *)tableView;
-
+- (void)reloadData;
 @end

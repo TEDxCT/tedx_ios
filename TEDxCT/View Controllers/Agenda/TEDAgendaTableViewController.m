@@ -29,7 +29,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.title = @"Agenda";
-
+    [self.agendaDataSource reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -38,7 +39,6 @@
     [self.agendaDataSource registerCellsForTableView:self.tableView];
     [self.tableView setDataSource:self.agendaDataSource];
     [self.tableView setDelegate:self];
-    [self.tableView reloadData];
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -65,6 +65,7 @@
     return 60;
 }
 
+/*
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc]init];
     UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, CGRectGetWidth(self.tableView.frame), 44)];
@@ -74,7 +75,7 @@
     
     [headerView addSubview:headerLabel];
     return headerView;
-}
+}*/
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 44;
