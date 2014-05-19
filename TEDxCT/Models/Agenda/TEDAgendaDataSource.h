@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class TEDSession;
+@class TEDTalk;
 
 @interface TEDAgendaDataSource : NSObject<UITableViewDataSource>
 - (void)registerCellsForTableView:(UITableView *)tableView;
 - (void)reloadData;
+
+- (TEDTalk *)talkForItemAtIndexPath:(NSIndexPath *)indexPath;
 @end

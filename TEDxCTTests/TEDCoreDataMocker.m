@@ -82,7 +82,7 @@
     TEDTalk *talk1 = (TEDTalk *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDTalk class])                                                                       inManagedObjectContext:context];
     
     talk1.name = @"Test Talk 1";
-    talk1.descriptionHTML = @"Desc URL";
+    talk1.descriptionHTML = @"My description";
     talk1.imageURL = @"http://lorempixel.com/400/200";
     talk1.videoURL = @"http://google.com/video.flv";
     talk1.orderInSession = 0;
@@ -104,7 +104,7 @@
     TEDTalk *talk2 = (TEDTalk *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDTalk class])                                                                       inManagedObjectContext:context];
     
     talk2.name = @"Test Talk 2";
-    talk2.descriptionHTML = @"Desc URL2";
+    talk2.descriptionHTML = @"Some other description";
     talk2.imageURL = @"http://lorempixel.com/400/200";
     talk2.videoURL = @"http://google.com/video.flv";
     talk2.orderInSession = 0;

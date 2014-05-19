@@ -42,6 +42,10 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     [tableView registerNib:[UINib nibWithNibName:@"TEDTalkTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kTalkCellReuseIdentifier];
 }
 
+- (TEDTalk *)talkForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.sessionsFetchedResultsController objectAtIndexPath:indexPath];
+}
+
 #pragma mark - UITableViewDataSource -
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TEDTalkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTalkCellReuseIdentifier];

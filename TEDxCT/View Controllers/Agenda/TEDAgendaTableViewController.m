@@ -56,8 +56,10 @@
 
 #pragma mark - UITableViewDelegate -
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TEDTalkViewController *newVC = [[TEDTalkViewController alloc] init];
+    TEDTalk *selectedTalk = [self.agendaDataSource talkForItemAtIndexPath:indexPath];
+    TEDTalkViewController *newVC = [[TEDTalkViewController alloc] initWithTalk:selectedTalk];
     [self.tabBarController.navigationController pushViewController:newVC animated:YES];
 }
 
