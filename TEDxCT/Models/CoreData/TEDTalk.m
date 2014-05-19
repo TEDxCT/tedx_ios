@@ -16,6 +16,7 @@
 @dynamic descriptionHTML;
 @dynamic imageURL;
 @dynamic name;
+@dynamic genre;
 @dynamic orderInSession;
 @dynamic videoURL;
 @dynamic session;

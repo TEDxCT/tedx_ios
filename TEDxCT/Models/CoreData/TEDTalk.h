@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * descriptionHTML;
 @property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * genre;
 @property (nonatomic, retain) NSString * orderInSession;
 @property (nonatomic, retain) NSString * videoURL;
 @property (nonatomic, retain) TEDSession *session;

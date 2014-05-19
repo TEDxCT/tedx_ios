@@ -35,6 +35,7 @@
     [super viewDidLoad];
     
     [self.talkName setText:_talk.name];
+    [self.genre setText:_talk.genre];
     [self.talkDescription setText:_talk.descriptionHTML];
     [self.speakerName setTitle:_talk.speaker.fullName forState:UIControlStateNormal];
     
