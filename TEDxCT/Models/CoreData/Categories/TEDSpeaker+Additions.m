@@ -14,9 +14,7 @@
     self.identifier = [NSNumber numberWithInt:[speakerJSON[@"id"] intValue]];
     self.descriptionHTML = speakerJSON[@"descriptionHTML"];
     self.funkyTitle = speakerJSON[@"funkyTitle"];
-    
-    //TODO: GET IMAGE FROM SERVER RATHER
-    self.imageURL = @"http://lorempixel.com/400/200";//speakerJSON[@"imageURL"];
+    self.imageURL = speakerJSON[@"imageURL"];
     
     //TODO: FIX isActive
 //    self.isActive = speakerJSON[@"isActive"];

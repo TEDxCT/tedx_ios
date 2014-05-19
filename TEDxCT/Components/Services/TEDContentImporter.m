@@ -9,9 +9,11 @@
 #import "TEDContentImporter.h"
 #import "TEDApplicationConfiguration.h"
 #import "TEDSpeaker.h"
+#import "TEDTalk.h"
 #import "TEDSpeaker+Additions.h"
 #import "TEDCoreDataManager.h"
 #import <CoreData/CoreData.h>
+#import "TEDDownloadOperation.h"
 
 static TEDContentImporter *sharedImporter = nil;
 
@@ -19,6 +21,7 @@ static TEDContentImporter *sharedImporter = nil;
 
 @property (nonatomic, strong) TEDApplicationConfiguration *appConfig;
 @property (nonatomic, strong) NSManagedObjectContext *transactionalContext;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @end
 
@@ -33,6 +36,9 @@ static TEDContentImporter *sharedImporter = nil;
     dispatch_once(&onceToken, ^{
         sharedImporter = [[TEDContentImporter alloc] init];
         sharedImporter.appConfig = [[TEDApplicationConfiguration alloc]init];
+        sharedImporter.operationQueue = [[NSOperationQueue alloc] init];
+        [sharedImporter.operationQueue setMaxConcurrentOperationCount:1];
+
     });
 }
 
@@ -43,26 +49,17 @@ static TEDContentImporter *sharedImporter = nil;
 }
 
 - (void)requestEventJSONWithCompletionHandler:(void(^)(NSDictionary *json))completionBlock {
+    TEDDownloadOperation *downloadOperation = [TEDDownloadOperation operationWithRemoteURL:[self.appConfig eventJSONURL]
+                                                                                   success:^(NSOperation *operation, id responseObject) {
+                                                                                       if (completionBlock) {
+                                                                                           completionBlock(responseObject);
+                                                                                       }
+                                                                                   } failure:^(NSOperation *operation, NSError *error) {
+                                                                                       NSLog(@"error!");
+                                                                                   }];
     
-    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.appConfig eventJSONURL]];
+    [self.operationQueue addOperation:downloadOperation];
     
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    if(!error){
-                                                        NSDictionary *json = [NSJSONSerialization
-                                                                   JSONObjectWithData:data
-                                                                   options:kNilOptions
-                                                                   error:&error];
-                                                        
-                                                        if(completionBlock) {
-                                                            completionBlock(json);
-                                                        }
-                                                    }
-                                                    
-                                                }];
-    
-    [dataTask resume];
 }
 
 -(void)importContentFromEventJSON:(NSDictionary *)JSON {
@@ -72,7 +69,7 @@ static TEDContentImporter *sharedImporter = nil;
     NSMutableArray *speakers = [[NSMutableArray alloc]init];
 
     for (NSDictionary *event in events) {
-        if ([event[@"name"] isEqualToString:@"TEDxTest"]) {
+        if ([event[@"name"] isEqualToString:@"Alex's house"]) {
             sessions = event[@"sessions"];
         }
     }
@@ -122,6 +119,40 @@ static TEDContentImporter *sharedImporter = nil;
             completionBlock();
         }
 
+    }];
+    
+}
+
+- (void)importTalks:(NSArray *)talks
+ WithCompletionHandler:(void(^)())completionBlock {
+    
+    NSArray *talkIds = [talks valueForKey:@"id"];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDTalk class])];
+    fetch.predicate = [NSPredicate predicateWithFormat:@"identifier in %@",talkIds];
+    
+    [[self transactionalContext] performBlock:^{
+        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+        
+        NSDictionary *speakersKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
+        
+        for (NSDictionary *speaker in results) {
+            NSNumber *idToCheck = [NSNumber numberWithInteger:[speaker[@"id"] intValue]];
+            TEDSpeaker *existingSpeaker = [speakersKeyedByIdentifier objectForKey:idToCheck];
+            if (existingSpeaker) {
+                //update
+            } else {
+                //insert
+                TEDSpeaker *newSpeaker = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class]) inManagedObjectContext:[self transactionalContext]
+                                          ];
+                [newSpeaker populateSpeakerWithDictionary:speaker];
+            }
+            
+        }
+        
+        if(completionBlock){
+            completionBlock();
+        }
+        
     }];
     
 }
