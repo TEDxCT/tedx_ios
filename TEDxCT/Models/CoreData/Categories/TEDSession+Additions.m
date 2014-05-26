@@ -10,16 +10,15 @@
 
 @implementation TEDSession (Additions)
 
-- (void)populateSessionWithDictionary:(NSDictionary *)talkJSON {
-    self.name = talkJSON[@"name"];
+- (void)populateSessionWithDictionary:(NSDictionary *)sessionJSON {
+    self.name = sessionJSON[@"name"];
     
+    //TODO: fix
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd hh:mm:ss a"];
     
-    self.endTime = [df dateFromString:talkJSON[@"endTime"]];
-    self.startTime = [df dateFromString:talkJSON[@"startTime"]];
-//    self.event = talkJSON[@"events"];
-//    self.talks = talkJSON[@"talks"];
+    self.endTime = [df dateFromString:sessionJSON[@"endTime"]];
+    self.startTime = [df dateFromString:sessionJSON[@"startTime"]];
 }
 
 @end

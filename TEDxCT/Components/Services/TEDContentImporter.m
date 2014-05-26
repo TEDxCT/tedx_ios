@@ -83,33 +83,28 @@ static TEDContentImporter *sharedImporter = nil;
 -(void)importContentFromEventJSON:(NSDictionary *)JSON {
     NSDictionary *events = JSON[@"events"];
     NSMutableArray *sessions = [[NSMutableArray alloc]init];
-    NSMutableArray *talks = [[NSMutableArray alloc]init];
-    NSMutableArray *speakers = [[NSMutableArray alloc]init];
-
+//    NSMutableArray *talks = [[NSMutableArray alloc]init];
+//    NSMutableArray *speakers = [[NSMutableArray alloc]init];
+//
     for (NSDictionary *event in events) {
         if ([event[@"name"] isEqualToString:@"Alex's house"]) {
             sessions = event[@"sessions"];
         }
     }
-    
-    for (NSDictionary *session in sessions) {
-        [talks addObject:session[@"talks"]];
-    }
-    
-    for (NSDictionary *talk in talks) {
-        NSDictionary *talkTalk = [(NSArray *)talk objectAtIndex:0];
-        [speakers addObject:talkTalk[@"speaker"]];
-        
-    }
+//
+//    for (NSDictionary *session in sessions) {
+//        [talks addObject:session[@"talks"]];
+//    }
+//
+//    for (NSDictionary *talk in talks) {
+//        NSDictionary *talkTalk = [(NSArray *)talk objectAtIndex:0];
+//        [speakers addObject:talkTalk[@"speaker"]];
+//        
+//    }
     
     [self importSessions:sessions WithCompletionHandler:^{
-//        [self importTalks:talks WithCompletionHandler:^{
-//            [self importSpeakers:speakers WithCompletionHandler:^{
                 [[self transactionalContext] save:nil];
                 [[self transactionalContext].parentContext save:nil];
-//
-//            }];
-//        }];
     }];
 
 }
@@ -127,8 +122,6 @@ WithCompletionHandler:(void(^)())completionBlock {
         NSDictionary *sessionsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
         
         for (NSDictionary *session in sessions) {
-//            NSDictionary *talk = [(NSArray *)talkArray objectAtIndex:0];
-            
             NSNumber *idToCheck = [NSNumber numberWithInteger:[session[@"id"] intValue]];
             TEDTalk *existingTalk = [sessionsKeyedByIdentifier objectForKey:idToCheck];
             if (existingTalk) {
@@ -137,18 +130,22 @@ WithCompletionHandler:(void(^)())completionBlock {
                 //insert
                 TEDSession *newSession = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSession class]) inManagedObjectContext:[self transactionalContext]
                                     ];
-                
-                [self importTalks:session[@"talks"] WithCompletionHandler:^(NSSet *importedObjects) {
+                [newSession populateSessionWithDictionary:session];
+
+                if (session[@"talks"]) {
+                [self importTalks:session[@"talks"] forSession:newSession WithCompletionHandler:^(NSSet *importedObjects) {
                     [newSession addTalks:importedObjects];
-                    [newSession populateSessionWithDictionary:session];
                     
                     if(completionBlock){
                         completionBlock();
                     }
-                    
-
-                    
                 }];
+                }
+                else {
+                    if (completionBlock) {
+                        completionBlock();
+                    }
+                }
             }
             
         }
@@ -160,6 +157,7 @@ WithCompletionHandler:(void(^)())completionBlock {
 
 
 - (void)importTalks:(NSArray *)talks
+         forSession:(TEDSession *)session
 WithCompletionHandler:(void (^)(NSSet *importedObjects))completionBlock {
     
     NSMutableSet *importedTalks = [[NSMutableSet alloc]init];
@@ -171,6 +169,12 @@ WithCompletionHandler:(void (^)(NSSet *importedObjects))completionBlock {
         
         NSDictionary *talksKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"name"]];
         
+        if ([talks isKindOfClass:[NSNull class]]) {
+            if(completionBlock){
+                completionBlock(nil);
+                return;
+            }
+        }
         for (NSDictionary *talk in talks) {
 
             NSNumber *nameToCheck = talk[@"name"];
@@ -184,6 +188,7 @@ WithCompletionHandler:(void (^)(NSSet *importedObjects))completionBlock {
                 
                 [self importSpeaker:talk[@"speaker"] WithCompletionHandler:^(TEDSpeaker *importedSpeaker) {
                     newTalk.speaker = importedSpeaker;
+                    newTalk.session = session;
                     [newTalk populateTalkWithDictionary:talk];
                     
                     if(completionBlock){

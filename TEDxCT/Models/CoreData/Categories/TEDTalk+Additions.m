@@ -17,9 +17,6 @@
     self.genre = talkJSON[@"genre"];
     self.orderInSession = talkJSON[@"orderInSession"];
     self.videoURL = talkJSON[@"videoURL"];
-    self.session = talkJSON[@"session"];
-
-//    self.speaker = talkJSON[@"speaker"];
 }
 
 @end
