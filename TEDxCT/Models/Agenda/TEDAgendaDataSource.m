@@ -83,7 +83,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [[[self.sessionsFetchedResultsController sections] objectAtIndex:section] name];
+    return [[[[self.sessionsFetchedResultsController sections] objectAtIndex:section] name] uppercaseString];
 }
 
 #pragma mark - Core Data -

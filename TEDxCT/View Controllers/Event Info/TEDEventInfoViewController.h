@@ -8,6 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TEDEventInfoViewController : UIViewController
-
+@interface TEDEventInfoViewController : UIViewController<UIActionSheetDelegate>
 @end
