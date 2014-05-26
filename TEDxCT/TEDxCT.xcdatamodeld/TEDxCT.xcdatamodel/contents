@@ -40,6 +40,6 @@
         <element name="TEDEvent" positionX="-1152" positionY="-567" width="128" height="163"/>
         <element name="TEDSession" positionX="-927" positionY="-387" width="128" height="118"/>
         <element name="TEDSpeaker" positionX="-450" positionY="-180" width="128" height="150"/>
-        <element name="TEDTalk" positionX="-668" positionY="-292" width="128" height="165"/>
+        <element name="TEDTalk" positionX="-668" positionY="-292" width="128" height="163"/>
     </elements>
 </model>
