@@ -20,5 +20,6 @@
 @dynamic startDate;
 @dynamic websiteURL;
 @dynamic sessions;
+@dynamic identifier;
 
 @end

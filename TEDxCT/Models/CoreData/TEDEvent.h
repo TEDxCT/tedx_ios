@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSString * websiteURL;
 @property (nonatomic, retain) NSSet *sessions;
+@property (nonatomic, retain) NSNumber * identifier;
+
 @end
 
 @interface TEDEvent (CoreDataGeneratedAccessors)

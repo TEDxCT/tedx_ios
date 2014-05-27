@@ -93,11 +93,11 @@ NSString *const kSpeakerKey = @"speaker";
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSession class])];
         fetch.resultType = NSDictionaryResultType;
         NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
-        NSDictionary *sessionsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"name"]];
+        NSDictionary *sessionsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
         
         for (NSDictionary *session in sessions) {
-            NSNumber *nameToCheck = session[kNameKey];
-            TEDSession *existingSession = [sessionsKeyedByIdentifier objectForKey:nameToCheck];
+            NSNumber *idToCheck = [NSNumber numberWithInteger:[session[@"id"] intValue]];
+            TEDSession *existingSession = [sessionsKeyedByIdentifier objectForKey:idToCheck];
             if (existingSession) {
                 //update
             } else {
@@ -128,7 +128,7 @@ NSString *const kSpeakerKey = @"speaker";
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDTalk class])];
     fetch.resultType = NSDictionaryResultType;
     NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
-    NSDictionary *talksKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:kNameKey]];
+    NSDictionary *talksKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
     
     NSMutableSet *importedTalks = [[NSMutableSet alloc]init];
     
@@ -139,8 +139,8 @@ NSString *const kSpeakerKey = @"speaker";
     
     for (NSDictionary *talk in talks) {
         
-        NSNumber *nameToCheck = talk[kNameKey];
-        TEDTalk *existingTalk = [talksKeyedByIdentifier objectForKey:nameToCheck];
+        NSNumber *idToCheck = [NSNumber numberWithInteger:[talk[@"id"] intValue]];
+        TEDTalk *existingTalk = [talksKeyedByIdentifier objectForKey:idToCheck];
         if (existingTalk) {
         } else {
             //insert

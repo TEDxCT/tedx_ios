@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) TEDEvent *event;
 @property (nonatomic, retain) NSSet *talks;
