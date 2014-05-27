@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "TEDCoreDataMocker.h"
 #import "TEDSpeaker.h"
+#import "TEDSession.h"
 #import "TEDCoreDataManager.h"
 #import <CoreData/CoreData.h>
 
@@ -46,6 +47,25 @@
     XCTAssertNil(error, @"Failed while retrieving speakers");
     
     XCTAssertEqual([results count], 5, @"Did not return correct number of speakers");
+}
+
+-(void)testCreateFakeSessions
+{
+    TEDCoreDataMocker *mocker = [[TEDCoreDataMocker alloc]init];
+    [mocker create2Sessions];
+    
+    NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSession class])];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    
+    XCTAssertNil(error, @"Failed while retrieving sessions");
+    
+    XCTAssertEqual([results count], 1, @"Did not return correct number of sessions");
+
 }
 
 @end

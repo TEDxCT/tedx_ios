@@ -7,6 +7,8 @@
 //
 
 #import "TEDCoreDataMocker.h"
+#import "TEDSession.h"
+#import "TEDTalk.h"
 #import "TEDSpeaker.h"
 #import "TEDCoreDataManager.h"
 
@@ -63,6 +65,68 @@
     [context save:&error];
 }
 
+- (void)create2Sessions {
+    
+    NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
+    [self cleanSessionsTableInContext:context];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd-MMM-yyyy hh:mm";
+    
+    TEDSession *session1 = (TEDSession *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSession class])inManagedObjectContext:context];
+    
+    session1.startTime = [dateFormatter dateFromString:@"02-05-2014 09:00"];
+    session1.endTime = [dateFormatter dateFromString:@"06-05-2014 00:00"];
+    session1.name = @"My Session 1";
+    
+    TEDTalk *talk1 = (TEDTalk *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDTalk class])                                                                       inManagedObjectContext:context];
+    
+    talk1.name = @"Test Talk 1 sdf sdfg fdg er g gdf gdfg sdfg sdf";
+    talk1.genre = @"A Genre";
+    talk1.descriptionHTML = @"My description";
+    talk1.imageURL = @"http://lorempixel.com/400/200";
+    talk1.videoURL = @"http://google.com/video.flv";
+    talk1.orderInSession = 0;
+    
+    [session1 addTalksObject:talk1];
+    
+    TEDSpeaker *speaker1 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
+                                                                       inManagedObjectContext:context];
+    
+    speaker1.fullName = @"Lady Gaga";
+    speaker1.funkyTitle = @"I dress super weird";
+    speaker1.imageURL = @"http://timenewsfeed.files.wordpress.com/2010/06/lady-gaga-kermit-suit4.jpg?w=480&h=320&crop=1";
+    speaker1.descriptionHTML = @"Mum mum mum mah Mum mum mum mah Mum mum mum mah Mum mum mum mum Mum mum mum mah. I wanna hold 'em like they do in Texas, please. Fold 'em, let 'em, hit me, raise it, baby, stay with me (I love it) Love game intuition play the cards with Spades to start. And after he's been hooked I'll play the one that's on his heart. Oh, oh, oh, oh, ohhhh, oh-oh-e-oh-oh-oh. I'll get him hot, show him what I've got. Oh, oh, oh, oh, ohhhh, oh-oh-e-oh-oh-oh, I'll get him hot, show him what I've got. Can't read my, Can't read my. No he can't read my poker face (she's got me like nobody) Can't read my Can't read my";
+    
+    talk1.speaker = speaker1;
+    
+    
+    
+    TEDTalk *talk2 = (TEDTalk *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDTalk class])                                                                       inManagedObjectContext:context];
+    
+    talk2.name = @"Test Talk 2";
+    talk2.genre =@"Another Genre";
+    talk2.descriptionHTML = @"Some other description";
+    talk2.imageURL = @"http://lorempixel.com/400/200";
+    talk2.videoURL = @"http://google.com/video.flv";
+    talk2.orderInSession = 0;
+    
+    [session1 addTalksObject:talk2];
+    
+    TEDSpeaker *speaker2 = (TEDSpeaker *)[NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class])
+                                                                       inManagedObjectContext:context];
+    
+    speaker2.fullName = @"Lady Gaga2";
+    speaker2.funkyTitle = @"I dress super weird also as well";
+    speaker2.imageURL = @"http://timenewsfeed.files.wordpress.com/2010/06/lady-gaga-kermit-suit4.jpg?w=480&h=320&crop=1";
+    speaker2.descriptionHTML = @"Mum mum mum mah Mum mum mum mah Mum mum mum mah Mum mum mum mum Mum mum mum mah. I wanna hold 'em like they do in Texas, please. Fold 'em, let 'em, hit me, raise it, baby, stay with me (I love it) Love game intuition play the cards with Spades to start. And after he's been hooked I'll play the one that's on his heart. Oh, oh, oh, oh, ohhhh, oh-oh-e-oh-oh-oh. I'll get him hot, show him what I've got. Oh, oh, oh, oh, ohhhh, oh-oh-e-oh-oh-oh, I'll get him hot, show him what I've got. Can't read my, Can't read my. No he can't read my poker face (she's got me like nobody) Can't read my Can't read my";
+    
+    talk2.speaker = speaker2;
+    
+    NSError *error;
+    [context save:&error];
+}
+
 - (void)cleanSpeakersTableInContext:(NSManagedObjectContext *)context {
     
     NSFetchRequest * allSpeakers = [[NSFetchRequest alloc] init];
@@ -72,6 +136,24 @@
     
     NSError * error = nil;
     NSArray * existingTitles = [context executeFetchRequest:allSpeakers error:&error];
+    
+    //error handling goes here
+    for (NSManagedObject * title in existingTitles) {
+        [context deleteObject:title];
+    }
+    NSError *saveError = nil;
+    [context save:&saveError];
+}
+
+- (void)cleanSessionsTableInContext:(NSManagedObjectContext *)context {
+    
+    NSFetchRequest * allSessions = [[NSFetchRequest alloc] init];
+    
+    [allSessions setEntity:[NSEntityDescription entityForName:NSStringFromClass([TEDSession class]) inManagedObjectContext:context]];
+    [allSessions setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * existingTitles = [context executeFetchRequest:allSessions error:&error];
     
     //error handling goes here
     for (NSManagedObject * title in existingTitles) {

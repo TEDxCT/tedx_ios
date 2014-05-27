@@ -30,6 +30,7 @@
     </entity>
     <entity name="TEDTalk" representedClassName="TEDTalk" syncable="YES">
         <attribute name="descriptionHTML" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="genre" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="orderInSession" optional="YES" attributeType="String" syncable="YES"/>

@@ -11,5 +11,6 @@
 @interface TEDCoreDataMocker : NSObject
 
 - (void)create2Speakers;
+- (void)create2Sessions;
 
 @end
