@@ -13,39 +13,42 @@
 #import "TEDTalkTableViewCell.h"
 
 @interface TEDAgendaTableViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *agendaTableView;
 @property (nonatomic,strong) TEDAgendaDataSource *agendaDataSource;
 @end
 
 @implementation TEDAgendaTableViewController
 
-- (void)loadView {
-    self.view = [[UIView alloc] init];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth ];
-    [self.view addSubview:self.tableView];
-
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.title = @"Agenda";
+    
+    [self.agendaTableView setDataSource:self.agendaDataSource];
+    [self.agendaTableView setDelegate:self];
     [self.agendaDataSource reloadData];
-    [self.tableView reloadData];
+    [self.agendaTableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentImporterCompleteNotification:) name:kContentImporterCompleteNotification object:nil];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.agendaDataSource = [[TEDAgendaDataSource alloc] init];
-    [self.agendaDataSource registerCellsForTableView:self.tableView];
-    [self.tableView setDataSource:self.agendaDataSource];
-    [self.tableView setDelegate:self];
-    
+    [self.agendaDataSource registerCellsForTableView:self.agendaTableView];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    self.agendaTableView.dataSource = nil;
+    self.agendaTableView.delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kContentImporterCompleteNotification object:nil];
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,6 +84,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 44;
+}
+
+#pragma mark - Notification Handlers - 
+- (void)handleContentImporterCompleteNotification:(NSNotification *)notification {
+    [self.agendaDataSource reloadData];
+    [self.agendaTableView reloadData];
 }
 
 @end

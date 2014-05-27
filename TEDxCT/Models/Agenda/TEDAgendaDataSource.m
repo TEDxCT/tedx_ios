@@ -12,6 +12,7 @@
 #import "TEDSpeaker.h"
 #import "TEDCoreDataManager.h"
 
+
 NSString *const kTalkCellReuseIdentifier = @"talkCell";
 
 @interface TEDAgendaDataSource ()

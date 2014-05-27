@@ -14,4 +14,9 @@
     return [NSURL URLWithString:@"http://95.85.26.105/tedx_server/response/event.php/"];
 }
 
+- (NSString *)eventName {
+    //Case sensitive
+    return @"Alex's house";
+}
+
 @end

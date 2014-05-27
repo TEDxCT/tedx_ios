@@ -32,11 +32,15 @@
     self.speakersTableView.delegate = self;
     
     self.tabBarController.title = @"All Speakers";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentImporterCompleteNotification:) name:kContentImporterCompleteNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     self.speakersTableView.dataSource = nil;
     self.speakersTableView.delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kContentImporterCompleteNotification object:nil];
+
     [super viewDidDisappear:animated];
 }
 
@@ -51,4 +55,9 @@
     [self.navigationController pushViewController:pvc animated:YES];
 }
 
+#pragma mark - Notification Handlers -
+- (void)handleContentImporterCompleteNotification:(NSNotification *)notification {
+    [self.speakersDataSource reloadData];
+    [self.speakersTableView reloadData];
+}
 @end

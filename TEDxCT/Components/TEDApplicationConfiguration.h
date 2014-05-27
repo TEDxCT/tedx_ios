@@ -11,5 +11,6 @@
 @interface TEDApplicationConfiguration : NSObject
 
 - (NSURL *)eventJSONURL;
+- (NSString *)eventName;
 
 @end
