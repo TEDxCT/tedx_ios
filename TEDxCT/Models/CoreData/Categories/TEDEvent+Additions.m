@@ -16,8 +16,8 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     
-    NSString *end = eventJSON[@"endTime"];
-    NSString *start = eventJSON[@"startTime"];
+    NSString *end = eventJSON[@"endDate"];
+    NSString *start = eventJSON[@"startDate"];
     
     self.endDate = [df dateFromString:end];
     self.startDate = [df dateFromString:start];
@@ -27,6 +27,7 @@
     self.locationDescriptionHTML = eventJSON[@"locationDescriptionHTML"];
     self.websiteURL = eventJSON[@"websiteURL"];
 
+    //TODO: ADD LATITUDE AND LONGITUDE
 }
 
 @end

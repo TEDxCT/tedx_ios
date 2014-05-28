@@ -11,7 +11,6 @@
 #import "TEDCoreDataManager.h"
 
 @interface TEDSpeakersDataSource ()
-
 @property (strong, nonatomic) NSFetchedResultsController *speakersFetchedResultsController;
 @end
 

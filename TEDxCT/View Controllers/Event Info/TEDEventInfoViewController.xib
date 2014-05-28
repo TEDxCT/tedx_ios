@@ -6,6 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TEDEventInfoViewController">
             <connections>
+                <outlet property="eventDate" destination="9Q3-hc-IOr" id="Xo2-M2-xMS"/>
+                <outlet property="eventDescription" destination="DGg-FR-AFi" id="Sed-dm-LEi"/>
+                <outlet property="eventLocation" destination="DbT-Qj-teD" id="SYl-dN-PUU"/>
+                <outlet property="eventName" destination="rrS-Lj-mfr" id="BdO-So-XqL"/>
+                <outlet property="eventStartTime" destination="1xj-eE-uvZ" id="KK0-Gu-SCu"/>
                 <outlet property="scrollView" destination="Z8w-rF-4Kb" id="Qjj-cd-RiE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

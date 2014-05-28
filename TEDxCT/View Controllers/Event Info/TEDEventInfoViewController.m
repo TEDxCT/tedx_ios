@@ -8,9 +8,20 @@
 
 #import "TEDEventInfoViewController.h"
 #import <MapKit/MapKit.h>
+#import "TEDEvent+Additions.h"
+#import "TEDEvent.h"
+#import "TEDCoreDataManager.h"
+#import "TEDApplicationConfiguration.h"
 
 @interface TEDEventInfoViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *eventName;
+@property (weak, nonatomic) IBOutlet UITextView *eventDescription;
+@property (weak, nonatomic) IBOutlet UITextView *eventLocation;
+@property (weak, nonatomic) IBOutlet UILabel *eventStartTime;
+@property (weak, nonatomic) IBOutlet UILabel *eventDate;
+
+@property (strong, nonatomic) TEDEvent *event;
 
 @end
 
@@ -20,22 +31,32 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    NSFetchRequest *fetchRequest = [self createEventFetchRequest];
+    _event = [[[self uiContext] executeFetchRequest:fetchRequest error:nil] firstObject];
+    
     [super viewDidLoad];
+    self.eventName.text = self.event.name;
+    self.eventDescription.text = self.event.descriptionHTML;
+    self.eventLocation.text = self.event.locationDescriptionHTML;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    self.eventStartTime.text = [formatter stringFromDate:self.event.startDate];
+//    self.eventDate.text = self.event.startDate;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.title = @"Event Information";
-    self.scrollView.contentSize = CGSizeMake(200,200);
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,6 +93,29 @@
             [[UIApplication sharedApplication] openURL:url];
         }
     }
+}
+
+#pragma mark - CoreData - 
+- (NSFetchRequest *)createEventFetchRequest {
+    TEDApplicationConfiguration *config = [[TEDApplicationConfiguration alloc]init];
+    NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDEvent class]) inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name = %@", [config eventName]]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"identifier"
+                                                                   ascending:YES];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    return fetchRequest;
+}
+
+#pragma mark - Convenience -
+- (NSManagedObjectContext *)uiContext {
+    return [[TEDCoreDataManager sharedManager] uiContext];
 }
 
 

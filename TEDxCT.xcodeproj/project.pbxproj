@@ -34,6 +34,7 @@
 		CF67D6EC1932A928008FF4BD /* TEDSession+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CF67D6EB1932A928008FF4BD /* TEDSession+Additions.m */; };
 		CF686364193507F2003260DF /* TEDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CF686363193507F2003260DF /* TEDConstants.m */; };
 		CF75A64A193652E00089428E /* TEDEvent+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CF75A649193652E00089428E /* TEDEvent+Additions.m */; };
+		CF75A65319365CEE0089428E /* TEDEventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF75A65219365CEE0089428E /* TEDEventModel.m */; };
 		CFC5DAFB190053D4005DFC50 /* TEDCoreDataMocker.m in Sources */ = {isa = PBXBuildFile; fileRef = CFC5DAFA190053D4005DFC50 /* TEDCoreDataMocker.m */; };
 		CFCD9A02192AA383001E8B04 /* TEDTalk+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCD9A01192AA383001E8B04 /* TEDTalk+Additions.m */; };
 		CFD11D1B18FBC9C100CF016F /* TEDAgendaTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFD11D1A18FBC9C100CF016F /* TEDAgendaTableViewController.xib */; };
@@ -126,6 +127,8 @@
 		CF686363193507F2003260DF /* TEDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDConstants.m; sourceTree = "<group>"; };
 		CF75A648193652E00089428E /* TEDEvent+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TEDEvent+Additions.h"; sourceTree = "<group>"; };
 		CF75A649193652E00089428E /* TEDEvent+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TEDEvent+Additions.m"; sourceTree = "<group>"; };
+		CF75A65119365CEE0089428E /* TEDEventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDEventModel.h; sourceTree = "<group>"; };
+		CF75A65219365CEE0089428E /* TEDEventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDEventModel.m; sourceTree = "<group>"; };
 		CFC5DAF9190053D4005DFC50 /* TEDCoreDataMocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEDCoreDataMocker.h; sourceTree = "<group>"; };
 		CFC5DAFA190053D4005DFC50 /* TEDCoreDataMocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEDCoreDataMocker.m; sourceTree = "<group>"; };
 		CFCD9A00192AA383001E8B04 /* TEDTalk+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TEDTalk+Additions.h"; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 		42C3FB9618E9F2E200CF6042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CF75A65019365CE20089428E /* Event */,
 				42C97D20190988C4009C6BA9 /* CoreData */,
 				4212D40419003737007FC522 /* Agenda */,
 				4212D40719003737007FC522 /* Speakers */,
@@ -356,6 +360,15 @@
 				CF75A649193652E00089428E /* TEDEvent+Additions.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		CF75A65019365CE20089428E /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				CF75A65119365CEE0089428E /* TEDEventModel.h */,
+				CF75A65219365CEE0089428E /* TEDEventModel.m */,
+			);
+			path = Event;
 			sourceTree = "<group>";
 		};
 		CFD11D1E18FBC9DC00CF016F /* Event Info */ = {
@@ -610,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF75A65319365CEE0089428E /* TEDEventModel.m in Sources */,
 				4239DCF51935055100DCB146 /* TEDImageDownloader.m in Sources */,
 				CF392ED6192136B60066F0C5 /* TEDContentImporter.m in Sources */,
 				4212D40819003737007FC522 /* TEDAgendaDataSource.m in Sources */,
