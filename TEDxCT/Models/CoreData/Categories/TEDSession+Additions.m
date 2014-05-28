@@ -11,14 +11,23 @@
 @implementation TEDSession (Additions)
 
 - (void)populateSessionWithDictionary:(NSDictionary *)sessionJSON {
-    self.name = sessionJSON[@"name"];
+    self.identifier = [NSNumber numberWithInteger:[sessionJSON[@"id"]intValue]];
     
-    //TODO: fix
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd hh:mm:ss a"];
+    [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     
-    self.endTime = [df dateFromString:sessionJSON[@"endTime"]];
-    self.startTime = [df dateFromString:sessionJSON[@"startTime"]];
+    NSString *end = sessionJSON[@"endTime"];
+    NSString *start = sessionJSON[@"startTime"];
+    
+    self.endTime = [df dateFromString:end];
+    self.startTime = [df dateFromString:start];
+    
+    NSString *sessionName = sessionJSON[@"name"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    
+    NSString *sessionStartTime =[formatter stringFromDate:self.startTime];
+    self.name = [NSString stringWithFormat:@"%@ %@", sessionStartTime, sessionName];
 }
 
 @end

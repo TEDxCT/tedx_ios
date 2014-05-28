@@ -22,6 +22,8 @@
 @property (nonatomic, retain) NSString * websiteURL;
 @property (nonatomic, retain) NSSet *sessions;
 @property (nonatomic, retain) TEDSpeaker *speakers;
+@property (nonatomic, retain) NSNumber * identifier;
+
 @end
 
 @interface TEDEvent (CoreDataGeneratedAccessors)

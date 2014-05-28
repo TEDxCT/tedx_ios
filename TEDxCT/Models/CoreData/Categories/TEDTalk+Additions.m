@@ -11,6 +11,7 @@
 @implementation TEDTalk (Additions)
 
 - (void)populateTalkWithDictionary:(NSDictionary *)talkJSON {
+    self.identifier = [NSNumber numberWithInt:[talkJSON[@"id"] intValue]];
     self.descriptionHTML = talkJSON[@"descriptionHTML"];
     self.name = talkJSON[@"name"];
     self.imageURL = talkJSON[@"imageURL"];

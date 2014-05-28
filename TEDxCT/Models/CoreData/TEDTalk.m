@@ -21,5 +21,6 @@
 @dynamic videoURL;
 @dynamic session;
 @dynamic speaker;
+@dynamic identifier;
 
 @end

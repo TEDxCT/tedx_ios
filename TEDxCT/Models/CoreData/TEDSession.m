@@ -18,5 +18,6 @@
 @dynamic startTime;
 @dynamic event;
 @dynamic talks;
+@dynamic identifier;
 
 @end

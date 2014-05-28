@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSString * videoURL;
 @property (nonatomic, retain) TEDSession *session;
 @property (nonatomic, retain) TEDSpeaker *speaker;
+@property (nonatomic, retain) NSNumber * identifier;
 
 @end

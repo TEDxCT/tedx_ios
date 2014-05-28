@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TEDAgendaTableViewController : UIViewController<UITableViewDelegate>
-@property(nonatomic,retain) UITableView *tableView;
+
 @end

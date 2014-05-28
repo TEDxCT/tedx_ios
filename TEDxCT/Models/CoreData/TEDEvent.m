@@ -22,5 +22,6 @@
 @dynamic websiteURL;
 @dynamic sessions;
 @dynamic speakers;
+@dynamic identifier;
 
 @end
