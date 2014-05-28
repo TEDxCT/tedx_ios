@@ -7,28 +7,37 @@
 //
 
 #import "TEDSpeakersViewController.h"
-#import "TEDSpeakersDataSource.h"
-#import "TEDSpeakerProfileViewController.h"
-#import "TEDSpeaker.h"
 
-@interface TEDSpeakersViewController ()
+#import "TEDImageDownloader.h"
+#import "TEDSpeaker.h"
+#import "TEDSpeakerProfileViewController.h"
+#import "TEDSpeakersDataSource.h"
+#import "TEDSpeakersTableViewCell.h"
+#import "TEDStorageService.h"
+
+NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
+
+
+@interface TEDSpeakersViewController ()<UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *speakersTableView;
 @property (strong, nonatomic) TEDSpeakersDataSource *speakersDataSource;
+@property (strong, nonatomic) TEDImageDownloader *imageDownloader;
 @end
 
 @implementation TEDSpeakersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _imageDownloader = [[TEDImageDownloader alloc] init];
     self.speakersDataSource = [[TEDSpeakersDataSource alloc] init];
-    [self.speakersDataSource registerCellsForTableView:self.speakersTableView];
     self.speakersTableView.contentOffset = CGPointMake(0, CGRectGetHeight(self.tabBarController.tabBar.frame));
+    [self.speakersTableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.speakersDataSource reloadData];
-    self.speakersTableView.dataSource = self.speakersDataSource;
+    self.speakersTableView.dataSource = self;
     self.speakersTableView.delegate = self;
     
     self.tabBarController.title = @"All Speakers";
@@ -38,6 +47,33 @@
     self.speakersTableView.dataSource = nil;
     self.speakersTableView.delegate = nil;
     [super viewDidDisappear:animated];
+}
+
+#pragma mark - UITableViewDataSource -
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.speakersDataSource numberOfSpeakers];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TEDSpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSpeakersCellReuseIdentifier];
+    
+    TEDSpeaker *speaker = [self.speakersDataSource speakerForItemAtIndexPath:indexPath];
+    [cell.speakerNameLabel setText:speaker.fullName];
+    [cell.funkyTitle setText:speaker.funkyTitle];
+    
+    NSString *ImageURL = speaker.imageURL;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:ImageURL]) {
+        [cell.speakerImageView setImage:[UIImage imageWithContentsOfFile:[TEDStorageService pathForImageWithURL:ImageURL eventName:@"TED" createIfNeeded:YES]]];
+    } else {
+        [self.imageDownloader downloadImageWithURL:ImageURL forEventName:@"TED" completionHandler:^(UIImage *image, NSError *error) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[(TEDSpeakersTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] speakerImageView] setImage:image];
+            }];
+        }];
+    }
+    
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate -

@@ -10,9 +10,8 @@
 
 @class TEDSpeaker;
 
-@interface TEDSpeakersDataSource : NSObject<UITableViewDataSource>
-- (void)registerCellsForTableView:(UITableView *)tableView;
+@interface TEDSpeakersDataSource : NSObject
 - (void)reloadData;
-
+- (NSInteger)numberOfSpeakers;
 - (TEDSpeaker *)speakerForItemAtIndexPath:(NSIndexPath *)indexPath;
 @end

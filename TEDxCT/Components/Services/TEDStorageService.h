@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface TEDStorageService : NSObject
-+ (BOOL)createDirectoryForEventWithName:(NSString *)name;
-+ (NSURL *)resourcesDirectoryFilePathForEventWithName:(NSString *)eventName;
-+ (BOOL)removeDirectoryForEventWithName:(NSString *)name;
++ (NSString *)pathForImageWithURL:(NSString *)imageURL eventName:(NSString *)eventName createIfNeeded:(BOOL)createIfNeeded;
++ (BOOL)removeResourcesForEventWithName:(NSString *)name;
 @end

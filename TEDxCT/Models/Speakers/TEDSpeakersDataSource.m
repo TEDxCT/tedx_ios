@@ -7,16 +7,12 @@
 //
 
 #import "TEDSpeakersDataSource.h"
-#import "TEDSpeakersTableViewCell.h"
 #import "TEDSpeaker.h"
 #import "TEDCoreDataManager.h"
-
-NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 
 @interface TEDSpeakersDataSource ()
 
 @property (strong, nonatomic) NSFetchedResultsController *speakersFetchedResultsController;
-
 @end
 
 @implementation TEDSpeakersDataSource
@@ -37,44 +33,12 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     [self.speakersFetchedResultsController performFetch:nil];
 }
 
-- (void)registerCellsForTableView:(UITableView *)tableView {
-    [tableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
-}
-
 - (TEDSpeaker *)speakerForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.speakersFetchedResultsController objectAtIndexPath:indexPath];
 }
 
-#pragma mark - UITableViewDataSource -
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSpeakers {
     return [[self.speakersFetchedResultsController fetchedObjects] count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TEDSpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSpeakersCellReuseIdentifier];
-    
-    TEDSpeaker *speaker = [_speakersFetchedResultsController objectAtIndexPath:indexPath];
-    [cell.speakerNameLabel setText:speaker.fullName];
-    [cell.funkyTitle setText:speaker.funkyTitle];
-    
-    // Perform the asynchronous task on the background thread-
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSString *ImageURL = speaker.imageURL;
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]];
-        
-        // Perform the task on the main thread using the main queue-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Perform the UI update in this block, like showing image.
-            
-            cell.speakerImageView.image = [UIImage imageWithData:imageData];
-            
-        });
-        
-    });
-    
-    return cell;
 }
 
 #pragma mark - Core Data -

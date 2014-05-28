@@ -10,27 +10,27 @@
 
 @implementation TEDStorageService
 
-+ (BOOL)createDirectoryForEventWithName:(NSString *)name {
-    NSURL *directoryURL = [self resourcesDirectoryFilePathForEventWithName:name];
-    if(![[NSFileManager defaultManager] fileExistsAtPath:[directoryURL path]]) {
-        return [[NSFileManager defaultManager] createDirectoryAtPath:[directoryURL path] withIntermediateDirectories:YES attributes:nil error:nil];
++ (BOOL)removeResourcesForEventWithName:(NSString *)name {
+    NSString *directoryURL = [self directoryForEventWithName:name];
+    if([[NSFileManager defaultManager] fileExistsAtPath:directoryURL]) {
+        return [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath:directoryURL] error:nil];
     }
     return YES;
 }
 
-+ (BOOL)removeDirectoryForEventWithName:(NSString *)name {
-    NSURL *directoryURL = [self resourcesDirectoryFilePathForEventWithName:name];
-    if([[NSFileManager defaultManager] fileExistsAtPath:[directoryURL path]]) {
-        return [[NSFileManager defaultManager] removeItemAtURL:directoryURL error:nil];
++ (NSString *)pathForImageWithURL:(NSString *)imageURL eventName:(NSString *)eventName createIfNeeded:(BOOL)createIfNeeded {
+    NSString *directory =  [self directoryForEventWithName:eventName];
+    directory = [directory stringByAppendingPathComponent:[imageURL stringByDeletingLastPathComponent]];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:directory]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    return YES;
+    return [directory stringByAppendingPathComponent:[imageURL lastPathComponent]];
 }
 
-+ (NSURL *)resourcesDirectoryFilePathForEventWithName:(NSString *)eventName {
++ (NSString *)directoryForEventWithName:(NSString *)eventName {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *path = [paths firstObject];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    return [url URLByAppendingPathComponent:eventName];
+    NSString *path = [[paths firstObject] stringByAppendingPathComponent:eventName];
+    return path;
 }
 
 @end

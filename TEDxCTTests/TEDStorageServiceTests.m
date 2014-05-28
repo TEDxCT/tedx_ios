@@ -18,9 +18,6 @@
 - (void)setUp
 {
     [super setUp];
-    NSString *name = @"TEDTEST";
-    NSURL *url = [TEDStorageService resourcesDirectoryFilePathForEventWithName:name];
-    [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -30,15 +27,11 @@
     [super tearDown];
 }
 
-- (void)testFilePath
+- (void)testDirectoryCreation
 {
     NSString *name = @"TEDTEST";
-    NSURL *url = [TEDStorageService resourcesDirectoryFilePathForEventWithName:name];
-    XCTAssertNotNil(url, @"Storage Service returned nil");
-    XCTAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[url path]], @"Path exists!!");
-    
-    [TEDStorageService createDirectoryForEventWithName:name];
-    XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[url path]], @"Path Does Not Exist!");
+    [TEDStorageService pathForImageWithURL:@"helloworld" eventName:name createIfNeeded:NO];
+    XCTFail(@"Not Implemented Yet %s",__PRETTY_FUNCTION__);
 }
 
 @end
