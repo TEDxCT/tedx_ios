@@ -15,6 +15,8 @@
 #import "TEDSpeaker.h"
 #import "TEDTalk+Additions.h"
 #import "TEDTalk.h"
+#import "TEDEvent.h"
+#import "TEDEvent+Additions.h"
 #import <CoreData/CoreData.h>
 
 #define IMPORTER_LOGGER 1
@@ -67,34 +69,64 @@ NSString *const kSpeakerKey = @"speaker";
     //Get events from JSON
     NSDictionary *events = JSON[kEventsKey];
     
-    //Create sessions array to populate with sessions for a specific event.
-    NSMutableArray *sessions = [[NSMutableArray alloc]init];
-    
     for (NSDictionary *event in events) {
         if ([event[kNameKey] isEqualToString:[self.appConfig eventName]]) {
-            sessions = event[kSessionsKey];
+            [self importEvent:event withCompletionHandler:^{
+                ITLog(@"IMPORT COMPLETE");
+                [[self transactionalContext] save:nil];
+                [[self transactionalContext].parentContext save:nil];
+                dispatch_async(dispatch_get_main_queue(),^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kContentImporterCompleteNotification object:nil];
+                });
+            }];
         }
     }
+}
+
+- (void)importEvent:(NSDictionary *)event withCompletionHandler:(void(^)())completionBlock  {
     
-    [self importSessions:sessions WithCompletionHandler:^{
-        ITLog(@"IMPORT COMPLETE");
-        [[self transactionalContext] save:nil];
-        [[self transactionalContext].parentContext save:nil];
-        dispatch_async(dispatch_get_main_queue(),^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kContentImporterCompleteNotification object:nil];
-        });
+    [[self transactionalContext] performBlock:^{
+        NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
+        fetch.resultType = NSDictionaryResultType;
+        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+        NSDictionary *eventsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
+    
+            NSNumber *idToCheck = [NSNumber numberWithInteger:[event[@"id"] intValue]];
+            TEDEvent *existingEvent = [eventsKeyedByIdentifier objectForKey:idToCheck];
+            if (existingEvent) {
+                //update
+            } else {
+                ITLog(@"INSERTING NEW EVENT WITH ID: %@", event[@"id"]);
+                
+                //insert
+                TEDEvent *newEvent = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDEvent class]) inManagedObjectContext:[self transactionalContext]];
+                [newEvent populateEventWithDictionary:event];
+                
+                if (event[kSessionsKey]) {
+                    NSSet *importedSessions = [self importSessions:event[kSessionsKey]];
+                    [newEvent addSessions:importedSessions];
+                }
+            }
+
+
+        
+        
+        if(completionBlock){
+            completionBlock();
+        }
     }];
     
 }
 
-- (void)importSessions:(NSArray *)sessions
- WithCompletionHandler:(void(^)())completionBlock {
-    [[self transactionalContext] performBlock:^{
+- (NSSet *)importSessions:(NSArray *)sessions
+{
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSession class])];
         fetch.resultType = NSDictionaryResultType;
         NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
         NSDictionary *sessionsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
-        
+    
+        NSMutableSet *importedSessions = [[NSMutableSet alloc]init];
+
         for (NSDictionary *session in sessions) {
             NSNumber *idToCheck = [NSNumber numberWithInteger:[session[@"id"] intValue]];
             TEDSession *existingSession = [sessionsKeyedByIdentifier objectForKey:idToCheck];
@@ -110,16 +142,12 @@ NSString *const kSpeakerKey = @"speaker";
                 if (session[kTalksKey]) {
                     NSSet *importedTalks =    [self importTalks:session[kTalksKey] forSession:newSession];
                     [newSession addTalks:importedTalks];
+                    [importedSessions addObject:newSession];
                 }
             }
         }
-        
-        if(completionBlock){
-            completionBlock();
-        }
-        
-    }];
     
+    return importedSessions;
 }
 
 
@@ -152,7 +180,7 @@ NSString *const kSpeakerKey = @"speaker";
             newTalk.speaker = importedSpeaker;
             newTalk.session = session;
             [newTalk populateTalkWithDictionary:talk];
-
+            [importedTalks addObject:newTalk];
         }
     }
     
