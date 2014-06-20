@@ -184,7 +184,7 @@ NSString *const kSpeakerKey = @"speaker";
         }
     }
     
-    ITLog(@"FINISHED IMPORTING %d TALKS", [importedTalks count])
+    ITLog(@"FINISHED IMPORTING %lu TALKS", (unsigned long)[importedTalks count])
     return importedTalks;
     
     
