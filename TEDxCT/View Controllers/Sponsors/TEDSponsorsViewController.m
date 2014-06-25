@@ -9,6 +9,7 @@
 #import "TEDSponsorsViewController.h"
 
 @interface TEDSponsorsViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *sponsorsTableView;
 
 @end
 

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TEDMoreInfoViewController">
             <connections>
+                <outlet property="moreInfoTableView" destination="r4O-hT-IdU" id="qxm-2V-LcW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,10 +23,19 @@
                         <constraint firstAttribute="height" constant="155" id="fmK-6D-UYq"/>
                     </constraints>
                 </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="r4O-hT-IdU">
+                    <rect key="frame" x="0.0" y="125" width="320" height="355"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="r4O-hT-IdU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="125" id="313-P4-Ytr"/>
                 <constraint firstAttribute="centerX" secondItem="XTb-6q-bv2" secondAttribute="centerX" id="KOk-Rp-sst"/>
+                <constraint firstAttribute="trailing" secondItem="r4O-hT-IdU" secondAttribute="trailing" id="QnQ-5C-UDD"/>
+                <constraint firstItem="r4O-hT-IdU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="b9O-rq-R3G"/>
+                <constraint firstAttribute="bottom" secondItem="r4O-hT-IdU" secondAttribute="bottom" id="cpD-oZ-rik"/>
                 <constraint firstItem="XTb-6q-bv2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="ftf-wu-j3g"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
