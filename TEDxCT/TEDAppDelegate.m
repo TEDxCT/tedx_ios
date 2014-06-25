@@ -21,6 +21,7 @@
     [self.window setRootViewController:self.navigationController];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [self.window setTintColor:[UIColor colorWithRed:228/255.0f green:45/255.0f blue:29/255.0f alpha:1.f]];
     return YES;
 }
 
