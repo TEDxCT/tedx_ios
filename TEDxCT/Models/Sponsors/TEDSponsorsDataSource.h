@@ -10,4 +10,6 @@
 
 @interface TEDSponsorsDataSource : NSObject
 
+- (NSFetchRequest *)createSponsorsFetchRequest;
+
 @end
