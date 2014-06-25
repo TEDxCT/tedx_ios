@@ -20,8 +20,17 @@
     self.funkyTitle = speakerJSON[@"funkyTitle"];
     self.imageURL = speakerJSON[@"imageURL"];
     self.fullName = speakerJSON[@"fullName"];
+    self.contactDetailsBlob = [NSKeyedArchiver archivedDataWithRootObject:speakerJSON[@"contactDetails"]];
+    
     //TODO: FIX isActive
 //    self.isActive = speakerJSON[@"isActive"];
+}
+
+- (NSArray *)contactDetails {
+    if (self.contactDetailsBlob) {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:self.contactDetailsBlob];
+    }
+    return nil;
 }
 
 @end

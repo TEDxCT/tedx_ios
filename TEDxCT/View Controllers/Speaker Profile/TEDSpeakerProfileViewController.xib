@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -17,21 +17,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNh-6K-lO8">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNh-6K-lO8">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="198"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="1" green="0.15979651080000001" blue="0.067851906480000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="tintColor" red="1" green="0.15979651080000001" blue="0.067851906480000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="198" id="3v8-EK-0z6"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-hu-FYt">
-                    <rect key="frame" x="20" y="206" width="280" height="21"/>
+                    <rect key="frame" x="77" y="156" width="166" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mad-dq-Bpg">
-                    <rect key="frame" x="40" y="235" width="240" height="313"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mad-dq-Bpg">
+                    <rect key="frame" x="20" y="206" width="280" height="342"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -41,17 +44,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="ENL-hu-FYt" secondAttribute="trailing" constant="20" symbolic="YES" id="1Ky-Ha-l8x"/>
-                <constraint firstItem="mad-dq-Bpg" firstAttribute="centerX" secondItem="ENL-hu-FYt" secondAttribute="centerX" id="D1H-On-z5C"/>
-                <constraint firstItem="ENL-hu-FYt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="Dtp-gQ-L9e"/>
-                <constraint firstItem="mad-dq-Bpg" firstAttribute="top" secondItem="ENL-hu-FYt" secondAttribute="top" constant="29" id="L6V-wV-eWo"/>
-                <constraint firstItem="ENL-hu-FYt" firstAttribute="centerX" secondItem="TNh-6K-lO8" secondAttribute="centerX" id="PbR-00-w1T"/>
-                <constraint firstItem="ENL-hu-FYt" firstAttribute="top" secondItem="TNh-6K-lO8" secondAttribute="bottom" constant="8" id="T5W-bz-zbT"/>
-                <constraint firstItem="TNh-6K-lO8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y5O-4G-Lyl"/>
-                <constraint firstItem="mad-dq-Bpg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="qqW-N3-kpN"/>
-                <constraint firstItem="TNh-6K-lO8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tDM-lg-aaz"/>
-                <constraint firstAttribute="bottom" secondItem="mad-dq-Bpg" secondAttribute="bottom" constant="20" symbolic="YES" id="wjn-dU-ndP"/>
-                <constraint firstItem="ENL-hu-FYt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="206" id="xEa-cd-a2m"/>
+                <constraint firstItem="TNh-6K-lO8" firstAttribute="centerX" secondItem="ENL-hu-FYt" secondAttribute="centerX" id="2pU-b1-uen"/>
+                <constraint firstItem="mad-dq-Bpg" firstAttribute="top" secondItem="TNh-6K-lO8" secondAttribute="bottom" constant="8" id="FAj-kj-754"/>
+                <constraint firstAttribute="trailing" secondItem="mad-dq-Bpg" secondAttribute="trailing" constant="20" id="YJ9-eA-rhM"/>
+                <constraint firstAttribute="trailing" secondItem="TNh-6K-lO8" secondAttribute="trailing" id="Ypj-1K-mdP"/>
+                <constraint firstItem="TNh-6K-lO8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pvU-zh-ejO"/>
+                <constraint firstItem="mad-dq-Bpg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="qqW-N3-kpN"/>
+                <constraint firstItem="TNh-6K-lO8" firstAttribute="bottom" secondItem="ENL-hu-FYt" secondAttribute="bottom" constant="12" id="quC-kW-4RR"/>
+                <constraint firstAttribute="bottom" secondItem="mad-dq-Bpg" secondAttribute="bottom" constant="20" id="wjn-dU-ndP"/>
+                <constraint firstItem="TNh-6K-lO8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yrW-uo-nZE"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

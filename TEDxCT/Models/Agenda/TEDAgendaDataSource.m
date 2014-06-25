@@ -11,13 +11,14 @@
 #import "TEDTalk.h"
 #import "TEDSpeaker.h"
 #import "TEDCoreDataManager.h"
+#import "TEDImageDownloader.h"
+#import "TEDStorageService.h"
 
 NSString *const kTalkCellReuseIdentifier = @"talkCell";
 
 @interface TEDAgendaDataSource ()
-
 @property (strong, nonatomic) NSFetchedResultsController *sessionsFetchedResultsController;
-
+@property (strong,nonatomic) TEDImageDownloader *imageDownloader;
 @end
 
 @implementation TEDAgendaDataSource
@@ -29,6 +30,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
                                                                                managedObjectContext:[self uiContext]
                                                                                  sectionNameKeyPath:@"session.name"
                                                                                           cacheName:nil];
+        _imageDownloader = [[TEDImageDownloader alloc] init];
     }
     
     return self;
@@ -54,22 +56,17 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     [cell.talkNameLabel setText:talk.name];
     [cell.talkSpeakerName setText:talk.speaker.fullName];
     
-    // Perform the asynchronous task on the background thread-
+    NSString *ImageURL = talk.imageURL;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSString *ImageURL = talk.imageURL;
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]];
-        
-        // Perform the task on the main thread using the main queue-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Perform the UI update in this block, like showing image.
-            
-            cell.talkImageView.image = [UIImage imageWithData:imageData];
-            
-        });
-        
-    });
+    if ([[NSFileManager defaultManager] fileExistsAtPath:ImageURL]) {
+        [cell.talkImageView setImage:[UIImage imageWithContentsOfFile:[TEDStorageService pathForImageWithURL:ImageURL eventName:@"TED" createIfNeeded:YES]]];
+    } else {
+        [self.imageDownloader downloadImageWithURL:ImageURL forEventName:@"TED" completionHandler:^(UIImage *image, NSError *error) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[(TEDTalkTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] talkImageView] setImage:image];
+            }];
+        }];
+    }
     
     return cell;
 }

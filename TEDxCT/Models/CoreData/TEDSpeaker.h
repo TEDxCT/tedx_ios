@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSNumber * isActive;
 @property (nonatomic, retain) TEDTalk *talk;
 @property (nonatomic, retain) TEDEvent *event;
+@property (nonatomic, retain) NSData *contactDetailsBlob;
 
 @end

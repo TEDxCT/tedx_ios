@@ -12,4 +12,6 @@
 
 - (void)populateSpeakerWithDictionary:(NSDictionary *)speakerJSON;
 
+- (NSArray *)contactDetails;
+
 @end
