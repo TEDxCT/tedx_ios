@@ -12,7 +12,11 @@
 
 - (void)populateSpeakerWithDictionary:(NSDictionary *)speakerJSON {
     self.identifier = [NSNumber numberWithInt:[speakerJSON[@"id"] intValue]];
-    self.descriptionHTML = speakerJSON[@"descriptionHTML"];
+    if (![speakerJSON[@"descriptionHTML"] isKindOfClass:[NSNull class]]){
+        self.descriptionHTML = speakerJSON[@"descriptionHTML"];
+    } else {
+        self.descriptionHTML = @"No description available";
+    }
     self.funkyTitle = speakerJSON[@"funkyTitle"];
     self.imageURL = speakerJSON[@"imageURL"];
     

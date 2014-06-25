@@ -6,11 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TEDEventInfoViewController">
             <connections>
-                <outlet property="eventDate" destination="9Q3-hc-IOr" id="Xo2-M2-xMS"/>
+                <outlet property="calendarButton" destination="pHm-Ne-hD1" id="haf-6g-s5z"/>
                 <outlet property="eventDescription" destination="DGg-FR-AFi" id="Sed-dm-LEi"/>
-                <outlet property="eventLocation" destination="DbT-Qj-teD" id="SYl-dN-PUU"/>
                 <outlet property="eventName" destination="rrS-Lj-mfr" id="BdO-So-XqL"/>
-                <outlet property="eventStartTime" destination="1xj-eE-uvZ" id="KK0-Gu-SCu"/>
+                <outlet property="gradientView" destination="elv-eK-TQn" id="Miw-Qy-eKz"/>
+                <outlet property="mapButton" destination="pdf-2x-RyJ" id="cH4-j2-xJ2"/>
                 <outlet property="scrollView" destination="Z8w-rF-4Kb" id="Qjj-cd-RiE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,70 +20,118 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="city" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-T5-agw">
-                    <rect key="frame" x="0.0" y="62" width="320" height="174"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="city" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-T5-agw" userLabel="Background Image">
+                    <rect key="frame" x="-800" y="-256" width="1920" height="1080"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.86666666670000003" green="0.0039215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="174" id="jMK-4v-SSp"/>
-                    </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tiM-cr-g8T">
-                    <rect key="frame" x="-1" y="196" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEDxCapeTown" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrS-Lj-mfr">
-                    <rect key="frame" x="83" y="211" width="140" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8w-rF-4Kb">
-                    <rect key="frame" x="0.0" y="233" width="320" height="300"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8w-rF-4Kb">
+                    <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16 August 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Q3-hc-IOr">
-                            <rect key="frame" x="0.0" y="5" width="121" height="21"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="elv-eK-TQn" userLabel="Gradient">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="635"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEDxCapeTown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrS-Lj-mfr">
+                            <rect key="frame" x="0.0" y="170" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeA-0l-1Ak">
-                            <rect key="frame" x="12" y="62" width="80" height="80"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGg-FR-AFi" userLabel="Description">
+                            <rect key="frame" x="8" y="315" width="302" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button" image="maps_maps_icon_flat_icon_ios_7_ios_7_icon_png_maps_png">
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint </string>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mI5-1Y-aEb" userLabel="Date">
+                            <rect key="frame" x="10" y="200" width="310" height="36"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment content="16 August 9am to 17 August 5pm">
+                                    <attributes>
+                                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
+                                        <font key="NSOriginalFont" size="16" name="HelveticaNeue-Light"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHm-Ne-hD1">
+                            <rect key="frame" x="187" y="278" width="125" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Vxg-rq-RJ0"/>
+                                <constraint firstAttribute="width" constant="125" id="Xbj-1I-E0j"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Add to Calendar">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="mapTapped:" destination="-1" eventType="touchUpInside" id="AAU-bx-RqO"/>
+                                <action selector="mapTapped:" destination="-1" eventType="touchUpInside" id="53M-Rh-czq"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9:00am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xj-eE-uvZ">
-                            <rect key="frame" x="5" y="25" width="121" height="21"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdf-2x-RyJ">
+                            <rect key="frame" x="187" y="241" width="125" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="125" id="ARw-Df-Yyh"/>
+                                <constraint firstAttribute="height" constant="32" id="Ocm-LU-b6s"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="View on Map">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="mapTapped:" destination="-1" eventType="touchUpInside" id="p8f-jB-5d6"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="129" translatesAutoresizingMaskIntoConstraints="NO" id="yLt-me-69O" userLabel="Address">
+                            <rect key="frame" x="8" y="241" width="129" height="57"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Baxter Theatre Main Road Rondebosch 7701">
+                                    <attributes>
+                                        <color key="NSColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
+                                        <font key="NSOriginalFont" size="16" name="HelveticaNeue-Light"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGg-FR-AFi">
-                            <rect key="frame" x="0.0" y="162" width="320" height="700"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Baxter Theatre Main Road Rondebosch 7701" translatesAutoresizingMaskIntoConstraints="NO" id="DbT-Qj-teD">
-                            <rect key="frame" x="110" y="55" width="115" height="93"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            <dataDetectorType key="dataDetectorTypes" address="YES"/>
-                        </textView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="rrS-Lj-mfr" firstAttribute="top" secondItem="Z8w-rF-4Kb" secondAttribute="top" constant="170" id="6xQ-kp-Kvs"/>
+                        <constraint firstAttribute="trailing" secondItem="rrS-Lj-mfr" secondAttribute="trailing" id="Czr-8S-UMe"/>
+                        <constraint firstItem="DGg-FR-AFi" firstAttribute="top" secondItem="mI5-1Y-aEb" secondAttribute="bottom" constant="79" id="DDl-xg-2Xe"/>
+                        <constraint firstAttribute="trailing" secondItem="mI5-1Y-aEb" secondAttribute="trailing" id="KqI-du-vJ8"/>
+                        <constraint firstItem="elv-eK-TQn" firstAttribute="top" secondItem="Z8w-rF-4Kb" secondAttribute="top" id="L97-3u-VVp"/>
+                        <constraint firstItem="yLt-me-69O" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" constant="8" id="Nxc-hx-QCh"/>
+                        <constraint firstAttribute="trailing" secondItem="elv-eK-TQn" secondAttribute="trailing" id="Pmc-Cf-uYc"/>
+                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="top" secondItem="mI5-1Y-aEb" secondAttribute="bottom" constant="5" id="RJE-QR-CGB"/>
+                        <constraint firstItem="mI5-1Y-aEb" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" constant="10" id="Rk5-Lf-3UO"/>
+                        <constraint firstAttribute="centerX" secondItem="rrS-Lj-mfr" secondAttribute="centerX" id="Sjj-Ol-bZe"/>
+                        <constraint firstAttribute="trailing" secondItem="pHm-Ne-hD1" secondAttribute="trailing" constant="8" id="eEP-nI-hoc"/>
+                        <constraint firstItem="elv-eK-TQn" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" id="eSJ-z4-Xxn"/>
+                        <constraint firstAttribute="trailing" secondItem="pdf-2x-RyJ" secondAttribute="trailing" constant="8" id="j75-4y-ZrD"/>
+                        <constraint firstItem="rrS-Lj-mfr" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" id="kIe-hj-kaZ"/>
+                        <constraint firstItem="yLt-me-69O" firstAttribute="top" secondItem="mI5-1Y-aEb" secondAttribute="bottom" constant="5" id="oqb-hg-oQ3"/>
+                        <constraint firstAttribute="bottom" secondItem="DGg-FR-AFi" secondAttribute="bottom" constant="20" id="qIt-9u-f22"/>
+                        <constraint firstItem="DGg-FR-AFi" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" constant="8" id="rmC-Rc-BFB"/>
+                        <constraint firstAttribute="bottom" secondItem="elv-eK-TQn" secondAttribute="bottom" id="t9G-Ca-YeL"/>
+                        <constraint firstItem="mI5-1Y-aEb" firstAttribute="top" secondItem="rrS-Lj-mfr" secondAttribute="bottom" constant="5" id="tBE-gN-Ezc"/>
+                        <constraint firstAttribute="trailing" secondItem="DGg-FR-AFi" secondAttribute="trailing" constant="10" id="xhN-e5-F3Q"/>
+                        <constraint firstItem="pHm-Ne-hD1" firstAttribute="top" secondItem="pdf-2x-RyJ" secondAttribute="bottom" constant="5" id="y4O-KM-Rig"/>
+                    </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="pbL-Pb-3w8"/>
                     </connections>
@@ -91,11 +139,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="XrV-T5-agw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="62" id="79N-88-Fjm"/>
-                <constraint firstItem="XrV-T5-agw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IiV-hm-L9A"/>
-                <constraint firstItem="rrS-Lj-mfr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="83" id="fdb-XB-veI"/>
-                <constraint firstItem="XrV-T5-agw" firstAttribute="bottom" secondItem="rrS-Lj-mfr" secondAttribute="bottom" id="vTa-PK-SFm"/>
-                <constraint firstAttribute="trailing" secondItem="XrV-T5-agw" secondAttribute="trailing" id="wwA-82-WYo"/>
+                <constraint firstAttribute="trailing" secondItem="Z8w-rF-4Kb" secondAttribute="trailing" id="0AV-ju-Uc8"/>
+                <constraint firstAttribute="bottom" secondItem="Z8w-rF-4Kb" secondAttribute="bottom" id="0Uk-0w-it8"/>
+                <constraint firstAttribute="trailing" secondItem="XrV-T5-agw" secondAttribute="trailing" constant="-800" id="0V3-GT-Z17"/>
+                <constraint firstAttribute="bottom" secondItem="XrV-T5-agw" secondAttribute="bottom" constant="-256" id="3jF-ir-owx"/>
+                <constraint firstItem="XrV-T5-agw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-256" id="9IR-xn-4Qi"/>
+                <constraint firstItem="XrV-T5-agw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-800" id="Mtd-CX-8Rm"/>
+                <constraint firstItem="Z8w-rF-4Kb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="62" id="VHv-Nb-xoM"/>
+                <constraint firstItem="Z8w-rF-4Kb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wpy-Fw-lNg"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -105,6 +156,5 @@
     </objects>
     <resources>
         <image name="city" width="1920" height="1080"/>
-        <image name="maps_maps_icon_flat_icon_ios_7_ios_7_icon_png_maps_png" width="512" height="512"/>
     </resources>
 </document>

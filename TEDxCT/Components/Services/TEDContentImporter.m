@@ -61,7 +61,9 @@ NSString *const kSpeakerKey = @"speaker";
 
 - (void)requestContentImportForAllContent {
     [self requestEventJSONWithCompletionHandler:^(NSDictionary *json) {
-        [self importContentFromEventJSON:json];
+        if (json) {
+            [self importContentFromEventJSON:json];
+        }
     }];
 }
 

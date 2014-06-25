@@ -48,7 +48,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDSpeaker class]) inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isActive = YES"]];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fullName"
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"identifier"
                                                                    ascending:YES];
     
     NSExpressionDescription* objectIdDesc = [[NSExpressionDescription alloc] init];
