@@ -21,5 +21,6 @@
 @dynamic isActive;
 @dynamic talk;
 @dynamic event;
+@dynamic contactDetailsBlob;
 
 @end
