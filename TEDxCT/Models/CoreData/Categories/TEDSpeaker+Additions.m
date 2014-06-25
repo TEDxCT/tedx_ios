@@ -19,7 +19,7 @@
     }
     self.funkyTitle = speakerJSON[@"funkyTitle"];
     self.imageURL = speakerJSON[@"imageURL"];
-    
+    self.fullName = speakerJSON[@"fullName"];
     //TODO: FIX isActive
 //    self.isActive = speakerJSON[@"isActive"];
 }

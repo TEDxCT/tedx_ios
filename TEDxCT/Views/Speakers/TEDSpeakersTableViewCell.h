@@ -12,5 +12,4 @@
 @property (weak, nonatomic) IBOutlet UIImageView *speakerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *speakerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *funkyTitle;
-
 @end
