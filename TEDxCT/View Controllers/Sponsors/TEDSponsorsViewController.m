@@ -77,6 +77,7 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TEDSponsorsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSponsorCellReuseIdentifier];
     TEDSponsor *sponsor = [self sponsorForItemAtIndexPath:indexPath];
+    cell.sponsorURL = sponsor.websiteURL;
     
     NSString *ImageURL = sponsor.imageURL;
     NSString *localPath = [TEDStorageService pathForImageWithURL:ImageURL eventName:@"TED" createIfNeeded:YES];
@@ -96,12 +97,16 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if(indexPath.row == 0) {
-        TEDSponsorsViewController *newVC = [[TEDSponsorsViewController alloc]init];
-        [self.tabBarController.navigationController pushViewController:newVC animated:YES];
+
+    TEDSponsor *sponsor = [self sponsorForItemAtIndexPath:indexPath];
+    NSString *websiteURL;
+    if (sponsor.websiteURL){
+        websiteURL = sponsor.websiteURL;
+    } else {
+        websiteURL =@"http://www.google.com";
     }
     
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:websiteURL]];
 }
 
 #pragma mark - Table View Datasource -

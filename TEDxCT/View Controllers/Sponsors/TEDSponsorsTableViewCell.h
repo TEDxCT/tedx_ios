@@ -10,5 +10,6 @@
 
 @interface TEDSponsorsTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *sponsorImageView;
+@property (weak, nonatomic) NSString *sponsorURL;
 
 @end
