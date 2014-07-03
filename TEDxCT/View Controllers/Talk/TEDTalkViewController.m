@@ -50,6 +50,9 @@
             
             _talkImage.image = [UIImage imageWithData:imageData];
             
+            _talkImage.layer.cornerRadius = CGRectGetWidth(_talkImage.frame)/2;
+            _talkImage.layer.masksToBounds = YES;
+            
         });
         
     });

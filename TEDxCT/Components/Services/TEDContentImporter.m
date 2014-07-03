@@ -17,6 +17,8 @@
 #import "TEDTalk.h"
 #import "TEDEvent.h"
 #import "TEDEvent+Additions.h"
+#import "TEDSponsor.h"
+#import "TEDSponsor+Additions.h"
 #import <CoreData/CoreData.h>
 
 #define IMPORTER_LOGGER 1
@@ -33,6 +35,8 @@ NSString *const kSessionsKey = @"sessions";
 NSString *const kEventsKey = @"events";
 NSString *const kTalksKey = @"talks";
 NSString *const kSpeakerKey = @"speaker";
+NSString *const kSponsorsKey = @"sponsors";
+
 
 @interface TEDContentImporter()
 
@@ -65,6 +69,24 @@ NSString *const kSpeakerKey = @"speaker";
             [self importContentFromEventJSON:json];
         }
     }];
+    
+    [self requestSponsorJSONWithCompletionHandler:^(NSDictionary *json) {
+        if (json) {
+            [self importContentFromSponsorJSON:json];
+        }
+    }];
+}
+
+- (void)importContentFromSponsorJSON:(NSDictionary *)JSON {
+    NSDictionary *sponsors = JSON[kSponsorsKey];
+    
+    for (NSDictionary *sponsor in sponsors) {
+            [self importSponsor:sponsor withCompletionHandler:^{
+                ITLog(@"IMPORT SPONSOR COMPLETE");
+                [[self transactionalContext] save:nil];
+                [[self transactionalContext].parentContext save:nil];
+            }];
+    }
 }
 
 -(void)importContentFromEventJSON:(NSDictionary *)JSON {
@@ -220,7 +242,55 @@ NSString *const kSpeakerKey = @"speaker";
         }
 }
 
+- (void)importSponsor:(NSDictionary *)sponsor withCompletionHandler:(void(^)())completionBlock {
+    [[self transactionalContext] performBlock:^{
+        NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSponsor class])];
+        fetch.resultType = NSDictionaryResultType;
+        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+        NSDictionary *sponsorsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
+        
+        NSNumber *idToCheck = [NSNumber numberWithInteger:[sponsor[@"id"] intValue]];
+        TEDSponsor *existingSponsor = [sponsorsKeyedByIdentifier objectForKey:idToCheck];
+        if (existingSponsor) {
+            //update
+        } else {
+            ITLog(@"INSERTING NEW SPONSOR WITH ID: %@", sponsor[@"id"]);
+            
+            //insert
+            TEDSponsor *newSponsor = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSponsor class]) inManagedObjectContext:[self transactionalContext]];
+            [newSponsor populateSponsorWithDictionary:sponsor];
+            
+        }
+        
+        if(completionBlock){
+            completionBlock();
+        }
+    }];
+}
+
 #pragma mark - Network Requests -
+- (void)requestSponsorJSONWithCompletionHandler:(void(^)(NSDictionary *json))completionBlock {
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[self.appConfig sponsorsJSONURL]];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    if(!error){
+                                                        NSDictionary *json = [NSJSONSerialization
+                                                                              JSONObjectWithData:data
+                                                                              options:kNilOptions
+                                                                              error:&error];
+                                                        if(completionBlock) {
+                                                            completionBlock(json);
+                                                        }
+                                                        
+                                                    }
+                                                    else {
+                                                        NSLog(@"ERROR: %@", error);
+                                                    }
+                                                }];
+    [dataTask resume];
+}
+
 
 - (void)requestEventJSONWithCompletionHandler:(void(^)(NSDictionary *json))completionBlock {
     
@@ -245,6 +315,7 @@ NSString *const kSpeakerKey = @"speaker";
     [dataTask resume];
     
 }
+
 
 #pragma mark - Convenience -
 - (NSManagedObjectContext *)uiContext {
