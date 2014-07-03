@@ -10,6 +10,6 @@
 
 @class TEDSpeaker;
 
-@interface TEDSpeakerProfileViewController : UIViewController
+@interface TEDSpeakerProfileViewController : UITableViewController
 - (instancetype)initWithSpeaker:(TEDSpeaker *)speaker;
 @end
