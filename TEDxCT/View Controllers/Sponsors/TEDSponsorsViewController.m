@@ -76,6 +76,7 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 #pragma mark - Table View Datasource -
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TEDSponsorsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSponsorCellReuseIdentifier];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     TEDSponsor *sponsor = [self sponsorForItemAtIndexPath:indexPath];
     cell.sponsorURL = sponsor.websiteURL;
     
