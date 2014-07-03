@@ -43,6 +43,8 @@ NSString *const kSponsorsKey = @"sponsors";
 @property (nonatomic, strong) TEDApplicationConfiguration *appConfig;
 @property (nonatomic, strong) NSManagedObjectContext *transactionalContext;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDateFormatter *timeFormatter;
 
 @end
 
@@ -59,7 +61,15 @@ NSString *const kSponsorsKey = @"sponsors";
         sharedImporter.appConfig = [[TEDApplicationConfiguration alloc]init];
         sharedImporter.operationQueue = [[NSOperationQueue alloc] init];
         [sharedImporter.operationQueue setMaxConcurrentOperationCount:1];
+
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
         
+        NSDateFormatter *tf = [[NSDateFormatter alloc] init];
+        [tf setDateFormat:@"HH:mm"];
+        
+        sharedImporter.dateFormatter = df;
+        sharedImporter.timeFormatter = tf;
     });
 }
 
@@ -161,7 +171,7 @@ NSString *const kSponsorsKey = @"sponsors";
                 
                 //insert
                 TEDSession *newSession = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSession class]) inManagedObjectContext:[self transactionalContext]];
-                [newSession populateSessionWithDictionary:session];
+                [newSession populateSessionWithDictionary:session withDateFromatter:self.dateFormatter andTimeFormatter:self.timeFormatter];
                 
                 if (session[kTalksKey]) {
                     NSSet *importedTalks =    [self importTalks:session[kTalksKey] forSession:newSession];
