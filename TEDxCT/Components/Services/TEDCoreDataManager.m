@@ -107,7 +107,7 @@ static TEDCoreDataManager *sharedManager = nil;
          
          If you encounter schema incompatibility errors during development, you can reduce their frequency by:
          * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+
          
          * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
          @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
@@ -115,8 +115,11 @@ static TEDCoreDataManager *sharedManager = nil;
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+        NSLog(@"Hopefully the error should now be nil %@, %@", error, [error userInfo]);
+        return _persistentStoreCoordinator;
     }
     
     return _persistentStoreCoordinator;

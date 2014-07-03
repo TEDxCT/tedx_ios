@@ -129,6 +129,7 @@ NSString *const kSponsorsKey = @"sponsors";
             TEDEvent *existingEvent = [eventsKeyedByIdentifier objectForKey:idToCheck];
             if (existingEvent) {
                 //update
+                [self importSessions:event[kSessionsKey]];
             } else {
                 ITLog(@"INSERTING NEW EVENT WITH ID: %@", event[@"id"]);
                 
@@ -166,6 +167,7 @@ NSString *const kSponsorsKey = @"sponsors";
             TEDSession *existingSession = [sessionsKeyedByIdentifier objectForKey:idToCheck];
             if (existingSession) {
                 //update
+                [self importTalks:session[kTalksKey] forSession:existingSession];
             } else {
                 ITLog(@"INSERTING NEW SESSION WITH ID: %@", session[@"id"]);
                 
@@ -204,6 +206,7 @@ NSString *const kSponsorsKey = @"sponsors";
         NSNumber *idToCheck = [NSNumber numberWithInteger:[talk[@"id"] intValue]];
         TEDTalk *existingTalk = [talksKeyedByIdentifier objectForKey:idToCheck];
         if (existingTalk) {
+            [self importSpeaker:talk[kSpeakerKey]];
         } else {
             //insert
             ITLog(@"INSERTING NEW TALK: %@", talk[kNameKey]);
@@ -229,7 +232,6 @@ NSString *const kSponsorsKey = @"sponsors";
         NSString *speakerID = [speaker objectForKey:@"id"];
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSpeaker class])];
         fetch.predicate = [NSPredicate predicateWithFormat:@"identifier == %@",speakerID];
-        fetch.resultType = NSDictionaryResultType;
         NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
         
         NSDictionary *speakersKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
@@ -237,7 +239,8 @@ NSString *const kSponsorsKey = @"sponsors";
         NSNumber *idToCheck = [NSNumber numberWithInteger:[speaker[@"id"] intValue]];
         TEDSpeaker *existingSpeaker = [speakersKeyedByIdentifier objectForKey:idToCheck];
         if (existingSpeaker) {
-            return nil;
+            [existingSpeaker populateSpeakerWithDictionary:speaker];
+            return existingSpeaker;
         } else {
             //insert
             ITLog(@"INSERTING NEW SPEAKER WITH ID: %@", idToCheck);
