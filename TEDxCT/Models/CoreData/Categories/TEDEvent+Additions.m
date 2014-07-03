@@ -13,14 +13,14 @@
 - (void)populateEventWithDictionary:(NSDictionary *)eventJSON {
     self.identifier = [NSNumber numberWithInteger:[eventJSON[@"id"]intValue]];
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSNumber *end = eventJSON[@"endDate"];
+    NSNumber *start = eventJSON[@"startDate"];
     
-    NSString *end = eventJSON[@"endDate"];
-    NSString *start = eventJSON[@"startDate"];
+    NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:end.unsignedLongLongValue];
+    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:start.unsignedLongLongValue];
     
-    self.endDate = [df dateFromString:end];
-    self.startDate = [df dateFromString:start];
+    self.endDate = endDate;
+    self.startDate = startDate;
     self.name = eventJSON[@"name"];
     self.descriptionHTML  = eventJSON[@"descriptionHTML"];
     self.imageURL = eventJSON[@"imageURL"];

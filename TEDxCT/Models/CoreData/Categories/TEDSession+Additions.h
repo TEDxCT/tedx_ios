@@ -10,6 +10,6 @@
 
 @interface TEDSession (Additions)
 
-- (void)populateSessionWithDictionary:(NSDictionary *)talkJSON;
+- (void)populateSessionWithDictionary:(NSDictionary *)sessionJSON withDateFromatter:(NSDateFormatter *)dateFormatter andTimeFormatter:(NSDateFormatter *)timeFormatter;
 
 @end

@@ -469,6 +469,9 @@
 				CFD11D3918FBCA5700CF016F /* TEDSponsorsViewController.h */,
 				CFD11D3A18FBCA5700CF016F /* TEDSponsorsViewController.m */,
 				CFD11D3B18FBCA5700CF016F /* TEDSponsorsViewController.xib */,
+				CF1FA5FB1965D04600963436 /* TEDSponsorsTableViewCell.h */,
+				CF1FA5FC1965D04600963436 /* TEDSponsorsTableViewCell.m */,
+				CF1FA5FD1965D04600963436 /* TEDSponsorsTableViewCell.xib */,
 			);
 			path = Sponsors;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				4212D41C1900403F007FC522 /* TEDSpeakersTableViewCell.xib in Resources */,
 				42E063501965D83D00CD3C79 /* TEDSpeakerProfileDescriptionTableViewCell.xib in Resources */,
 				CFD11D3318FBCA3800CF016F /* TEDSpeakerProfileViewController.xib in Resources */,
+				CF1FA5FF1965D04600963436 /* TEDSponsorsTableViewCell.xib in Resources */,
 				CFD11D2E18FBCA2900CF016F /* TEDMoreInfoViewController.xib in Resources */,
 				42E063551965DA2B00CD3C79 /* TEDSpeakerProfileContactDetailTableViewCell.xib in Resources */,
 				CFD11D2418FBC9DC00CF016F /* TEDLaunchViewController.xib in Resources */,
@@ -702,6 +706,7 @@
 				4212D410190038BF007FC522 /* TEDCoreDataManager.m in Sources */,
 				420C2BA8192A962500B344F2 /* TEDEvent.m in Sources */,
 				CFD11D3218FBCA3800CF016F /* TEDSpeakerProfileViewController.m in Sources */,
+				CF1FA5FE1965D04600963436 /* TEDSponsorsTableViewCell.m in Sources */,
 				CFD9C40718E9DC9000AE9196 /* main.m in Sources */,
 				42B7511118EC99B90058CB90 /* TEDTalkViewController.m in Sources */,
 				4239DCF21935039300DCB146 /* TEDTalk.m in Sources */,

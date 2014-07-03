@@ -10,23 +10,21 @@
 
 @implementation TEDSession (Additions)
 
-- (void)populateSessionWithDictionary:(NSDictionary *)sessionJSON {
+- (void)populateSessionWithDictionary:(NSDictionary *)sessionJSON withDateFromatter:(NSDateFormatter *)dateFormatter andTimeFormatter:(NSDateFormatter *)timeFormatter {
     self.identifier = [NSNumber numberWithInteger:[sessionJSON[@"id"]intValue]];
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSNumber *end = sessionJSON[@"endTime"];
+    NSNumber *start = sessionJSON[@"startTime"];
     
-    NSString *end = sessionJSON[@"endTime"];
-    NSString *start = sessionJSON[@"startTime"];
+    NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:end.unsignedLongLongValue];
+    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:start.unsignedLongLongValue];
     
-    self.endTime = [df dateFromString:end];
-    self.startTime = [df dateFromString:start];
+    self.endTime = endDate;
+    self.startTime = startDate;
     
     NSString *sessionName = sessionJSON[@"name"];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
     
-    NSString *sessionStartTime =[formatter stringFromDate:self.startTime];
+    NSString *sessionStartTime =[timeFormatter stringFromDate:self.startTime];
     self.name = [NSString stringWithFormat:@"%@ %@", sessionStartTime, sessionName];
 }
 
