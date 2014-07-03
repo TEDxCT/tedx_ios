@@ -7,15 +7,20 @@
 //
 
 #import "TEDSponsorsViewController.h"
+
+#import "TEDImageDownloader.h"
 #import "TEDSponsorsDataSource.h"
 #import "TEDCoreDataManager.h"
 #import "TEDSponsor.h"
+#import "TEDStorageService.h"
+#import "TEDSponsorsTableViewCell.h"
 
 NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 
 @interface TEDSponsorsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *sponsorsTableView;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) TEDImageDownloader *imageDownloader;
 
 @end
 
@@ -25,6 +30,8 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _imageDownloader = [[TEDImageDownloader alloc] init];
+
         _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:[self createSponsorsFetchRequest]
                                                                                managedObjectContext:[self uiContext]
                                                                                  sectionNameKeyPath:nil
@@ -41,10 +48,8 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
     [super viewWillAppear:animated];
     
     self.tabBarController.title = @"Sponsors";
-    [self.sponsorsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kSponsorCellReuseIdentifier];
     
-    [self.sponsorsTableView setDataSource:self];
-    [self.sponsorsTableView setDelegate:self];
+
     
     [self reloadData];
     [self.sponsorsTableView reloadData];
@@ -53,12 +58,13 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.sponsorsTableView setDataSource:self];
+    [self.sponsorsTableView setDelegate:self];
+    [self.sponsorsTableView registerNib:[UINib nibWithNibName:@"TEDSponsorsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSponsorCellReuseIdentifier];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,14 +73,24 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table View Delegate -
+#pragma mark - Table View Datasource -
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSponsorCellReuseIdentifier];
-    
+    TEDSponsorsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSponsorCellReuseIdentifier];
     TEDSponsor *sponsor = [self sponsorForItemAtIndexPath:indexPath];
     
-    cell.textLabel.text = sponsor.name;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSString *ImageURL = sponsor.imageURL;
+    NSString *localPath = [TEDStorageService pathForImageWithURL:ImageURL eventName:@"TED" createIfNeeded:YES];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
+        [cell.sponsorImageView setImage:[UIImage imageWithContentsOfFile:[TEDStorageService pathForImageWithURL:ImageURL eventName:@"TED" createIfNeeded:YES]]];
+    } else {
+        [self.imageDownloader downloadImageWithURL:ImageURL forEventName:@"TED" completionHandler:^(UIImage *image, NSError *error) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[(TEDSponsorsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] sponsorImageView] setImage:image];
+
+            }];
+        }];
+    }
     
     return cell;
 }

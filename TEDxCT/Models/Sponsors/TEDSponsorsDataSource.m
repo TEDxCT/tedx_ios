@@ -9,9 +9,23 @@
 #import "TEDSponsorsDataSource.h"
 #import "TEDApplicationConfiguration.h"
 #import "TEDCoreDataManager.h"
+#import "TEDImageDownloader.h"
 #import "TEDSponsor.h"
 
+@interface TEDSponsorsDataSource()
+
+@property (strong, nonatomic) TEDImageDownloader *imageDownloader;
+
+@end
+
 @implementation TEDSponsorsDataSource
+
+-(id)init {
+    if (self = [super init]) {
+    }
+    
+    return self;
+}
 
 - (NSFetchRequest *)createSponsorsFetchRequest {
     NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
