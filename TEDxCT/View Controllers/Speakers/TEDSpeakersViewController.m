@@ -30,7 +30,6 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     [super viewDidLoad];
     _imageDownloader = [[TEDImageDownloader alloc] init];
     self.speakersDataSource = [[TEDSpeakersDataSource alloc] init];
-    self.speakersTableView.contentOffset = CGPointMake(0, CGRectGetHeight(self.tabBarController.tabBar.frame));
     [self.speakersTableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
 }
 
@@ -83,6 +82,10 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 #pragma mark - UITableViewDelegate -
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120.f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
