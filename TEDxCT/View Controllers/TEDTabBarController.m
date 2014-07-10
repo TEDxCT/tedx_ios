@@ -40,9 +40,10 @@
         
         TEDMoreInfoViewController *moreInfoController = [[TEDMoreInfoViewController alloc]init];
         moreInfoController.title = @"More";
-        moreInfoController.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
+        UINavigationController *moreNav = [[UINavigationController alloc] initWithRootViewController:moreInfoController];
+        moreNav.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
         
-        self.viewControllers = @[agNav,spNav , eventViewController, moreInfoController];
+        self.viewControllers = @[agNav,spNav , eventViewController, moreNav];
         
     }
     return self;
