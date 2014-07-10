@@ -5,6 +5,7 @@
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isTrashed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="locationDescriptionHTML" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -50,10 +51,10 @@
         <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TEDSpeaker" inverseName="talk" inverseEntity="TEDSpeaker" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TEDEvent" positionX="-1647" positionY="-531" width="128" height="178"/>
+        <element name="TEDEvent" positionX="-1647" positionY="-531" width="128" height="210"/>
         <element name="TEDSession" positionX="-1442" positionY="-576" width="128" height="133"/>
         <element name="TEDSpeaker" positionX="-1442" positionY="-388" width="128" height="178"/>
-        <element name="TEDTalk" positionX="-1136" positionY="-396" width="128" height="178"/>
         <element name="TEDSponsor" positionX="-1631" positionY="-700" width="128" height="118"/>
+        <element name="TEDTalk" positionX="-1136" positionY="-396" width="128" height="178"/>
     </elements>
 </model>

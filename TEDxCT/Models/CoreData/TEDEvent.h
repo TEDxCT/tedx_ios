@@ -2,7 +2,7 @@
 //  TEDEvent.h
 //  TEDxCT
 //
-//  Created by Daniel Galasko on 5/19/14.
+//  Created by Carla G on 2014/07/10.
 //  Copyright (c) 2014 TEDxCapeTown. All rights reserved.
 //
 
@@ -15,15 +15,15 @@
 
 @property (nonatomic, retain) NSString * descriptionHTML;
 @property (nonatomic, retain) NSDate * endDate;
+@property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) NSString * locationDescriptionHTML;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSString * websiteURL;
+@property (nonatomic, retain) NSNumber * isTrashed;
 @property (nonatomic, retain) NSSet *sessions;
 @property (nonatomic, retain) TEDSpeaker *speakers;
-@property (nonatomic, retain) NSNumber * identifier;
-
 @end
 
 @interface TEDEvent (CoreDataGeneratedAccessors)

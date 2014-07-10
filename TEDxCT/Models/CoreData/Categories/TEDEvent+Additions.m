@@ -26,7 +26,7 @@
     self.imageURL = eventJSON[@"imageURL"];
     self.locationDescriptionHTML = eventJSON[@"locationDescriptionHTML"];
     self.websiteURL = eventJSON[@"websiteURL"];
-
+    self.isTrashed = [NSNumber numberWithBool:NO];
     //TODO: ADD LATITUDE AND LONGITUDE
 }
 

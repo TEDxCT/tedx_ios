@@ -74,8 +74,12 @@ NSString *const kSponsorsKey = @"sponsors";
 }
 
 - (void)requestContentImportForAllContent {
+
     [self requestEventJSONWithCompletionHandler:^(NSDictionary *json) {
         if (json) {
+            [self deleteContentInTrash];
+            
+            ITLog(@"START IMPORT");
             [self importContentFromEventJSON:json];
         }
     }];
@@ -87,6 +91,33 @@ NSString *const kSponsorsKey = @"sponsors";
     }];
 }
 
+#pragma mark - Trash -
+- (void)deleteContentInTrash {
+    NSArray *trashedEvents = [self trashedEvents];
+    
+    for (TEDEvent *trashedEvent in trashedEvents) {
+        [self.transactionalContext deleteObject:trashedEvent];
+    }
+    
+    ITLog(@"TAKING OUT TRASH COMPLETE");
+    [[self transactionalContext] save:nil];
+    [[self transactionalContext].parentContext save:nil];
+}
+
+- (NSArray *)trashedEvents {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isTrashed = YES"];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.transactionalContext executeFetchRequest:fetchRequest error:&error];
+
+    return fetchedObjects;
+}
+
+#pragma mark - Import -
+
+
+#pragma mark - Import Sponsors -
 - (void)importContentFromSponsorJSON:(NSDictionary *)JSON {
     NSDictionary *sponsors = JSON[kSponsorsKey];
     
@@ -99,6 +130,7 @@ NSString *const kSponsorsKey = @"sponsors";
     }
 }
 
+#pragma mark - Import Content -
 -(void)importContentFromEventJSON:(NSDictionary *)JSON {
     //Get events from JSON
     NSDictionary *events = JSON[kEventsKey];
@@ -123,13 +155,25 @@ NSString *const kSponsorsKey = @"sponsors";
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
         fetch.resultType = NSDictionaryResultType;
         NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
-        NSDictionary *eventsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
+        NSDictionary *eventsKeyedByName = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"name"]];
     
-            NSNumber *idToCheck = [NSNumber numberWithInteger:[event[@"id"] intValue]];
-            TEDEvent *existingEvent = [eventsKeyedByIdentifier objectForKey:idToCheck];
+            NSNumber *nameToCheck = event[@"name"];
+
+            NSDictionary *existingEvent = [eventsKeyedByName objectForKey:nameToCheck];
             if (existingEvent) {
                 //update
-                [self importSessions:event[kSessionsKey]];
+                NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
+                fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name = %@", nameToCheck];
+                
+                TEDEvent *eventToUpdate = [self.transactionalContext executeFetchRequest:fetchRequest error:nil].firstObject;
+                NSNumber *idToCheck = [NSNumber numberWithInteger:[event[@"id"] intValue]];
+
+                if ([eventToUpdate.identifier isEqualToNumber:idToCheck]) {
+                    [self importSessions:event[kSessionsKey]];
+                } else {
+                    //TRASH EVENT
+                    eventToUpdate.isTrashed = [NSNumber numberWithBool:YES];
+                }
             } else {
                 ITLog(@"INSERTING NEW EVENT WITH ID: %@", event[@"id"]);
                 
