@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="126" id="KGk-i7-Jjw" customClass="TEDSpeakersTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="559" height="126"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="107" id="KGk-i7-Jjw" customClass="TEDSpeakersTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="428" height="107"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="559" height="125"/>
+                <rect key="frame" x="0.0" y="0.0" width="428" height="106"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qXb-ab-k2x">
-                        <rect key="frame" x="20" y="20" width="83" height="85"/>
+                        <rect key="frame" x="20" y="20" width="83" height="66"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="83" id="YOr-Ug-0zf"/>
+                            <constraint firstAttribute="width" constant="83" id="9zj-XF-3sM"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Speaker name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3m-SL-sFm">
-                        <rect key="frame" x="125" y="20" width="414" height="23"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3m-SL-sFm">
+                        <rect key="frame" x="125" y="30" width="283" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Funky title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5f-n3-4T0">
-                        <rect key="frame" x="125" y="53" width="414" height="52"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funky title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5f-n3-4T0">
+                        <rect key="frame" x="125" y="53" width="283" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -37,16 +38,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="M5f-n3-4T0" secondAttribute="trailing" constant="20" id="06l-fU-h77"/>
-                    <constraint firstItem="M5f-n3-4T0" firstAttribute="top" secondItem="Y3m-SL-sFm" secondAttribute="bottom" constant="10" id="2gE-dZ-ICX"/>
-                    <constraint firstItem="qXb-ab-k2x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="8Jg-hf-RZS"/>
-                    <constraint firstItem="qXb-ab-k2x" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="E6R-im-zUy"/>
-                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="M5f-n3-4T0" secondAttribute="bottom" constant="20" id="MkC-BG-7KA"/>
-                    <constraint firstItem="M5f-n3-4T0" firstAttribute="leading" secondItem="qXb-ab-k2x" secondAttribute="trailing" constant="22" id="avG-SV-yDp"/>
-                    <constraint firstAttribute="centerY" secondItem="qXb-ab-k2x" secondAttribute="centerY" id="dWa-bE-mnH"/>
-                    <constraint firstItem="Y3m-SL-sFm" firstAttribute="leading" secondItem="qXb-ab-k2x" secondAttribute="trailing" constant="22" id="svh-zJ-Ch5"/>
-                    <constraint firstAttribute="trailing" secondItem="Y3m-SL-sFm" secondAttribute="trailing" constant="20" id="wEl-Wk-GYf"/>
-                    <constraint firstItem="Y3m-SL-sFm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="yl9-i5-Xe6"/>
+                    <constraint firstAttribute="bottom" secondItem="qXb-ab-k2x" secondAttribute="bottom" constant="20" id="7B9-32-Mur"/>
+                    <constraint firstItem="Y3m-SL-sFm" firstAttribute="leading" secondItem="M5f-n3-4T0" secondAttribute="leading" id="AI0-eU-qck"/>
+                    <constraint firstAttribute="centerY" secondItem="Y3m-SL-sFm" secondAttribute="bottom" id="Ij7-Up-PKT"/>
+                    <constraint firstAttribute="trailing" secondItem="Y3m-SL-sFm" secondAttribute="trailing" constant="20" id="IwN-tg-dk5"/>
+                    <constraint firstAttribute="centerY" secondItem="M5f-n3-4T0" secondAttribute="top" id="QGe-GG-NSv"/>
+                    <constraint firstItem="qXb-ab-k2x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="QLf-KV-Ztu"/>
+                    <constraint firstItem="Y3m-SL-sFm" firstAttribute="leading" secondItem="qXb-ab-k2x" secondAttribute="trailing" constant="22" id="Z9O-lM-0gQ"/>
+                    <constraint firstAttribute="trailing" secondItem="M5f-n3-4T0" secondAttribute="trailing" constant="20" id="cWx-Ld-pqX"/>
+                    <constraint firstItem="qXb-ab-k2x" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="vyq-Fd-jXr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -25,11 +25,13 @@
     if (self) {
         TEDAgendaTableViewController *agendaViewController = [[TEDAgendaTableViewController alloc]init];
         agendaViewController.title = @"Agenda";
-        agendaViewController.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
+        UINavigationController *agNav = [[UINavigationController alloc] initWithRootViewController:agendaViewController];
+        agNav.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
         
         TEDSpeakersViewController *speakersViewController = [[TEDSpeakersViewController alloc]init];
         speakersViewController.title = @"Speakers";
-        speakersViewController.tabBarItem.image = [UIImage imageNamed:@"speakers.png"];
+        UINavigationController *spNav = [[UINavigationController alloc] initWithRootViewController:speakersViewController];
+        spNav.tabBarItem.image = [UIImage imageNamed:@"speakers.png"];
 
         
         TEDEventInfoViewController *eventViewController = [[TEDEventInfoViewController alloc] init];
@@ -39,9 +41,8 @@
         TEDMoreInfoViewController *moreInfoController = [[TEDMoreInfoViewController alloc]init];
         moreInfoController.title = @"More";
         moreInfoController.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
-
         
-        self.viewControllers = @[agendaViewController, speakersViewController, eventViewController, moreInfoController];
+        self.viewControllers = @[agNav,spNav , eventViewController, moreInfoController];
         
     }
     return self;

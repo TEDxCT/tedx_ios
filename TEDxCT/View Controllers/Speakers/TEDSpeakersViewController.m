@@ -84,6 +84,10 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     return 120;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120.f;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TEDSpeaker *selectedSpeaker = [self.speakersDataSource speakerForItemAtIndexPath:indexPath];
     TEDSpeakerProfileViewController *pvc = [[TEDSpeakerProfileViewController alloc] initWithSpeaker:selectedSpeaker];

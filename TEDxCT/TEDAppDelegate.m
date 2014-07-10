@@ -7,18 +7,22 @@
 //
 
 #import "TEDAppDelegate.h"
-#import "TEDLaunchViewController.h"
+#import "TEDTabBarController.h"
+#import "TEDCoreDataManager.h"
+#import "TEDContentImporter.h"
+
 @implementation TEDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    TEDLaunchViewController *tlc = [[TEDLaunchViewController alloc] init];
     
-    
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:tlc];
     // Override point for customization after application launch.
-    [self.window setRootViewController:self.navigationController];
+    [TEDCoreDataManager initialiseSharedManager];
+    [TEDContentImporter initialiseSharedImporter];
+    [[TEDContentImporter sharedImporter] requestContentImportForAllContent];
+    self.tabBarController = [[TEDTabBarController alloc] init];
+    [self.window setRootViewController:self.tabBarController];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self.window setTintColor:[UIColor colorWithRed:228/255.0f green:45/255.0f blue:29/255.0f alpha:1.f]];
