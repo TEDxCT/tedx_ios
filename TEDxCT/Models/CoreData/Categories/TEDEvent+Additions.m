@@ -23,7 +23,9 @@
     self.startDate = startDate;
     self.name = eventJSON[@"name"];
     self.descriptionHTML  = eventJSON[@"descriptionHTML"];
-    self.imageURL = eventJSON[@"imageURL"];
+    if(![eventJSON[@"imageURL"] isKindOfClass:[NSNull class]]) {
+        self.imageURL = eventJSON[@"imageURL"];
+    }
     self.locationDescriptionHTML = eventJSON[@"locationDescriptionHTML"];
     self.websiteURL = eventJSON[@"websiteURL"];
     self.isTrashed = [NSNumber numberWithBool:NO];

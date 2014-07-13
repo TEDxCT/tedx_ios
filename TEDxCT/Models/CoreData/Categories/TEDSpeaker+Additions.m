@@ -18,7 +18,9 @@
         self.descriptionHTML = @"No description available";
     }
     self.funkyTitle = speakerJSON[@"funkyTitle"];
-    self.imageURL = speakerJSON[@"imageURL"];
+    if(speakerJSON[@"imageURL"]){
+        self.imageURL = speakerJSON[@"imageURL"];
+    }
     self.fullName = speakerJSON[@"fullName"];
     self.contactDetailsBlob = [NSKeyedArchiver archivedDataWithRootObject:speakerJSON[@"contactDetails"]];
     

@@ -17,7 +17,9 @@
     self.imageURL = talkJSON[@"imageURL"];
     self.genre = talkJSON[@"genre"];
     self.orderInSession = talkJSON[@"orderInSession"];
-    self.videoURL = talkJSON[@"videoURL"];
+    if(![talkJSON[@"videoURL"] isKindOfClass:[NSNull class]]) {
+        self.videoURL = talkJSON[@"videoURL"];
+    }
 }
 
 @end
