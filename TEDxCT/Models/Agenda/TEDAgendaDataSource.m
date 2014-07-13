@@ -97,9 +97,13 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDTalk class]) inManagedObjectContext:[self uiContext]];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+    NSSortDescriptor *sortDescriptorIdentifier = [[NSSortDescriptor alloc] initWithKey:@"identifier"
                                                                    ascending:YES];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSSortDescriptor *sortDescriptorOrderInSession = [[NSSortDescriptor alloc] initWithKey:@"orderInSession"
+                                                                   ascending:YES];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptorIdentifier, sortDescriptorOrderInSession, nil]];
     
     return fetchRequest;
 }
