@@ -20,7 +20,7 @@
 
 - (NSString *)eventName {
     //Case sensitive
-    return @"Alex's house";
+    return @"TEDxCapeTown 2014";
 }
 
 @end
