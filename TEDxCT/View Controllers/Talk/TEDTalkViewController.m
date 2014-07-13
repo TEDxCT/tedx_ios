@@ -10,7 +10,7 @@
 #import "TEDSpeakerProfileViewController.h"
 #import "TEDTalk.h"
 #import "TEDSpeaker.h"
-
+#import "TEDStorageService.h"
 
 @interface TEDTalkViewController ()
 @property (strong,nonatomic,readonly) TEDTalk *talk;
@@ -39,25 +39,32 @@
     [self.talkDescription setText:_talk.descriptionHTML];
     [self.speakerName setTitle:_talk.speaker.fullName forState:UIControlStateNormal];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSString *ImageURL = _talk.imageURL;
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]];
+    NSString *imageLocalPath = [TEDStorageService pathForImageWithURL:_talk.imageURL
+                                                               eventName:@"TED"
+                                                          createIfNeeded:YES];
+    
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:imageLocalPath]) {
+        [self.talkImage setImage:[UIImage imageWithContentsOfFile:imageLocalPath]];
+    } else {
+        [[[NSURLSession sharedSession] downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.talk.imageURL]]
+                                             completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                 if (location) {
+                                                     [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:imageLocalPath] error:nil];
+                                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                                         [self.talkImage setImage:[UIImage imageWithContentsOfFile:imageLocalPath]];
+                                                         
+                            
+                                                     });
+                                                 }
+                                             }] resume];
         
-        // Perform the task on the main thread using the main queue-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Perform the UI update in this block, like showing image.
-            
-            _talkImage.image = [UIImage imageWithData:imageData];
-            
-            _talkImage.layer.cornerRadius = CGRectGetWidth(_talkImage.frame)/2;
-            _talkImage.layer.masksToBounds = YES;
-            
-        });
-        
-    });
-
-    // Do any additional setup after loading the view from its nib.
+    }
+    
+    
+    _talkImage.layer.cornerRadius = CGRectGetWidth(_talkImage.frame)/2;
+    _talkImage.layer.masksToBounds = YES;
+    
 }
 
 - (void)didReceiveMemoryWarning
