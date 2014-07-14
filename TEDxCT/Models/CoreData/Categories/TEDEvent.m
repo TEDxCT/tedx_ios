@@ -2,7 +2,7 @@
 //  TEDEvent.m
 //  TEDxCT
 //
-//  Created by Carla G on 2014/07/10.
+//  Created by Carla G on 2014/07/14.
 //  Copyright (c) 2014 TEDxCapeTown. All rights reserved.
 //
 
@@ -17,11 +17,13 @@
 @dynamic endDate;
 @dynamic identifier;
 @dynamic imageURL;
+@dynamic isTrashed;
+@dynamic latitude;
 @dynamic locationDescriptionHTML;
+@dynamic longitude;
 @dynamic name;
 @dynamic startDate;
 @dynamic websiteURL;
-@dynamic isTrashed;
 @dynamic sessions;
 @dynamic speakers;
 

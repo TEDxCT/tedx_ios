@@ -29,7 +29,9 @@
     self.locationDescriptionHTML = eventJSON[@"locationDescriptionHTML"];
     self.websiteURL = eventJSON[@"websiteURL"];
     self.isTrashed = [NSNumber numberWithBool:NO];
-    //TODO: ADD LATITUDE AND LONGITUDE
+    
+    self.latitude = [NSNumber numberWithDouble:[eventJSON[@"latitude"] doubleValue]];
+    self.longitude =[NSNumber numberWithDouble:[eventJSON[@"longitude"] doubleValue]];
 }
 
 @end

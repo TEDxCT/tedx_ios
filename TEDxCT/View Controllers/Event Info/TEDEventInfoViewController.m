@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gradientView;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
 @property (weak, nonatomic) IBOutlet UIButton *calendarButton;
+@property (assign, nonatomic) CLLocationDegrees longitude;
+@property (assign, nonatomic) CLLocationDegrees latitude;
 
 @property (strong, nonatomic) TEDEvent *event;
 
@@ -54,16 +56,19 @@
     
 
     
-//    self.eventName.text = self.event.name;
-//    self.eventDescription.text = self.event.descriptionHTML;
-//    self.eventLocation.text = self.event.locationDescriptionHTML;
-//    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"HH:mm"];
-//    self.eventStartTime.text = [formatter stringFromDate:self.event.startDate];
-////    self.eventDate.text = self.event.startDate;
-//    
-//    // Do any additional setup after loading the view from its nib.
+    self.eventName.text = self.event.name;
+    self.eventDescription.text = self.event.descriptionHTML;
+    self.eventDescription.textColor = [UIColor whiteColor];
+    
+    self.eventLocation.text = self.event.locationDescriptionHTML;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    self.eventStartTime.text = [formatter stringFromDate:self.event.startDate];
+//    self.eventDate.text = self.event.startDate;
+    
+    self.longitude = (CLLocationDegrees)[self.event.longitude doubleValue];
+    self.latitude = (CLLocationDegrees)[self.event.latitude doubleValue];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -90,12 +95,12 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     //coordinates for the place we want to display
-    CLLocationCoordinate2D baxterLocation = CLLocationCoordinate2DMake(-33.9572,18.4706);
+    CLLocationCoordinate2D baxterLocation = CLLocationCoordinate2DMake(self.latitude,self.longitude);
     if (buttonIndex==0) {
         //Apple Maps, using the MKMapItem class
         MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:baxterLocation addressDictionary:nil];
         MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
-        item.name = @"The Baxter Theatre";
+        item.name = @"City Hall";
         [item openInMapsWithLaunchOptions:nil];
     } else if (buttonIndex==1) {
         //Google Maps
