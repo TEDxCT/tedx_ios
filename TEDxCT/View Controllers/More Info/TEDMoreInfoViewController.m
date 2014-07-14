@@ -71,8 +71,14 @@ NSString *const kInfoCellReuseIdentifier = @"infoCell";
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:websiteURL]];
         
+    } else if (indexPath.row == 2) {
+        NSString *url = @"https://www.youtube.com/playlist?list=PLsRNoUx8w3rMg_k2vZlx9n9hn1ARbcEHt";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+
+    } else if (indexPath.row == 3) {
+        NSString *url = @"https://www.youtube.com/watch?v=0A_-LHf58j0";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
-    
 }
 
 #pragma mark - Table View Datasource - 
@@ -85,7 +91,7 @@ NSString *const kInfoCellReuseIdentifier = @"infoCell";
 }
 
 - (NSArray *)listOfInfoItems {
-    return @[@"Sponsors", @"TEDxCapeTown Website", @"Organizers"];
+    return @[@"Sponsors", @"TEDxCapeTown Website", @"2013 Videos", @"2012 Videos"];
 }
 
 @end
