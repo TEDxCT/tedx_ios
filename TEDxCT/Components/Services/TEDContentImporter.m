@@ -74,8 +74,12 @@ NSString *const kSponsorsKey = @"sponsors";
 }
 
 - (void)requestContentImportForAllContent {
+
     [self requestEventJSONWithCompletionHandler:^(NSDictionary *json) {
         if (json) {
+            [self deleteContentInTrash];
+            
+            ITLog(@"START IMPORT");
             [self importContentFromEventJSON:json];
         }
     }];
@@ -87,18 +91,47 @@ NSString *const kSponsorsKey = @"sponsors";
     }];
 }
 
+#pragma mark - Trash -
+- (void)deleteContentInTrash {
+    [self.transactionalContext performBlock:^{
+        NSArray *trashedEvents = [self trashedEvents];
+        
+        for (TEDEvent *trashedEvent in trashedEvents) {
+            [self.transactionalContext deleteObject:trashedEvent];
+        }
+        
+        ITLog(@"TAKING OUT TRASH COMPLETE");
+        [self.transactionalContext save:nil];
+    }];
+}
+
+- (NSArray *)trashedEvents {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isTrashed = YES"];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.transactionalContext executeFetchRequest:fetchRequest error:&error];
+
+    return fetchedObjects;
+}
+
+#pragma mark - Import -
+
+
+#pragma mark - Import Sponsors -
 - (void)importContentFromSponsorJSON:(NSDictionary *)JSON {
     NSDictionary *sponsors = JSON[kSponsorsKey];
     
     for (NSDictionary *sponsor in sponsors) {
             [self importSponsor:sponsor withCompletionHandler:^{
                 ITLog(@"IMPORT SPONSOR COMPLETE");
-                [[self transactionalContext] save:nil];
-                [[self transactionalContext].parentContext save:nil];
+                [self.transactionalContext save:nil];
+                [self.transactionalContext.parentContext save:nil];
             }];
     }
 }
 
+#pragma mark - Import Content -
 -(void)importContentFromEventJSON:(NSDictionary *)JSON {
     //Get events from JSON
     NSDictionary *events = JSON[kEventsKey];
@@ -107,8 +140,8 @@ NSString *const kSponsorsKey = @"sponsors";
         if ([event[kNameKey] isEqualToString:[self.appConfig eventName]]) {
             [self importEvent:event withCompletionHandler:^{
                 ITLog(@"IMPORT COMPLETE");
-                [[self transactionalContext] save:nil];
-                [[self transactionalContext].parentContext save:nil];
+                [self.transactionalContext save:nil];
+                [self.transactionalContext.parentContext save:nil];
                 dispatch_async(dispatch_get_main_queue(),^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:kContentImporterCompleteNotification object:nil];
                 });
@@ -119,22 +152,34 @@ NSString *const kSponsorsKey = @"sponsors";
 
 - (void)importEvent:(NSDictionary *)event withCompletionHandler:(void(^)())completionBlock  {
     
-    [[self transactionalContext] performBlock:^{
+    [self.transactionalContext performBlock:^{
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
         fetch.resultType = NSDictionaryResultType;
-        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
-        NSDictionary *eventsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
+        NSArray *results = [self.transactionalContext executeFetchRequest:fetch error:nil];
+        NSDictionary *eventsKeyedByName = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"name"]];
     
-            NSNumber *idToCheck = [NSNumber numberWithInteger:[event[@"id"] intValue]];
-            TEDEvent *existingEvent = [eventsKeyedByIdentifier objectForKey:idToCheck];
+            NSNumber *nameToCheck = event[@"name"];
+
+            NSDictionary *existingEvent = [eventsKeyedByName objectForKey:nameToCheck];
             if (existingEvent) {
                 //update
-                [self importSessions:event[kSessionsKey]];
+                NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDEvent class])];
+                fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name = %@", nameToCheck];
+                
+                TEDEvent *eventToUpdate = [self.transactionalContext executeFetchRequest:fetchRequest error:nil].firstObject;
+                NSNumber *idToCheck = [NSNumber numberWithInteger:[event[@"id"] intValue]];
+
+                if ([eventToUpdate.identifier isEqualToNumber:idToCheck]) {
+                    [self importSessions:event[kSessionsKey]];
+                } else {
+                    //TRASH EVENT
+                    eventToUpdate.isTrashed = [NSNumber numberWithBool:YES];
+                }
             } else {
                 ITLog(@"INSERTING NEW EVENT WITH ID: %@", event[@"id"]);
                 
                 //insert
-                TEDEvent *newEvent = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDEvent class]) inManagedObjectContext:[self transactionalContext]];
+                TEDEvent *newEvent = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDEvent class]) inManagedObjectContext:self.transactionalContext];
                 [newEvent populateEventWithDictionary:event];
                 
                 if (event[kSessionsKey]) {
@@ -157,7 +202,7 @@ NSString *const kSponsorsKey = @"sponsors";
 {
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSession class])];
         fetch.resultType = NSDictionaryResultType;
-        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+        NSArray *results = [self.transactionalContext executeFetchRequest:fetch error:nil];
         NSDictionary *sessionsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
     
         NSMutableSet *importedSessions = [[NSMutableSet alloc]init];
@@ -172,7 +217,7 @@ NSString *const kSponsorsKey = @"sponsors";
                 ITLog(@"INSERTING NEW SESSION WITH ID: %@", session[@"id"]);
                 
                 //insert
-                TEDSession *newSession = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSession class]) inManagedObjectContext:[self transactionalContext]];
+                TEDSession *newSession = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSession class]) inManagedObjectContext:self.transactionalContext];
                 [newSession populateSessionWithDictionary:session withDateFromatter:self.dateFormatter andTimeFormatter:self.timeFormatter];
                 
                 if (session[kTalksKey]) {
@@ -191,7 +236,7 @@ NSString *const kSponsorsKey = @"sponsors";
             forSession:(TEDSession *)session {
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDTalk class])];
     fetch.resultType = NSDictionaryResultType;
-    NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+    NSArray *results = [self.transactionalContext executeFetchRequest:fetch error:nil];
     NSDictionary *talksKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
     
     NSMutableSet *importedTalks = [[NSMutableSet alloc]init];
@@ -211,7 +256,7 @@ NSString *const kSponsorsKey = @"sponsors";
             //insert
             ITLog(@"INSERTING NEW TALK: %@", talk[kNameKey]);
             
-            TEDTalk *newTalk = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDTalk class]) inManagedObjectContext:[self transactionalContext]];
+            TEDTalk *newTalk = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDTalk class]) inManagedObjectContext:self.transactionalContext];
             
             TEDSpeaker * importedSpeaker = [self importSpeaker:talk[kSpeakerKey]];
             newTalk.speaker = importedSpeaker;
@@ -232,7 +277,7 @@ NSString *const kSponsorsKey = @"sponsors";
         NSString *speakerID = [speaker objectForKey:@"id"];
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSpeaker class])];
         fetch.predicate = [NSPredicate predicateWithFormat:@"identifier == %@",speakerID];
-        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+        NSArray *results = [self.transactionalContext executeFetchRequest:fetch error:nil];
         
         NSDictionary *speakersKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
         
@@ -245,7 +290,7 @@ NSString *const kSponsorsKey = @"sponsors";
             //insert
             ITLog(@"INSERTING NEW SPEAKER WITH ID: %@", idToCheck);
 
-            TEDSpeaker *newSpeaker = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class]) inManagedObjectContext:[self transactionalContext]
+            TEDSpeaker *newSpeaker = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSpeaker class]) inManagedObjectContext:self.transactionalContext
                                       ];
             [newSpeaker populateSpeakerWithDictionary:speaker];
             return newSpeaker;
@@ -253,10 +298,10 @@ NSString *const kSponsorsKey = @"sponsors";
 }
 
 - (void)importSponsor:(NSDictionary *)sponsor withCompletionHandler:(void(^)())completionBlock {
-    [[self transactionalContext] performBlock:^{
+    [self.transactionalContext performBlock:^{
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSponsor class])];
         fetch.resultType = NSDictionaryResultType;
-        NSArray *results = [[self transactionalContext] executeFetchRequest:fetch error:nil];
+        NSArray *results = [self.transactionalContext executeFetchRequest:fetch error:nil];
         NSDictionary *sponsorsKeyedByIdentifier = [NSDictionary dictionaryWithObjects:results forKeys:[results valueForKey:@"identifier"]];
         
         NSNumber *idToCheck = [NSNumber numberWithInteger:[sponsor[@"id"] intValue]];
@@ -267,7 +312,7 @@ NSString *const kSponsorsKey = @"sponsors";
             ITLog(@"INSERTING NEW SPONSOR WITH ID: %@", sponsor[@"id"]);
             
             //insert
-            TEDSponsor *newSponsor = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSponsor class]) inManagedObjectContext:[self transactionalContext]];
+            TEDSponsor *newSponsor = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TEDSponsor class]) inManagedObjectContext:self.transactionalContext];
             [newSponsor populateSponsorWithDictionary:sponsor];
             
         }
@@ -335,8 +380,12 @@ NSString *const kSponsorsKey = @"sponsors";
 - (NSManagedObjectContext *)transactionalContext {
     if (!_transactionalContext) {
         NSManagedObjectContext *transactionalContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        NSManagedObjectContext *parentContext = [self uiContext];
-        transactionalContext.parentContext = parentContext;
+//        NSManagedObjectContext *parentContext = [self uiContext];
+//        transactionalContext.parentContext = parentContext;
+        [transactionalContext setUndoManager:nil];
+        [transactionalContext setPersistentStoreCoordinator:[self uiContext].persistentStoreCoordinator];
+        transactionalContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
+        
         _transactionalContext = transactionalContext;
     }
     return _transactionalContext;

@@ -76,13 +76,15 @@
             } else {
                 [[[NSURLSession sharedSession] downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.speaker.imageURL]]
                                                      completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                                                         [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:info.imageLocalPath] error:nil];
-                                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                                             id cell = [tableView cellForRowAtIndexPath:indexPath];
-                                                             if ([cell isKindOfClass:[TEDSpeakerProfileNameAndPhotoTableViewCell class]]) {
-                                                              [((TEDSpeakerProfileNameAndPhotoTableViewCell *)cell).speakerImageView setImage:[UIImage imageWithContentsOfFile:info.imageLocalPath]];
-                                                             }
-                                                         });
+                                                         if (location) {
+                                                             [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:info.imageLocalPath] error:nil];
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 id cell = [tableView cellForRowAtIndexPath:indexPath];
+                                                                 if ([cell isKindOfClass:[TEDSpeakerProfileNameAndPhotoTableViewCell class]]) {
+                                                                     [((TEDSpeakerProfileNameAndPhotoTableViewCell *)cell).speakerImageView setImage:[UIImage imageWithContentsOfFile:info.imageLocalPath]];
+                                                                 }
+                                                             });
+                                                         }
                                                      }] resume];
                 
             }

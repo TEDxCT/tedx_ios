@@ -64,7 +64,13 @@ NSString *const kInfoCellReuseIdentifier = @"infoCell";
 
     if(indexPath.row == 0) {
             TEDSponsorsViewController *newVC = [[TEDSponsorsViewController alloc]init];
-            [self.tabBarController.navigationController pushViewController:newVC animated:YES];
+            [self.navigationController pushViewController:newVC animated:YES];
+    } else if (indexPath.row == 1) {
+
+            NSString *websiteURL = @"http://www.tedxcapetown.org";
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:websiteURL]];
+        
     }
     
 }
