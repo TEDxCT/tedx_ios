@@ -86,9 +86,22 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     return [[self.sessionsFetchedResultsController sections] count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [[[[self.sessionsFetchedResultsController sections] objectAtIndex:section] name] uppercaseString];
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    id session = [[self.sessionsFetchedResultsController sections] objectAtIndex:section];
+////    NSDate *date = [session startTime];
+////
+////    NSLog(@"%@", date);
+//    
+//    
+//    return [[session name] uppercaseString];
+//}
+
+- (TEDSession *)sessionForSection:(NSInteger)section {
+    TEDTalk *talk = [self.sessionsFetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+    return talk.session;
 }
+
+
 
 #pragma mark - Core Data -
 - (NSFetchRequest *)createSessionsFetchRequest {

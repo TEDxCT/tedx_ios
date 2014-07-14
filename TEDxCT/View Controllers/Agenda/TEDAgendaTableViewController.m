@@ -11,6 +11,7 @@
 #import "TEDAgendaDataSource.h"
 #import "TEDTalkViewController.h"
 #import "TEDTalkTableViewCell.h"
+#import "TEDSession.h"
 
 @interface TEDAgendaTableViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *agendaTableView;
@@ -34,6 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.agendaDataSource = [[TEDAgendaDataSource alloc] init];
     [self.agendaDataSource registerCellsForTableView:self.agendaTableView];
     
@@ -61,6 +63,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectedBackgroundView.backgroundColor =  [UIColor colorWithRed:230/255.f green:55/255.f blue:33/255.f alpha:0.9];
     TEDTalk *selectedTalk = [self.agendaDataSource talkForItemAtIndexPath:indexPath];
     TEDTalkViewController *newVC = [[TEDTalkViewController alloc] initWithTalk:selectedTalk];
     [self.navigationController pushViewController:newVC animated:YES];
@@ -83,7 +87,34 @@
 }*/
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
+    return 60;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc]init];
+    UILabel *sessionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 0, 0)];
+    TEDSession *session = [self.agendaDataSource sessionForSection:section];
+    UILabel *sessionName = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 0, 0)];
+
+    
+    UIColor *textColor = [UIColor colorWithRed:230/255.f green:55/255.f blue:33/255.f alpha:0.9];
+    UIColor *backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:0.9];
+
+    NSDateFormatter *tf = [[NSDateFormatter alloc] init];
+    [tf setDateFormat:@"HH:mm"];
+    tf.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    
+    sessionLabel.text = [NSString stringWithFormat:@"%@ Session %ld", [tf stringFromDate:session.startTime], (long)section + 1];
+    sessionLabel.textColor = textColor;//[UIColor whiteColor];
+    sessionName.text = session.name;
+    sessionName.textColor = textColor;//[UIColor whiteColor];
+    [sessionLabel sizeToFit];
+    [sessionName sizeToFit];
+    view.backgroundColor = backgroundColor;//textColor;//[UIColor colorWithRed:222/255.f green:222/255.f blue:222/255.f alpha:0.9];
+    [view addSubview:sessionLabel];
+    [view addSubview:sessionName];
+    return view;
+    
 }
 
 #pragma mark - Notification Handlers - 
@@ -91,5 +122,6 @@
     [self.agendaDataSource reloadData];
     [self.agendaTableView reloadData];
 }
+
 
 @end

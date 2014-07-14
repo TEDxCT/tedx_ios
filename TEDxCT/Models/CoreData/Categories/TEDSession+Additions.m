@@ -21,11 +21,8 @@
     
     self.endTime = endDate;
     self.startTime = startDate;
-    
-    NSString *sessionName = sessionJSON[@"name"];
-    
-    NSString *sessionStartTime =[timeFormatter stringFromDate:self.startTime];
-    self.name = [NSString stringWithFormat:@"%@ %@", sessionStartTime, sessionName];
+        
+    self.name = sessionJSON[@"name"];
 }
 
 @end
