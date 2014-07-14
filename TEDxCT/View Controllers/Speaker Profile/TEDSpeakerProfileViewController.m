@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.allowsSelection = NO;
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TEDSpeakerProfileNameAndPhotoTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"nameAndPhoto"];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TEDSpeakerProfileDescriptionTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"description"];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TEDSpeakerProfileContactDetailTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"contactDetail"];
