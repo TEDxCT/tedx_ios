@@ -16,12 +16,12 @@ typedef NS_ENUM(NSUInteger, TEDSpeakerProfileDataType) {
 
 @class TEDSpeaker;
 
-@interface TEDSpeakerProfileDataSource : NSObject
+@interface TEDSpeakerProfileDataSource : NSObject<UITableViewDataSource>
 - (instancetype)initWithSpeaker:(TEDSpeaker *)speaker;
 - (void)reloadData;
+- (void)registerReusableCellsForTableView:(UITableView *)tableView;
 - (NSInteger)numberOfItems;
-- (TEDSpeakerProfileDataType)dataTypeForItemIndexPath:(NSIndexPath *)indexPath;
-- (id)dataForItemWithType:(TEDSpeakerProfileDataType)dataType atIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView;
 @end
 
 

@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>1C7F1B72-1A6D-43B2-A588-CBDFE7C1EFA1</string>
+	<string>6DCD61A6-2388-4467-A962-59D9F7CA36AD</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TEDxCT</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>EE3707C2-2846-4426-8BDE-C1EEC98A7AD1</key>
-		<string>https://github.com/TEDxCT/tedx_ios</string>
+		<key>12AA62FF-DC6C-49FB-9083-21C85CEC2FC8</key>
+		<string>https://github.com/TEDxCT/tedx_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TEDxCT.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>EE3707C2-2846-4426-8BDE-C1EEC98A7AD1</key>
+		<key>12AA62FF-DC6C-49FB-9083-21C85CEC2FC8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/TEDxCT/tedx_ios</string>
+	<string>https://github.com/TEDxCT/tedx_ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>EE3707C2-2846-4426-8BDE-C1EEC98A7AD1</string>
+	<string>12AA62FF-DC6C-49FB-9083-21C85CEC2FC8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EE3707C2-2846-4426-8BDE-C1EEC98A7AD1</string>
+			<string>12AA62FF-DC6C-49FB-9083-21C85CEC2FC8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>tedx_ios</string>
 		</dict>
