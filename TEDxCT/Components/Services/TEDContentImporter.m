@@ -77,10 +77,10 @@ NSString *const kSponsorsKey = @"sponsors";
 
     [self requestEventJSONWithCompletionHandler:^(NSDictionary *json) {
         if (json) {
-            [self deleteContentInTrash];
+            [self deleteContentInTrashWithCompletionBlock:nil];
             
             ITLog(@"START IMPORT");
-            [self importContentFromEventJSON:json];
+            [self importContentFromEventJSON:json forEventName:[self.appConfig eventName] withCompletionBlock:nil];
         }
     }];
     
@@ -92,7 +92,7 @@ NSString *const kSponsorsKey = @"sponsors";
 }
 
 #pragma mark - Trash -
-- (void)deleteContentInTrash {
+- (void)deleteContentInTrashWithCompletionBlock:(void(^)())completionBlock {
     [self.transactionalContext performBlock:^{
         NSArray *trashedEvents = [self trashedEvents];
         
@@ -102,6 +102,9 @@ NSString *const kSponsorsKey = @"sponsors";
         
         ITLog(@"TAKING OUT TRASH COMPLETE");
         [self.transactionalContext save:nil];
+        if(completionBlock) {
+            completionBlock();
+        }
     }];
 }
 
@@ -132,22 +135,29 @@ NSString *const kSponsorsKey = @"sponsors";
 }
 
 #pragma mark - Import Content -
--(void)importContentFromEventJSON:(NSDictionary *)JSON {
+-(void)importContentFromEventJSON:(NSDictionary *)JSON forEventName:(NSString *)eventName withCompletionBlock:(void(^)())completionBlock {
     //Get events from JSON
     NSDictionary *events = JSON[kEventsKey];
     
     for (NSDictionary *event in events) {
-        if ([event[kNameKey] isEqualToString:[self.appConfig eventName]]) {
+        if ([event[kNameKey] isEqualToString:eventName]) {
             [self importEvent:event withCompletionHandler:^{
                 ITLog(@"IMPORT COMPLETE");
                 [self.transactionalContext save:nil];
                 [self.transactionalContext.parentContext save:nil];
                 dispatch_async(dispatch_get_main_queue(),^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:kContentImporterCompleteNotification object:nil];
+                    if (completionBlock){
+                        completionBlock();
+                    }
+
                 });
+                
             }];
         }
     }
+    
+
 }
 
 - (void)importEvent:(NSDictionary *)event withCompletionHandler:(void(^)())completionBlock  {

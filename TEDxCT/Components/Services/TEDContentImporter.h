@@ -15,5 +15,8 @@
 + (void)initialiseSharedImporter;
 
 - (void)requestContentImportForAllContent;
+- (void)deleteContentInTrashWithCompletionBlock:(void(^)())completionBlock;
+- (void)importContentFromEventJSON:(NSDictionary *)JSON forEventName:(NSString *)eventName withCompletionBlock:(void(^)())completionBlock;
 
+- (NSManagedObjectContext *)transactionalContext;
 @end

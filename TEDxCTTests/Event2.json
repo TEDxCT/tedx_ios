@@ -1,0 +1,61 @@
+{
+    "events":
+    [
+     {
+     "dateCreated":1405209600,
+     "dateModified":     1405209600,
+     "descriptionHTML":     "Test ",
+     "endDate":     1408280400,
+     "id":"333",
+     "imageURL":null,
+     "latitude":"-33.92486850",
+     "locationDescriptionHTML":     "Test description",
+     "longitude":     "18.42405529",
+     "name":"TestEvent",
+     "sessions":
+     [
+      {
+      "dateCreated":1405209600,
+      "dateModified":      1405209600,
+      "endTime":      1408186800,
+      "eventId":      "333",
+      "id":      "3333",
+      "isActive":      "\u0001",
+      "name":      "Session 1 Name",
+      "startTime":      1408179600,
+      "talks":
+      [
+       {
+       "dateCreated":       1405209600,
+       "dateModified":       1405209600,
+       "descriptionHTML":       "Session description 1",
+       "id":       "3334",
+       "imageURL":       "http:\/\/images.ted.com\/images\/ted\/936989f4beecf3cf9b4cbd36a320f1d855a62ffb_165x165.jpg",
+       "isActive":       "\u0001",
+       "name":       "Side Project",
+       "orderInSession":       "1",
+       "sessionId":       "3333",
+       "speaker":
+       {
+       "dateCreated":       1405209600,
+       "dateModified":       1405209600,
+       "descriptionHTML":       "",
+       "fullName":       "Dave Duarte",
+       "funkyTitle":       "Partner, Treeshake",
+       "id":       "10",
+       "imageURL":       "http:\/\/images.ted.com\/images\/ted\/936989f4beecf3cf9b4cbd36a320f1d855a62ffb_165x165.jpg",
+       "isActive":       "\u0001"
+       },
+       "speakerId":       "10",
+       "videoURL":       null
+       }
+       ]
+      },
+      ],
+     "startDate":
+     1408179600,
+     "websiteURL":
+     "www.tedxcapetown.org"
+     }
+     ]
+}
