@@ -97,7 +97,7 @@
     UILabel *sessionName = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 0, 0)];
 
     
-    UIColor *textColor = [UIColor colorWithRed:230/255.f green:55/255.f blue:33/255.f alpha:0.9];
+    UIColor *textColor = [UIColor colorWithRed:230/255.f green:43/255.f blue:30/255.f alpha:1];
     UIColor *backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:0.9];
 
     NSDateFormatter *tf = [[NSDateFormatter alloc] init];
@@ -107,6 +107,7 @@
     sessionLabel.text = [NSString stringWithFormat:@"%@ Session %ld", [tf stringFromDate:session.startTime], (long)section + 1];
     sessionLabel.textColor = textColor;//[UIColor whiteColor];
     sessionName.text = session.name;
+    sessionName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
     sessionName.textColor = textColor;//[UIColor whiteColor];
     [sessionLabel sizeToFit];
     [sessionName sizeToFit];

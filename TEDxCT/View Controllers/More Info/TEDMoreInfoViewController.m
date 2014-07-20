@@ -78,6 +78,9 @@ NSString *const kInfoCellReuseIdentifier = @"infoCell";
     } else if (indexPath.row == 3) {
         NSString *url = @"https://www.youtube.com/watch?v=0A_-LHf58j0";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    } else if (indexPath.row == 4) {
+        NSString *url = @"http://opendesignct.com/";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
 }
 
@@ -91,7 +94,7 @@ NSString *const kInfoCellReuseIdentifier = @"infoCell";
 }
 
 - (NSArray *)listOfInfoItems {
-    return @[@"Sponsors", @"TEDxCapeTown Website", @"2013 Videos", @"2012 Videos"];
+    return @[@"Sponsors", @"TEDxCapeTown Website", @"2013 Videos", @"2012 Videos", @"Open Design CT"];
 }
 
 @end
