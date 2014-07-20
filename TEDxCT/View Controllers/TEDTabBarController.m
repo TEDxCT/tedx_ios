@@ -27,21 +27,26 @@
         agendaViewController.title = @"Agenda";
         UINavigationController *agNav = [[UINavigationController alloc] initWithRootViewController:agendaViewController];
         agNav.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
+        agNav.tabBarItem.selectedImage = [UIImage imageNamed:@"scheduleon.png"];
+
         
         TEDSpeakersViewController *speakersViewController = [[TEDSpeakersViewController alloc]init];
         speakersViewController.title = @"Speakers";
         UINavigationController *spNav = [[UINavigationController alloc] initWithRootViewController:speakersViewController];
         spNav.tabBarItem.image = [UIImage imageNamed:@"speakers.png"];
-
+        spNav.tabBarItem.selectedImage = [UIImage imageNamed:@"speakerson.png"];
         
         TEDEventInfoViewController *eventViewController = [[TEDEventInfoViewController alloc] init];
         eventViewController.title = @"Info";
         eventViewController.tabBarItem.image = [UIImage imageNamed:@"information.png"];
+        eventViewController.tabBarItem.selectedImage =[UIImage imageNamed:@"informationon.png"];
+
         
         TEDMoreInfoViewController *moreInfoController = [[TEDMoreInfoViewController alloc]init];
         moreInfoController.title = @"More";
         UINavigationController *moreNav = [[UINavigationController alloc] initWithRootViewController:moreInfoController];
-        moreNav.tabBarItem.image = [UIImage imageNamed:@"schedule.png"];
+        moreNav.tabBarItem.image = [UIImage imageNamed:@"moreInfo.png"];
+        moreNav.tabBarItem.selectedImage =[UIImage imageNamed:@"moreInfoon.png"];
         
         self.viewControllers = @[agNav,spNav , eventViewController, moreNav];
         
