@@ -20,13 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 @property (weak, nonatomic) IBOutlet UITextView *eventDescription;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
-@property (weak, nonatomic) IBOutlet UIButton *calendarButton;
 @property (assign, nonatomic) CLLocationDegrees longitude;
 @property (assign, nonatomic) CLLocationDegrees latitude;
 @property (weak,nonatomic) IBOutlet UIImageView *gradientImage;
 @property (strong, nonatomic) TEDEvent *event;
-@property (weak, nonatomic) IBOutlet UIButton *eventDateButtonWithDate;
 @property (weak, nonatomic) IBOutlet UIImageView *blurImageView;
+@property (weak, nonatomic) IBOutlet UITextView *eventDateTextView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *eventNameLabelVerticalSpaceConstraint;
 @end
@@ -54,6 +53,14 @@
     self.longitude = (CLLocationDegrees)[self.event.longitude doubleValue];
     self.latitude = (CLLocationDegrees)[self.event.latitude doubleValue];
     
+    
+    NSDateFormatter *dateFormatterr = [[NSDateFormatter alloc] init];
+    [dateFormatterr setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormatterr setDateFormat:@"MMM dd, YYYY hh:mma"];
+    NSString *dateString = [dateFormatterr stringFromDate:self.event.startDate];
+
+    [self.eventDateTextView setText:dateString];
+    
 //    NSMutableAttributedString *commentString = [self.eventDateButtonWithDate.titleLabel.attributedText mutableCopy];
 //    
 //    [commentString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, [commentString length])];
@@ -63,21 +70,24 @@
 
 //    self.calendarButton.backgroundColor = globalTint;
 //    self.calendarButton.alpha = 0.6f;
-    [self addBorderToButton:self.calendarButton color:globalTint];
     [self addBorderToButton:self.mapButton color:globalTint];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (!self.blurImageView.image) {
-        self.blurImageView.image = [self.backgroundImage.image applyBlurWithRadius:30.f tintColor:nil saturationDeltaFactor:0.5f maskImage:nil];
+        self.blurImageView.image = [self.backgroundImage.image applyBlurWithRadius:30.f tintColor:nil saturationDeltaFactor:0.9f maskImage:nil];
         self.blurImageView.alpha = 0.f;
         [self addGradientTintToImage];
     }
-    self.eventNameLabelVerticalSpaceConstraint.constant = CGRectGetHeight(self.view.bounds) - [self.bottomLayoutGuide length]*3.f;
     
     self.tabBarController.title = @"Event Information";
 //    self.blurImageView.image = [self.backgroundImage.image applyDarkEffect];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.eventNameLabelVerticalSpaceConstraint.constant = CGRectGetHeight(self.view.bounds) - [self.bottomLayoutGuide length]*3.f;
 }
 
 - (IBAction)mapTapped:(id)sender {

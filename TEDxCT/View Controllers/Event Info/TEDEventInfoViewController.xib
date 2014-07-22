@@ -8,11 +8,10 @@
             <connections>
                 <outlet property="backgroundImage" destination="XrV-T5-agw" id="jEA-hy-6Sr"/>
                 <outlet property="blurImageView" destination="yro-Fv-xyk" id="SUb-ej-uoR"/>
-                <outlet property="calendarButton" destination="pHm-Ne-hD1" id="haf-6g-s5z"/>
-                <outlet property="eventDateButtonWithDate" destination="F7X-Qo-876" id="b8S-0s-TXx"/>
+                <outlet property="eventDateTextView" destination="Rrx-1x-B8m" id="rWt-oG-LRM"/>
                 <outlet property="eventDescription" destination="DGg-FR-AFi" id="Sed-dm-LEi"/>
                 <outlet property="eventName" destination="rrS-Lj-mfr" id="BdO-So-XqL"/>
-                <outlet property="eventNameLabelVerticalSpaceConstraint" destination="n7h-sF-4Dy" id="4FA-yo-wRL"/>
+                <outlet property="eventNameLabelVerticalSpaceConstraint" destination="pLF-hb-t4f" id="abT-Wq-fyR"/>
                 <outlet property="gradientImage" destination="WTc-Gq-Pf6" id="rxE-NH-mC9"/>
                 <outlet property="mapButton" destination="pdf-2x-RyJ" id="cH4-j2-xJ2"/>
                 <outlet property="scrollView" destination="Z8w-rF-4Kb" id="Qjj-cd-RiE"/>
@@ -41,71 +40,66 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEDx Cape Town" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrS-Lj-mfr">
-                            <rect key="frame" x="120" y="311" width="239" height="37"/>
+                            <rect key="frame" x="119" y="319" width="239" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="31"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DGg-FR-AFi" userLabel="Description">
-                            <rect key="frame" x="20" y="492" width="422" height="597"/>
+                            <rect key="frame" x="20" y="490" width="438" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint </string>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHm-Ne-hD1">
-                            <rect key="frame" x="20" y="438" width="122" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdf-2x-RyJ">
+                            <rect key="frame" x="120" y="446" width="238" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="44" id="t8I-hQ-SHb"/>
+                                <constraint firstAttribute="height" constant="44" id="WWq-Kh-gep"/>
                             </constraints>
-                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                            <state key="normal" title="Add to Calendar"/>
-                            <connections>
-                                <action selector="mapTapped:" destination="-1" eventType="touchUpInside" id="53M-Rh-czq"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdf-2x-RyJ">
-                            <rect key="frame" x="335" y="438" width="107" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                             <state key="normal" title="Open In Maps"/>
                             <connections>
                                 <action selector="mapTapped:" destination="-1" eventType="touchUpInside" id="p8f-jB-5d6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7X-Qo-876">
-                            <rect key="frame" x="107" y="356" width="265" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                            <state key="normal" title="16 August 9am to 17 August 5pm"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1y-QG-IOY">
-                            <rect key="frame" x="165" y="398" width="148" height="30"/>
+                            <rect key="frame" x="165" y="408" width="148" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <state key="normal" title="Cape Town City Hall "/>
                         </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="16 August 9am to 17 August 5pm" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rrx-1x-B8m">
+                            <rect key="frame" x="83" y="364" width="311" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="qHh-dM-lrA"/>
+                                <constraint firstAttribute="width" constant="311" id="ujj-ms-Oih"/>
+                            </constraints>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <dataDetectorType key="dataDetectorTypes" calendarEvent="YES"/>
+                        </textView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="T1y-QG-IOY" firstAttribute="top" secondItem="F7X-Qo-876" secondAttribute="bottom" constant="8" id="1uV-Jj-mTl"/>
-                        <constraint firstItem="F7X-Qo-876" firstAttribute="centerX" secondItem="rrS-Lj-mfr" secondAttribute="centerX" id="CWo-27-hzf"/>
-                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="centerY" secondItem="pHm-Ne-hD1" secondAttribute="centerY" id="InM-WO-WJf"/>
-                        <constraint firstItem="pHm-Ne-hD1" firstAttribute="top" secondItem="T1y-QG-IOY" secondAttribute="bottom" constant="10" id="JiT-7X-aPM"/>
-                        <constraint firstAttribute="trailing" secondItem="DGg-FR-AFi" secondAttribute="trailing" constant="36" id="KbW-yX-Wxg"/>
-                        <constraint firstItem="pHm-Ne-hD1" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" constant="20" id="LdU-jV-CED"/>
-                        <constraint firstAttribute="centerX" secondItem="T1y-QG-IOY" secondAttribute="centerX" id="NO4-7A-q2a"/>
-                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="trailing" secondItem="DGg-FR-AFi" secondAttribute="trailing" id="Pv2-9f-kt2"/>
-                        <constraint firstAttribute="bottom" secondItem="DGg-FR-AFi" secondAttribute="bottom" constant="50" id="Sxf-LN-Ubf"/>
-                        <constraint firstItem="F7X-Qo-876" firstAttribute="centerX" secondItem="T1y-QG-IOY" secondAttribute="centerX" constant="0.5" id="SzS-Om-lYL"/>
-                        <constraint firstItem="DGg-FR-AFi" firstAttribute="top" secondItem="pHm-Ne-hD1" secondAttribute="bottom" constant="10" id="djD-uF-yYR"/>
-                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="height" secondItem="pHm-Ne-hD1" secondAttribute="height" id="lS4-uK-z1R"/>
-                        <constraint firstItem="F7X-Qo-876" firstAttribute="top" secondItem="rrS-Lj-mfr" secondAttribute="bottom" constant="8" id="lag-0f-jIl"/>
-                        <constraint firstItem="pHm-Ne-hD1" firstAttribute="top" secondItem="Z8w-rF-4Kb" secondAttribute="top" constant="438" id="n7h-sF-4Dy"/>
-                        <constraint firstAttribute="centerX" secondItem="DGg-FR-AFi" secondAttribute="centerX" constant="8" id="sKx-pd-eXn"/>
-                        <constraint firstItem="pHm-Ne-hD1" firstAttribute="leading" secondItem="DGg-FR-AFi" secondAttribute="leading" id="zKh-q3-J8N"/>
+                        <constraint firstItem="DGg-FR-AFi" firstAttribute="top" secondItem="pdf-2x-RyJ" secondAttribute="bottom" id="0bf-Oe-OzD"/>
+                        <constraint firstItem="rrS-Lj-mfr" firstAttribute="width" secondItem="pdf-2x-RyJ" secondAttribute="width" id="0dl-4a-jP0"/>
+                        <constraint firstAttribute="trailing" secondItem="DGg-FR-AFi" secondAttribute="trailing" constant="20" id="2G5-80-cUU"/>
+                        <constraint firstAttribute="centerX" secondItem="DGg-FR-AFi" secondAttribute="centerX" id="4Wl-ws-Pd3"/>
+                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="top" secondItem="T1y-QG-IOY" secondAttribute="bottom" constant="8" id="9Gz-MD-EG0"/>
+                        <constraint firstItem="T1y-QG-IOY" firstAttribute="centerX" secondItem="Rrx-1x-B8m" secondAttribute="centerX" id="AVA-ju-CQs"/>
+                        <constraint firstItem="DGg-FR-AFi" firstAttribute="leading" secondItem="Z8w-rF-4Kb" secondAttribute="leading" constant="20" id="GVZ-K2-Nh8"/>
+                        <constraint firstAttribute="centerX" secondItem="pdf-2x-RyJ" secondAttribute="centerX" id="Nt2-pW-YPL"/>
+                        <constraint firstItem="T1y-QG-IOY" firstAttribute="top" secondItem="Rrx-1x-B8m" secondAttribute="bottom" constant="4" id="Uew-CT-m4l"/>
+                        <constraint firstAttribute="bottom" secondItem="DGg-FR-AFi" secondAttribute="bottom" constant="50" id="cNL-Py-KH5"/>
+                        <constraint firstItem="Rrx-1x-B8m" firstAttribute="top" secondItem="rrS-Lj-mfr" secondAttribute="bottom" constant="8" id="gDz-cK-2yi"/>
+                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="centerX" secondItem="T1y-QG-IOY" secondAttribute="centerX" id="lDZ-AV-cTc"/>
+                        <constraint firstItem="pdf-2x-RyJ" firstAttribute="top" secondItem="Z8w-rF-4Kb" secondAttribute="top" constant="446" id="pLF-hb-t4f"/>
+                        <constraint firstItem="rrS-Lj-mfr" firstAttribute="centerX" secondItem="Rrx-1x-B8m" secondAttribute="centerX" id="tWZ-gD-Quu"/>
                     </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="pbL-Pb-3w8"/>
