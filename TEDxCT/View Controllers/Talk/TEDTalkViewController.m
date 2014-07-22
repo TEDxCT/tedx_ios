@@ -26,6 +26,7 @@
 - (instancetype)initWithTalk:(TEDTalk *)talk {
     if (self = [super init]) {
         _talk = talk;
+        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }

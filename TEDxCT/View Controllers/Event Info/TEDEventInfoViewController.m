@@ -96,23 +96,12 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     //coordinates for the place we want to display
     CLLocationCoordinate2D baxterLocation = CLLocationCoordinate2DMake(self.latitude,self.longitude);
-    if (buttonIndex==0) {
+
         //Apple Maps, using the MKMapItem class
         MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:baxterLocation addressDictionary:nil];
         MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
         item.name = @"City Hall";
         [item openInMapsWithLaunchOptions:nil];
-    } else if (buttonIndex==1) {
-        //Google Maps
-        //construct a URL using the comgooglemaps schema
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?center=%f,%f",baxterLocation.latitude,baxterLocation.longitude]];
-        if (![[UIApplication sharedApplication] canOpenURL:url]) {
-            NSLog(@"Google Maps app is not installed");
-            //left as an exercise for the reader: open the Google Maps mobile website instead!
-        } else {
-            [[UIApplication sharedApplication] openURL:url];
-        }
-    }
 }
 
 - (void)addGradientTintToImage {

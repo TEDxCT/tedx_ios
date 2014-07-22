@@ -621,7 +621,7 @@
 				ORGANIZATIONNAME = TEDxCapeTown;
 				TargetAttributes = {
 					CFD9C3F418E9DC9000AE9196 = {
-						DevelopmentTeam = GUUJ8Y3Q2C;
+						DevelopmentTeam = B953G27QBG;
 					};
 					CFD9C41418E9DC9000AE9196 = {
 						TestTargetID = CFD9C3F418E9DC9000AE9196;
