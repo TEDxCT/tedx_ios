@@ -69,15 +69,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    if (!self.blurImageView.image) {
+        self.blurImageView.image = [self.backgroundImage.image applyBlurWithRadius:30.f tintColor:nil saturationDeltaFactor:0.5f maskImage:nil];
+        self.blurImageView.alpha = 0.f;
+        [self addGradientTintToImage];
+    }
     self.eventNameLabelVerticalSpaceConstraint.constant = CGRectGetHeight(self.view.bounds) - [self.bottomLayoutGuide length]*3.f;
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)*2.0f);
     
     self.tabBarController.title = @"Event Information";
 //    self.blurImageView.image = [self.backgroundImage.image applyDarkEffect];
-    self.blurImageView.image = [self.backgroundImage.image applyBlurWithRadius:30.f tintColor:nil saturationDeltaFactor:0.5f maskImage:nil];
-    self.blurImageView.alpha = 0.f;
-    [self addGradientTintToImage];
 }
 
 - (IBAction)mapTapped:(id)sender {
@@ -146,7 +146,7 @@
     CGFloat y = scrollView.contentOffset.y;
     if (y > 0) {
         CGFloat percentage = y/CGRectGetHeight(scrollView.bounds);
-        self.blurImageView.alpha = MIN(1.f,5.5f*percentage);
+        self.blurImageView.alpha = MIN(1.f,4.5f*percentage);
     }
 }
 
