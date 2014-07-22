@@ -54,7 +54,10 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     
     TEDTalk *talk = [_sessionsFetchedResultsController objectAtIndexPath:indexPath];
     [cell.talkNameLabel setText:talk.name];
-    [cell.talkSpeakerName setText:talk.speaker.fullName];
+    
+    if (cell.talkSpeakerName) {
+        [cell.talkSpeakerName setText:talk.speaker.fullName];
+    }
     
     if (talk.genre.length == 0) {
         [cell.genre setText:@"No Genre"];
