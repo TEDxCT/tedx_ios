@@ -92,6 +92,10 @@
     
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     //coordinates for the place we want to display
     if (buttonIndex == 0) {
