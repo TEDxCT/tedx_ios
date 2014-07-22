@@ -59,13 +59,8 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
         [cell.talkSpeakerName setText:talk.speaker.fullName];
     }
     
-    if (talk.genre.length == 0) {
-        [cell.genre setText:@"No Genre"];
-    }
-    else{
-        [cell.genre setText:talk.genre];
-    }
-
+    [cell.genre setText:talk.genre];
+    
     NSString *ImageURL = talk.imageURL;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:ImageURL]) {
