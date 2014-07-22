@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -34,22 +34,22 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eMP-1l-0fv">
-                            <rect key="frame" x="10" y="67" width="40" height="40"/>
+                            <rect key="frame" x="10" y="67" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="Aov-bZ-dyX"/>
-                                <constraint firstAttribute="width" constant="40" id="fsS-k5-hu6"/>
+                                <constraint firstAttribute="height" constant="50" id="Aov-bZ-dyX"/>
+                                <constraint firstAttribute="width" constant="50" id="fsS-k5-hu6"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Genre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bE-TW-2sA">
-                            <rect key="frame" x="10" y="44" width="42" height="18"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bE-TW-2sA">
+                            <rect key="frame" x="10" y="44" width="39" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi3-PS-Vk3">
-                            <rect key="frame" x="55" y="72" width="102" height="30"/>
+                            <rect key="frame" x="76" y="74" width="102" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Speaker Name">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,11 +59,11 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sO-PV-jZr">
-                            <rect key="frame" x="10" y="112" width="300" height="234"/>
+                            <rect key="frame" x="10" y="112" width="300" height="303"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                         </textView>
@@ -71,15 +71,15 @@
                     <constraints>
                         <constraint firstItem="i4j-tj-XQI" firstAttribute="trailing" secondItem="6sO-PV-jZr" secondAttribute="trailing" id="8lu-J6-ZaE"/>
                         <constraint firstItem="i4j-tj-XQI" firstAttribute="top" secondItem="vcp-Cr-K6n" secondAttribute="top" constant="10" id="GE7-B5-590"/>
-                        <constraint firstItem="6sO-PV-jZr" firstAttribute="top" secondItem="eMP-1l-0fv" secondAttribute="bottom" constant="5" id="Hl9-vr-3oK"/>
+                        <constraint firstItem="6sO-PV-jZr" firstAttribute="top" secondItem="eMP-1l-0fv" secondAttribute="bottom" constant="-5" id="Hl9-vr-3oK"/>
                         <constraint firstItem="eMP-1l-0fv" firstAttribute="leading" secondItem="vcp-Cr-K6n" secondAttribute="leading" constant="10" id="Lfk-uk-HoM"/>
                         <constraint firstItem="6sO-PV-jZr" firstAttribute="leading" secondItem="vcp-Cr-K6n" secondAttribute="leading" constant="10" id="WrY-Gz-aXX"/>
                         <constraint firstAttribute="centerX" secondItem="6sO-PV-jZr" secondAttribute="centerX" id="cD5-Nc-aun"/>
                         <constraint firstItem="i4j-tj-XQI" firstAttribute="leading" secondItem="vcp-Cr-K6n" secondAttribute="leading" constant="10" id="d6f-41-x4W"/>
                         <constraint firstItem="eMP-1l-0fv" firstAttribute="top" secondItem="8bE-TW-2sA" secondAttribute="bottom" constant="5" id="fQd-Hu-nd4"/>
                         <constraint firstItem="8bE-TW-2sA" firstAttribute="leading" secondItem="vcp-Cr-K6n" secondAttribute="leading" constant="10" id="jee-3w-fcw"/>
-                        <constraint firstItem="pi3-PS-Vk3" firstAttribute="leading" secondItem="eMP-1l-0fv" secondAttribute="trailing" constant="5" id="lC2-iS-oDO"/>
-                        <constraint firstItem="eMP-1l-0fv" firstAttribute="centerY" secondItem="pi3-PS-Vk3" secondAttribute="centerY" id="lJ1-Yx-PN8"/>
+                        <constraint firstItem="pi3-PS-Vk3" firstAttribute="leading" secondItem="eMP-1l-0fv" secondAttribute="trailing" constant="16" id="lC2-iS-oDO"/>
+                        <constraint firstItem="eMP-1l-0fv" firstAttribute="centerY" secondItem="pi3-PS-Vk3" secondAttribute="centerY" constant="3" id="lJ1-Yx-PN8"/>
                         <constraint firstAttribute="trailing" secondItem="6sO-PV-jZr" secondAttribute="trailing" constant="10" id="mj2-Hl-3IP"/>
                         <constraint firstItem="8bE-TW-2sA" firstAttribute="top" secondItem="i4j-tj-XQI" secondAttribute="bottom" constant="5" id="sv7-fB-dm9"/>
                     </constraints>
