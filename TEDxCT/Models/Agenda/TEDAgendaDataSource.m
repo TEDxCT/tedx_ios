@@ -28,7 +28,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     if (self) {
         _sessionsFetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:[self createSessionsFetchRequest]
                                                                                managedObjectContext:[self uiContext]
-                                                                                 sectionNameKeyPath:@"session.name"
+                                                                                 sectionNameKeyPath:@"session.startTime"
                                                                                           cacheName:nil];
         _imageDownloader = [[TEDImageDownloader alloc] init];
     }
@@ -54,15 +54,13 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     
     TEDTalk *talk = [_sessionsFetchedResultsController objectAtIndexPath:indexPath];
     [cell.talkNameLabel setText:talk.name];
-    [cell.talkSpeakerName setText:talk.speaker.fullName];
     
-    if (talk.genre.length == 0) {
-        [cell.genre setText:@"No Genre"];
+    if (cell.talkSpeakerName) {
+        [cell.talkSpeakerName setText:talk.speaker.fullName];
     }
-    else{
-        [cell.genre setText:talk.genre];
-    }
-
+    
+    [cell.genre setText:talk.genre];
+    
     NSString *ImageURL = talk.imageURL;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:ImageURL]) {
@@ -110,7 +108,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDTalk class]) inManagedObjectContext:[self uiContext]];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptorIdentifier = [[NSSortDescriptor alloc] initWithKey:@"identifier"
+    NSSortDescriptor *sortDescriptorIdentifier = [[NSSortDescriptor alloc] initWithKey:@"session.startTime"
                                                                    ascending:YES];
     
     NSSortDescriptor *sortDescriptorOrderInSession = [[NSSortDescriptor alloc] initWithKey:@"orderInSession"

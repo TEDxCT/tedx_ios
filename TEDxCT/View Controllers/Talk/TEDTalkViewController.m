@@ -76,8 +76,11 @@
 
 -(IBAction)speakerNamePressed:(UIButton *)speakerNameButton {
     //TODO: Fetch the speaker from the button
-    TEDSpeakerProfileViewController *newVC = [[TEDSpeakerProfileViewController alloc] initWithSpeaker:_talk.speaker];
-    [self.navigationController pushViewController:newVC animated:YES];
+    
+    if (self.talk.speaker) {
+        TEDSpeakerProfileViewController *newVC = [[TEDSpeakerProfileViewController alloc] initWithSpeaker:_talk.speaker];
+        [self.navigationController pushViewController:newVC animated:YES];
+    }
 }
 
 @end

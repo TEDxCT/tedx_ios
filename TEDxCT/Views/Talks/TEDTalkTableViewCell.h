@@ -14,5 +14,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *talkSpeakerName;
 @property (weak, nonatomic) IBOutlet UILabel *genre;
 
-
 @end
