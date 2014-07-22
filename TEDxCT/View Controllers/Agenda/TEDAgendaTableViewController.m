@@ -96,6 +96,8 @@
     TEDSession *session = [self.agendaDataSource sessionForSection:section];
     UILabel *sessionName = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 0, 0)];
 
+    NSInteger lunchIndex = [self.agendaDataSource indexForSessionWithName:@"Lunch"];
+    NSInteger afterPartyIndex = [self.agendaDataSource indexForSessionWithName:@"After Party"];
     
     UIColor *textColor = [UIColor colorWithRed:230/255.f green:43/255.f blue:30/255.f alpha:1];
     UIColor *backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:0.9];
@@ -104,7 +106,18 @@
     [tf setDateFormat:@"HH:mm"];
     tf.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     
-    sessionLabel.text = [NSString stringWithFormat:@"%@ Session %ld", [tf stringFromDate:session.startTime], (long)section + 1];
+    if(section == lunchIndex){
+        sessionLabel.text = [NSString stringWithFormat:@"%@ Break", [tf stringFromDate:session.startTime]];
+    }
+    else if(section == afterPartyIndex){
+        sessionLabel.text = [NSString stringWithFormat:@"%@ Close", [tf stringFromDate:session.startTime]];
+    }
+    else if(section<lunchIndex){
+        sessionLabel.text = [NSString stringWithFormat:@"%@ Session %ld", [tf stringFromDate:session.startTime], (long)section + 1];
+    }
+    else{
+        sessionLabel.text = [NSString stringWithFormat:@"%@ Session %ld", [tf stringFromDate:session.startTime], (long)section];
+    }
     sessionLabel.textColor = textColor;//[UIColor whiteColor];
     sessionName.text = session.name;
     sessionName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];

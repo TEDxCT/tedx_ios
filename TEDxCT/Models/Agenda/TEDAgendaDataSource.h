@@ -17,4 +17,5 @@
 
 - (TEDTalk *)talkForItemAtIndexPath:(NSIndexPath *)indexPath;
 - (TEDSession *)sessionForSection:(NSInteger)section;
+- (NSInteger)indexForSessionWithName:(NSString *)sessionName;
 @end

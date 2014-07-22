@@ -9,6 +9,7 @@
 #import "TEDAgendaDataSource.h"
 #import "TEDTalkTableViewCell.h"
 #import "TEDTalk.h"
+#import "TEDSession.h"
 #import "TEDSpeaker.h"
 #import "TEDCoreDataManager.h"
 #import "TEDImageDownloader.h"
@@ -99,7 +100,35 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     return talk.session;
 }
 
-
+- (NSInteger)indexForSessionWithName:(NSString *)sessionName {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDSession class]) inManagedObjectContext:[self uiContext]];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptorIdentifier = [[NSSortDescriptor alloc] initWithKey:@"startTime"
+                                                                             ascending:YES];
+    
+    fetchRequest.propertiesToFetch = @[@"name"];
+    fetchRequest.resultType = NSDictionaryResultType;
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptorIdentifier, nil]];
+    
+    NSArray *sessions = [[self uiContext] executeFetchRequest:fetchRequest error:nil];
+    
+    NSInteger index=0;
+    
+    for(NSDictionary *session in sessions)
+    {
+        if([session[@"name"] isEqualToString: sessionName])
+        {
+            return index;
+        }
+        index++;
+    }
+    
+    return -1;
+}
 
 #pragma mark - Core Data -
 - (NSFetchRequest *)createSessionsFetchRequest {
