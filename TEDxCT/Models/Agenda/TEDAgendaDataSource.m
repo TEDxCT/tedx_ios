@@ -28,7 +28,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     if (self) {
         _sessionsFetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:[self createSessionsFetchRequest]
                                                                                managedObjectContext:[self uiContext]
-                                                                                 sectionNameKeyPath:@"session.name"
+                                                                                 sectionNameKeyPath:@"session.startTime"
                                                                                           cacheName:nil];
         _imageDownloader = [[TEDImageDownloader alloc] init];
     }
@@ -113,7 +113,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDTalk class]) inManagedObjectContext:[self uiContext]];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptorIdentifier = [[NSSortDescriptor alloc] initWithKey:@"identifier"
+    NSSortDescriptor *sortDescriptorIdentifier = [[NSSortDescriptor alloc] initWithKey:@"session.startTime"
                                                                    ascending:YES];
     
     NSSortDescriptor *sortDescriptorOrderInSession = [[NSSortDescriptor alloc] initWithKey:@"orderInSession"
