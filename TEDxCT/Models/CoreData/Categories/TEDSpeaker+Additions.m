@@ -18,7 +18,7 @@
         self.descriptionHTML = @"No description available";
     }
     self.funkyTitle = speakerJSON[@"funkyTitle"];
-    if(speakerJSON[@"imageURL"]){
+    if(![speakerJSON[@"imageURL"] isKindOfClass:[NSNull class]]){
         self.imageURL = speakerJSON[@"imageURL"];
     }
     self.fullName = speakerJSON[@"fullName"];

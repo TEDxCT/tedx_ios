@@ -283,7 +283,10 @@ NSString *const kSponsorsKey = @"sponsors";
 }
 
 - (TEDSpeaker *)importSpeaker:(NSDictionary *)speaker {
-        
+    
+    if ([speaker[@"fullName"] isEqualToString:@"default"]){
+        return nil;
+    }
         NSString *speakerID = [speaker objectForKey:@"id"];
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSpeaker class])];
         fetch.predicate = [NSPredicate predicateWithFormat:@"identifier == %@",speakerID];
