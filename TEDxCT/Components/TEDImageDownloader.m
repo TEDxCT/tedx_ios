@@ -14,6 +14,14 @@
 @end
 @implementation TEDImageDownloader
 
+#define IMAGEDOWNLOADER_LOGGER 0
+
+#if IMAGEDOWNLOADER_LOGGER == 1
+#	define IDLog(fmt, ...) NSLog((fmt), ##__VA_ARGS__);
+#else
+#	define IDLog(...)
+#endif
+
 - (id)init {
     if (self=[super init]) {
         _imageDownloadQueue = [[NSOperationQueue alloc] init];
@@ -26,6 +34,8 @@
                 forEventName:(NSString *)eventName
            completionHandler:(void (^)(UIImage *image, NSError *error))completion {
     if (!self.imageRequestsKeyedByURL[imageURL]) {
+        IDLog(@"%s REQUEST IMAGE WITH URL: %@", __PRETTY_FUNCTION__, imageURL);
+
         [self.imageRequestsKeyedByURL setObject:[NSNumber numberWithBool:YES] forKey:imageURL];
         NSString *fileURL = [TEDStorageService pathForImageWithURL:imageURL eventName:eventName createIfNeeded:YES];
         NSBlockOperation *imageDownloadOperation = [NSBlockOperation blockOperationWithBlock:^{
@@ -37,11 +47,19 @@
             UIImage *image = [UIImage imageWithData:imageData];
 
             if (completion) {
+                IDLog(@"%s IMAGE DOWNLOAD COMPLETED WITH ERROR: %@", __PRETTY_FUNCTION__, error);
+
                 completion(image,error);
             }
             [self.imageRequestsKeyedByURL removeObjectForKey:imageURL];
         }];
         [self.imageDownloadQueue addOperation:imageDownloadOperation];
+    } else {
+        if (completion) {
+            completion(nil,nil);
+        }
+        
+        IDLog(@"%s IMAGE WITH URL: %@ ALREADY REQUESTED", __PRETTY_FUNCTION__, imageURL);
     }
 }
 

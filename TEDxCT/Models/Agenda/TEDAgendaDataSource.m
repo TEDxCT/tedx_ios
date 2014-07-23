@@ -15,6 +15,14 @@
 #import "TEDImageDownloader.h"
 #import "TEDStorageService.h"
 
+#define AGENDA_LOGGER 0
+
+#if AGENDA_LOGGER == 1
+#	define ALog(fmt, ...) NSLog((fmt), ##__VA_ARGS__);
+#else
+#	define ALog(...)
+#endif
+
 NSString *const kTalkCellReuseIdentifier = @"talkCell";
 
 @interface TEDAgendaDataSource ()
@@ -62,12 +70,16 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     
     [cell.genre setText:talk.genre];
     
-    NSString *ImageURL = talk.imageURL;
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:ImageURL]) {
-        [cell.talkImageView setImage:[UIImage imageWithContentsOfFile:[TEDStorageService pathForImageWithURL:ImageURL eventName:@"TED" createIfNeeded:YES]]];
+    NSString *imageURL = talk.imageURL;
+    NSString *downloadPath =[TEDStorageService pathForImageWithURL:imageURL eventName:@"TED" createIfNeeded:NO];
+    ALog(@"%s GET IMAGE WITH URL: %@", __PRETTY_FUNCTION__, downloadPath);
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:downloadPath]) {
+        ALog(@"%s IMAGE EXISTS AT: %@", __PRETTY_FUNCTION__, downloadPath);
+
+        [cell.talkImageView setImage:[UIImage imageWithContentsOfFile:downloadPath]];
     } else {
-        [self.imageDownloader downloadImageWithURL:ImageURL forEventName:@"TED" completionHandler:^(UIImage *image, NSError *error) {
+        [self.imageDownloader downloadImageWithURL:imageURL forEventName:@"TED" completionHandler:^(UIImage *image, NSError *error) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [[(TEDTalkTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] talkImageView] setImage:image];
             }];

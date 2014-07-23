@@ -21,7 +21,7 @@
 #import "TEDSponsor+Additions.h"
 #import <CoreData/CoreData.h>
 
-#define IMPORTER_LOGGER 1
+#define IMPORTER_LOGGER 0
 
 #if IMPORTER_LOGGER == 1
 #	define ITLog(fmt, ...) NSLog((fmt), ##__VA_ARGS__);
