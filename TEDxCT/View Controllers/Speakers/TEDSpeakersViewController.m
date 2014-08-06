@@ -18,10 +18,12 @@
 NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 
 
-@interface TEDSpeakersViewController ()<UITableViewDataSource>
+@interface TEDSpeakersViewController ()<UISearchDisplayDelegate , UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *speakersTableView;
 @property (strong, nonatomic) TEDSpeakersDataSource *speakersDataSource;
 @property (strong, nonatomic) TEDImageDownloader *imageDownloader;
+@property (strong,nonatomic) UISearchBar *searchBar;
+@property (strong,nonatomic) UISearchDisplayController *searchController;
 @end
 
 @implementation TEDSpeakersViewController
@@ -30,7 +32,19 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     [super viewDidLoad];
     _imageDownloader = [[TEDImageDownloader alloc] init];
     self.speakersDataSource = [[TEDSpeakersDataSource alloc] init];
-    [self.speakersTableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
+    [self registerReusableViewsWithTableView:self.speakersTableView];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    _searchBar = searchBar;
+    self.tableView.tableHeaderView = searchBar;
+    
+    UISearchDisplayController *searchController = [[UISearchDisplayController alloc]initWithSearchBar:searchBar
+                                                                                   contentsController:self];
+    searchController.delegate = self;
+    searchController.searchResultsDataSource = self;
+    searchController.searchResultsDelegate = self;
+    _searchController = searchController;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,6 +64,10 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kContentImporterCompleteNotification object:nil];
 
     [super viewDidDisappear:animated];
+}
+
+- (void)registerReusableViewsWithTableView:(UITableView *)tableView {
+    [tableView registerNib:[UINib nibWithNibName:@"TEDSpeakersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kSpeakersCellReuseIdentifier];
 }
 
 #pragma mark - UITableViewDataSource -
@@ -93,6 +111,21 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     TEDSpeakerProfileViewController *pvc = [[TEDSpeakerProfileViewController alloc] initWithSpeaker:selectedSpeaker];
     [self.navigationController pushViewController:pvc animated:YES];
 }
+
+#pragma mark - Searching -
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
+    [self registerReusableViewsWithTableView:tableView];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
+    [self.speakersDataSource resetFilter];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [self.speakersDataSource filterSpeakersListWithNamesContaining:searchString];
+    return YES;
+}
+
 
 #pragma mark - Notification Handlers -
 - (void)handleContentImporterCompleteNotification:(NSNotification *)notification {

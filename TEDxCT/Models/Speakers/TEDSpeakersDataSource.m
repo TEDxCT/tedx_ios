@@ -40,6 +40,16 @@
     return [[self.speakersFetchedResultsController fetchedObjects] count];
 }
 
+- (void)filterSpeakersListWithNamesContaining:(NSString *)searchString {
+    self.speakersFetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isActive = YES && fullName contains [c] %@",searchString];
+    [self.speakersFetchedResultsController performFetch:nil];
+}
+
+- (void)resetFilter {
+    self.speakersFetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isActive = YES"];
+    [self.speakersFetchedResultsController performFetch:nil];
+}
+
 #pragma mark - Core Data -
 - (NSFetchRequest *)createSpeakersFetchRequest {
     NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];

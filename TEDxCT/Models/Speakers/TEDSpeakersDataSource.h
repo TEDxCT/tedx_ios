@@ -14,4 +14,7 @@
 - (void)reloadData;
 - (NSInteger)numberOfSpeakers;
 - (TEDSpeaker *)speakerForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)filterSpeakersListWithNamesContaining:(NSString *)searchString;
+- (void)resetFilter;
 @end
