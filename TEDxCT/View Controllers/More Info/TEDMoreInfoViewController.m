@@ -31,6 +31,7 @@ NSString *const kInfoCellReuseIdentifier = @"infoCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.moreInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view from its nib.
 }
 
