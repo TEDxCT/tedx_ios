@@ -36,6 +36,7 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.placeholder = @"Search Speakers";
     _searchBar = searchBar;
     self.tableView.tableHeaderView = searchBar;
     
@@ -119,6 +120,7 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
     [self.speakersDataSource resetFilter];
+    [self.speakersTableView reloadData];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
