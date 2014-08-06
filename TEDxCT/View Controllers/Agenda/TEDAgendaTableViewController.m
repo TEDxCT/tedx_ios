@@ -146,6 +146,7 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
     [self.agendaDataSource resetFilter];
+    [self.agendaTableView reloadData];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
