@@ -101,13 +101,10 @@ NSString *const kSponsorCellReuseIdentifier = @"sponsorCell";
 
     TEDSponsor *sponsor = [self sponsorForItemAtIndexPath:indexPath];
     NSString *websiteURL;
-    if (sponsor.websiteURL){
+    if (sponsor.websiteURL.length > 0){
         websiteURL = sponsor.websiteURL;
-    } else {
-        websiteURL =@"http://www.google.com";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:websiteURL]];
     }
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:websiteURL]];
 }
 
 #pragma mark - Table View Datasource -
