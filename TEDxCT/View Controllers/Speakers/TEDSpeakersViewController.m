@@ -124,8 +124,11 @@ NSString *const kSpeakersCellReuseIdentifier = @"speakersCell";
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    [self.speakersDataSource filterSpeakersListWithNamesContaining:searchString];
-    return YES;
+    if (searchString.length > 0) {
+        [self.speakersDataSource filterSpeakersListWithNamesContaining:searchString];
+        return YES;
+    }
+    return NO;
 }
 
 

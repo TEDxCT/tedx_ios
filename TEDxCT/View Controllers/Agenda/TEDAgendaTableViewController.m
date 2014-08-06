@@ -150,8 +150,11 @@
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    [self.agendaDataSource filterTalksWithSearchString:searchString];
-    return YES;
+    if (searchString.length > 0) {
+        [self.agendaDataSource filterTalksWithSearchString:searchString];
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - Notification Handlers - 
