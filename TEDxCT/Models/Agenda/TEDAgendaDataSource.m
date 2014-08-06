@@ -26,7 +26,7 @@
 NSString *const kTalkCellReuseIdentifier = @"talkCell";
 
 @interface TEDAgendaDataSource ()
-@property (strong, nonatomic) NSFetchedResultsController *sessionsFetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *talksFetchedResultsController;
 @property (strong,nonatomic) TEDImageDownloader *imageDownloader;
 @end
 
@@ -35,7 +35,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
 - (id)init {
     self = [super init];
     if (self) {
-        _sessionsFetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:[self createSessionsFetchRequest]
+        _talksFetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:[self createTalksFetchRequest]
                                                                                managedObjectContext:[self uiContext]
                                                                                  sectionNameKeyPath:@"session.startTime"
                                                                                           cacheName:nil];
@@ -45,8 +45,18 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
     return self;
 }
 
+- (void)resetFilter {
+    self.talksFetchedResultsController.fetchRequest.predicate = [self createTalksFetchRequest].predicate;
+    [self.talksFetchedResultsController performFetch:nil];
+}
+
+- (void)filterTalksWithSearchString:(NSString *)searchString {
+    self.talksFetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ || speaker.fullName contains[c] %@",searchString,searchString];
+    [self.talksFetchedResultsController performFetch:nil];
+}
+
 - (void)reloadData {
-    [self.sessionsFetchedResultsController performFetch:nil];
+    [self.talksFetchedResultsController performFetch:nil];
 }
 
 - (void)registerCellsForTableView:(UITableView *)tableView {
@@ -54,14 +64,14 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
 }
 
 - (TEDTalk *)talkForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.sessionsFetchedResultsController objectAtIndexPath:indexPath];
+    return [self.talksFetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDataSource -
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TEDTalkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTalkCellReuseIdentifier];
     
-    TEDTalk *talk = [_sessionsFetchedResultsController objectAtIndexPath:indexPath];
+    TEDTalk *talk = [_talksFetchedResultsController objectAtIndexPath:indexPath];
     [cell.talkNameLabel setText:talk.name];
     
     if (cell.talkSpeakerName) {
@@ -90,25 +100,15 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[self.sessionsFetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    return [[[self.talksFetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.sessionsFetchedResultsController sections] count];
+    return [[self.talksFetchedResultsController sections] count];
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    id session = [[self.sessionsFetchedResultsController sections] objectAtIndex:section];
-////    NSDate *date = [session startTime];
-////
-////    NSLog(@"%@", date);
-//    
-//    
-//    return [[session name] uppercaseString];
-//}
-
 - (TEDSession *)sessionForSection:(NSInteger)section {
-    TEDTalk *talk = [self.sessionsFetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+    TEDTalk *talk = [self.talksFetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
     return talk.session;
 }
 
@@ -143,7 +143,7 @@ NSString *const kTalkCellReuseIdentifier = @"talkCell";
 }
 
 #pragma mark - Core Data -
-- (NSFetchRequest *)createSessionsFetchRequest {
+- (NSFetchRequest *)createTalksFetchRequest {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([TEDTalk class]) inManagedObjectContext:[self uiContext]];

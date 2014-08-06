@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TEDAgendaTableViewController : UIViewController<UITableViewDelegate>
+@interface TEDAgendaTableViewController : UITableViewController<UITableViewDelegate>
 
 @end

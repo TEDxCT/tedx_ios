@@ -13,9 +13,12 @@
 #import "TEDTalkTableViewCell.h"
 #import "TEDSession.h"
 
-@interface TEDAgendaTableViewController ()
+@interface TEDAgendaTableViewController ()<UISearchDisplayDelegate , UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *agendaTableView;
 @property (nonatomic,strong) TEDAgendaDataSource *agendaDataSource;
+@property (strong,nonatomic) UISearchBar *searchBar;
+@property (strong,nonatomic) UISearchDisplayController *searchController;
+@property (strong,nonatomic) NSDateFormatter *dateFormatter;
 @end
 
 @implementation TEDAgendaTableViewController
@@ -39,11 +42,20 @@
     self.agendaDataSource = [[TEDAgendaDataSource alloc] init];
     [self.agendaDataSource registerCellsForTableView:self.agendaTableView];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    _searchBar = searchBar;
+    searchBar.placeholder = @"Search Agenda";
+    [searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchBar;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UISearchDisplayController *searchController = [[UISearchDisplayController alloc]initWithSearchBar:searchBar
+                                                                                   contentsController:self];
+    searchController.delegate = self;
+    searchController.searchResultsDataSource = self.agendaDataSource;
+    searchController.searchResultsDelegate = self;
+    _searchController = searchController;
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -60,8 +72,6 @@
 }
 
 #pragma mark - UITableViewDelegate -
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selectedBackgroundView.backgroundColor =  [UIColor colorWithRed:230/255.f green:55/255.f blue:33/255.f alpha:0.9];
@@ -74,17 +84,9 @@
     return 80;
 }
 
-/*
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[UIView alloc]init];
-    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, CGRectGetWidth(self.tableView.frame), 44)];
-    headerLabel.text = @"Session 1";
-    
-    headerView.backgroundColor = [UIColor colorWithRed:200/255.f green:200/255.f blue:200/255.f alpha:0.8];
-    
-    [headerView addSubview:headerLabel];
-    return headerView;
-}*/
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 60;
@@ -100,11 +102,15 @@
     NSInteger afterPartyIndex = [self.agendaDataSource indexForSessionWithName:@"After Party"];
     
     UIColor *textColor = [UIColor colorWithRed:230/255.f green:43/255.f blue:30/255.f alpha:1];
-    UIColor *backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:0.9];
-
-    NSDateFormatter *tf = [[NSDateFormatter alloc] init];
-    [tf setDateFormat:@"HH:mm"];
-    tf.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    UIColor *backgroundColor = self.tableView.backgroundColor;//[UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:0.9];
+    NSDateFormatter *tf;
+    if (!_dateFormatter) {
+        tf = [[NSDateFormatter alloc] init];
+        [tf setDateFormat:@"HH:mm"];
+        tf.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+        _dateFormatter = tf;
+    }
+    tf = self.dateFormatter;
     
     if(section == lunchIndex){
         sessionLabel.text = [NSString stringWithFormat:@"%@ Break", [tf stringFromDate:session.startTime]];
@@ -124,11 +130,27 @@
     sessionName.textColor = textColor;//[UIColor whiteColor];
     [sessionLabel sizeToFit];
     [sessionName sizeToFit];
+    sessionLabel.backgroundColor = backgroundColor;
+    sessionName.backgroundColor = backgroundColor;
     view.backgroundColor = backgroundColor;//textColor;//[UIColor colorWithRed:222/255.f green:222/255.f blue:222/255.f alpha:0.9];
     [view addSubview:sessionLabel];
     [view addSubview:sessionName];
     return view;
     
+}
+
+#pragma mark - Searching -
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
+    [self.agendaDataSource registerCellsForTableView:tableView];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
+    [self.agendaDataSource resetFilter];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [self.agendaDataSource filterTalksWithSearchString:searchString];
+    return YES;
 }
 
 #pragma mark - Notification Handlers - 
