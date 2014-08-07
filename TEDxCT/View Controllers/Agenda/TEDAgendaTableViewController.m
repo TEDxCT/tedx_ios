@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1];
     self.agendaDataSource = [[TEDAgendaDataSource alloc] init];
     [self.agendaDataSource registerCellsForTableView:self.agendaTableView];
     
@@ -102,7 +102,7 @@
     NSInteger afterPartyIndex = [self.agendaDataSource indexForSessionWithName:@"After Party"];
     
     UIColor *textColor = [UIColor colorWithRed:230/255.f green:43/255.f blue:30/255.f alpha:1];
-    UIColor *backgroundColor = self.tableView.backgroundColor;//[UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:0.9];
+    UIColor *backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1];
     NSDateFormatter *tf;
     if (!_dateFormatter) {
         tf = [[NSDateFormatter alloc] init];
