@@ -11,7 +11,7 @@
      "latitude":"-33.92486850",
      "locationDescriptionHTML":     "Test description",
      "longitude":     "18.42405529",
-     "name":"TestEvent",
+     "name":"TEDxCapeTown 2014",
      "sessions":[
       {
       "dateCreated":1405209600,
@@ -28,7 +28,7 @@
        "dateModified":       1405209600,
        "descriptionHTML":       "Session description 1",
        "id":       "11111",
-       "imageURL":       "http:\/\/images.ted.com\/images\/ted\/936989f4beecf3cf9b4cbd36a320f1d855a62ffb_165x165.jpg",
+       "imageURL": "http:\/\/old.tedxcapetown.org\/sites\/default\/files\/imagecache\/200x200\/speakers\/DAVE_DUARTE_LOW_RES.jpeg",
        "isActive":       "\u0001",
        "name":       "Side Project",
        "orderInSession":       "1",
@@ -41,7 +41,7 @@
        "fullName":       "Dave Duarte",
        "funkyTitle":       "Partner, Treeshake",
        "id":       "22222",
-       "imageURL":       "http:\/\/images.ted.com\/images\/ted\/936989f4beecf3cf9b4cbd36a320f1d855a62ffb_165x165.jpg",
+    "imageURL": "http:\/\/old.tedxcapetown.org\/sites\/default\/files\/imagecache\/200x200\/speakers\/DAVE_DUARTE_LOW_RES.jpeg",
        "isActive":       "\u0001"
        },
        "speakerId":       "10",

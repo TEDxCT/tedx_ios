@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.speakerImageView.layer.cornerRadius = 40;
     self.speakerImageView.layer.masksToBounds = YES;
 }

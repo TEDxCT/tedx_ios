@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.talkImageView.layer.cornerRadius = CGRectGetWidth(self.talkImageView.frame)/2;
     self.talkImageView.layer.masksToBounds = YES;
     UIColor *backgroundColor = self.contentView.backgroundColor;

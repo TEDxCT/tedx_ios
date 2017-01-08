@@ -20,6 +20,7 @@
 #import "TEDSponsor.h"
 #import "TEDSponsor+Additions.h"
 #import <CoreData/CoreData.h>
+#import "TEDCoreDataMocker.h"
 
 #define IMPORTER_LOGGER 0
 
@@ -73,23 +74,83 @@ NSString *const kSponsorsKey = @"sponsors";
     });
 }
 
-- (void)requestContentImportForAllContent {
-
-    [self requestEventJSONWithCompletionHandler:^(NSDictionary *json) {
-        if (json) {
-            [self deleteContentInTrashWithCompletionBlock:nil];
-            
-            ITLog(@"START IMPORT");
-            [self importContentFromEventJSON:json forEventName:[self.appConfig eventName] withCompletionBlock:nil];
-        }
-    }];
+- (void)requestContentImportForAllContent
+{
+    TEDCoreDataMocker *mocker = [[TEDCoreDataMocker alloc]init];
+    [mocker create2Speakers];
     
-    [self requestSponsorJSONWithCompletionHandler:^(NSDictionary *json) {
-        if (json) {
-            [self importContentFromSponsorJSON:json];
-        }
-    }];
+    NSManagedObjectContext *context = [[TEDCoreDataManager sharedManager] uiContext];
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSpeaker class])];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    
+//    XCTAssertNil(error, @"Failed while retrieving speakers");
+    
+//    XCTAssertEqual([results count], 5, @"Did not return correct number of speakers");
+    
+    [mocker create2Sessions];
+    
+    
+    NSFetchRequest *fetchRequest2 = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TEDSession class])];
+    [fetchRequest2 setReturnsObjectsAsFaults:NO];
+    
+    results = [context executeFetchRequest:fetchRequest2 error:&error];
+
+    
 }
+
+-(void)testCreateFakeSessions
+{
+    
+//    XCTAssertNil(error, @"Failed while retrieving sessions");
+    
+//    XCTAssertEqual([results count], 1, @"Did not return correct number of sessions");
+    
+}
+
+//- (void)requestContentImportForAllContent {
+//
+//    [self requestEventJSONWithCompletionHandler:^(NSDictionary *json) {
+//        if (json) {
+//
+//        } else {
+//            json = [self requestEvent1JSON];
+//        }
+//        
+//        [self deleteContentInTrashWithCompletionBlock:nil];
+//        
+//        ITLog(@"START IMPORT");
+//        [self importContentFromEventJSON:json forEventName:[self.appConfig eventName] withCompletionBlock:nil];
+//    }];
+//    
+//    [self requestSponsorJSONWithCompletionHandler:^(NSDictionary *json) {
+//        if (json) {
+//            [self importContentFromSponsorJSON:json];
+//        }
+//    }];
+//}
+
+- (NSDictionary *)requestEvent1JSON {
+    NSData *data =  [[NSFileManager defaultManager] contentsAtPath:[self event1JSONURL]];
+    
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:data
+                          
+                          options:kNilOptions
+                          error:&error];
+    
+    return json;
+    
+}
+
+- (NSString *)event1JSONURL {
+    return [[NSBundle bundleForClass:[self class]] pathForResource:@"Event1" ofType:@"json"];
+}
+
 
 #pragma mark - Trash -
 - (void)deleteContentInTrashWithCompletionBlock:(void(^)())completionBlock {

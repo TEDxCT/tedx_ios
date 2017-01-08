@@ -51,8 +51,9 @@
     
     for (NSDictionary *dict in self.speaker.contactDetails) {
         TEDSpeakerProfileDataContactDetail *detail = [[TEDSpeakerProfileDataContactDetail alloc] init];
-        detail.value = dict[@"value"];
-        detail.name = dict[@"name"];
+        NSLog(@"%@", dict);
+        detail.value = @"@kdudley";//dict[@"value"];
+        detail.name = @"Twitter";//dict[@"name"];
         [self.speakerProfileArray addObject:detail];
     }
 }
